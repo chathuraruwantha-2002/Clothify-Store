@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Homepage.HomepageFormController">
+<AnchorPane prefHeight="750.0" prefWidth="1250.0" style="-fx-background-color: #F5ECE5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Homepage.HomepageFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ece7e2" height="750.0" stroke="TRANSPARENT" strokeType="INSIDE" width="106.0" />
       <ImageView fitHeight="96.0" fitWidth="282.0" layoutX="-32.0" pickOnBounds="true" preserveRatio="true">
@@ -17,7 +14,7 @@
             <Image url="@../img/Logo.png" />
          </image>
       </ImageView>
-      <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="150.0" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Dashboard" textFill="WHITE">
+      <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="150.0" onAction="#Dashboardbutton" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Dashboard" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -26,7 +23,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="231.0" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Place order" textFill="WHITE">
+      <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="231.0" onAction="#PlaceOrderButton" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Place order" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -35,7 +32,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="309.0" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Orders" textFill="WHITE">
+      <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="309.0" onAction="#OrderDetailsbutton" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Orders" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -44,7 +41,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="387.0" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Products" textFill="WHITE">
+      <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="387.0" onAction="#ProductsDetailsButton" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Products" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -53,7 +50,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="466.0" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Inventory" textFill="WHITE">
+      <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="466.0" onAction="#InventoryButton" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Inventory" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -62,7 +59,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton contentDisplay="TOP" layoutX="9.0" layoutY="545.0" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Suppliers" textFill="WHITE">
+      <JFXButton contentDisplay="TOP" layoutX="9.0" layoutY="545.0" onAction="#SuppliersButton" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Suppliers" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -71,7 +68,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton contentDisplay="TOP" layoutX="22.0" layoutY="675.0" prefHeight="54.0" prefWidth="62.0" style="-fx-background-color: #9E3433;" text="Logout" textFill="WHITE">
+      <JFXButton contentDisplay="TOP" layoutX="22.0" layoutY="675.0" onAction="#LogoutButton" prefHeight="54.0" prefWidth="62.0" style="-fx-background-color: #9E3433;" text="Logout" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -80,29 +77,6 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="188.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../icons/Main%20title.png" />
-         </image>
-      </ImageView>
-      <Group layoutX="237.0" layoutY="163.0">
-         <children>
-            <Label layoutX="23.0" layoutY="27.0" text="Sales">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="143.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icons/icon-park-outline_sales-report.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="23.0" layoutY="90.0" prefHeight="18.0" prefWidth="136.0" text="Rs 28000.00">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </Group>
+      <AnchorPane fx:id="UiLoadingArea" layoutX="106.0" layoutY="-2.0" prefHeight="750.0" prefWidth="1143.0" />
    </children>
 </AnchorPane>

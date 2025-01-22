@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="750.0" prefWidth="1143.0" style="-fx-background-color: #F5ECE5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Dashboard.DashboardFormController">
+    <children>
+        <ImageView fx:id="Dashbordicon" fitHeight="150.0" fitWidth="200.0" layoutX="82.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../icons/Main%20title.png" />
+            </image>
+        </ImageView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="379.0" layoutX="80.0" layoutY="321.0" stroke="TRANSPARENT" strokeType="INSIDE" width="454.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="152.0" layoutX="664.0" layoutY="337.0" stroke="TRANSPARENT" strokeType="INSIDE" width="368.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="152.0" layoutX="664.0" layoutY="536.0" stroke="TRANSPARENT" strokeType="INSIDE" width="368.0" />
+        <Group layoutX="365.0" layoutY="166.0">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="110.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="179.0" />
+                <Label layoutX="12.0" layoutY="17.0" prefHeight="27.0" prefWidth="66.0" text="Alerts" textFill="#e07830">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="115.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/iconamoon_trend-down.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="33.0" layoutY="75.0" prefHeight="27.0" prefWidth="23.0" text="5">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="12.0" layoutY="45.0" text="Low stock" textFill="#e07830">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </Group>
+        <Group layoutX="589.0" layoutY="166.0">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="110.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="179.0" />
+                <Label layoutX="12.0" layoutY="17.0" prefHeight="35.0" prefWidth="72.0" text="Active" textFill="#e07830">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="36.0" fitWidth="44.0" layoutX="117.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/People.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="22.0" layoutY="74.0" prefHeight="27.0" prefWidth="26.0" text="14">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="12.0" layoutY="45.0" text="Employees" textFill="#e07830">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </Group>
+        <Group layoutX="143.0" layoutY="166.0">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="110.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="179.0" />
+                <Label layoutX="12.0" layoutY="17.0" prefHeight="27.0" prefWidth="66.0" text="Sales" textFill="#e07830">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="115.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/icon-park-outline_sales-report.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="10.0" layoutY="75.0" prefHeight="18.0" prefWidth="136.0" text="Rs 28000.00">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </Group>
+        <Group layoutX="817.0" layoutY="166.0">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="110.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="179.0" />
+                <Label layoutX="12.0" layoutY="17.0" prefHeight="35.0" prefWidth="91.0" text="Returns" textFill="#e07830">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="38.0" fitWidth="32.0" layoutX="123.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/streamline_return-2-solid.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="10.0" layoutY="75.0" prefHeight="18.0" prefWidth="136.0" text="Rs 23500.00">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </Group>
+
+    </children>
+</AnchorPane>
