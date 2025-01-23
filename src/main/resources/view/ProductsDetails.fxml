@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Group xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Products.ProductsFormController">
+    <children>
+        <AnchorPane prefHeight="750.0" prefWidth="1143.0" style="-fx-background-color: #F5ECE5;">
+            <children>
+                <ImageView fitHeight="30.0" fitWidth="201.0" layoutX="82.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/Back%20button.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="127.0" layoutY="93.0" text="Products" textFill="#563b2f">
+                    <font>
+                        <Font name="System Bold" size="27.0" />
+                    </font>
+                </Label>
+                <Group layoutX="996.0" layoutY="31.0">
+                    <children>
+                        <ImageView fitHeight="27.0" fitWidth="23.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../icons/Vector.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="32.0" fitWidth="1.0" layoutX="45.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../icons/Rectangle%2022.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="44.0" layoutX="66.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/man.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Group>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="444.0" layoutX="68.0" layoutY="274.0" stroke="TRANSPARENT" strokeType="INSIDE" width="616.0" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="70.0" layoutX="102.0" layoutY="197.0" stroke="TRANSPARENT" strokeType="INSIDE" width="268.0" />
+                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="119.0" layoutY="202.0" style="-fx-background-color: #8E3D4C;" text="Button">
+                    <graphic>
+                        <ImageView fitHeight="59.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../icons/Mens_section_icon-removebg-preview.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="200.0" layoutY="202.0" style="-fx-background-color: #8E3D4C;" text="Button">
+                    <graphic>
+                        <ImageView fitHeight="59.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../icons/women_section_icon-removebg-preview.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="283.0" layoutY="202.0" style="-fx-background-color: #8E3D4C;" text="Button">
+                    <graphic>
+                        <ImageView fitHeight="59.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../icons/Kids_section_icon-removebg-preview.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXTextField layoutX="425.0" layoutY="232.0" prefHeight="26.0" prefWidth="230.0" promptText="   Search Products" />
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="581.0" layoutX="718.0" layoutY="137.0" stroke="TRANSPARENT" strokeType="INSIDE" width="388.0" />
+                <Group layoutX="102.0" layoutY="302.0">
+                    <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4ede6" height="135.0" stroke="TRANSPARENT" strokeType="INSIDE" width="138.0" />
+                        <ImageView fitHeight="70.0" fitWidth="131.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/Shirt.jpg" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="41.0" layoutY="85.0" text="Trouser" textFill="#563b2f">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="107.0" text="Rs 1000.00" textFill="#9e3433">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="99.0" layoutY="3.0" prefWidth="29.0" text=" Q 50">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Group>
+                <Group layoutX="301.0" layoutY="302.0">
+                    <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4ede6" height="135.0" stroke="TRANSPARENT" strokeType="INSIDE" width="138.0" />
+                        <ImageView fitHeight="70.0" fitWidth="131.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/Shirt.jpg" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="41.0" layoutY="85.0" text="Trouser" textFill="#563b2f">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="107.0" text="Rs 1000.00" textFill="#9e3433">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="99.0" layoutY="3.0" prefWidth="29.0" text=" Q 50">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Group>
+                <Group layoutX="101.0" layoutY="496.0">
+                    <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4ede6" height="135.0" stroke="TRANSPARENT" strokeType="INSIDE" width="138.0" />
+                        <ImageView fitHeight="70.0" fitWidth="131.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/Shirt.jpg" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="41.0" layoutY="85.0" text="Trouser" textFill="#563b2f">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="107.0" text="Rs 1000.00" textFill="#9e3433">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="99.0" layoutY="3.0" prefWidth="29.0" text=" Q 50">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Group>
+                <Group layoutX="300.0" layoutY="496.0">
+                    <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4ede6" height="135.0" stroke="TRANSPARENT" strokeType="INSIDE" width="138.0" />
+                        <ImageView fitHeight="70.0" fitWidth="131.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/Shirt.jpg" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="41.0" layoutY="85.0" text="Trouser" textFill="#563b2f">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="107.0" text="Rs 1000.00" textFill="#9e3433">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="99.0" layoutY="3.0" prefWidth="29.0" text=" Q 50">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Group>
+                <Group layoutX="503.0" layoutY="302.0">
+                    <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4ede6" height="135.0" stroke="TRANSPARENT" strokeType="INSIDE" width="138.0" />
+                        <ImageView fitHeight="70.0" fitWidth="131.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/Shirt.jpg" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="41.0" layoutY="85.0" text="Trouser" textFill="#563b2f">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="107.0" text="Rs 1000.00" textFill="#9e3433">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="99.0" layoutY="3.0" prefWidth="29.0" text=" Q 50">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Group>
+                <Group layoutX="503.0" layoutY="496.0">
+                    <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4ede6" height="135.0" layoutX="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="138.0" />
+                        <ImageView fitHeight="70.0" fitWidth="131.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/Shirt.jpg" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="41.0" layoutY="85.0" text="Trouser" textFill="#563b2f">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="36.0" layoutY="107.0" text="Rs 1000.00" textFill="#9e3433">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="99.0" layoutY="3.0" prefWidth="29.0" text=" Q 50">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Group>
+                <Label layoutX="735.0" layoutY="151.0" text="Product Details" textFill="#563b2f">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+            <Group layoutX="735.0" layoutY="362.0">
+               <children>
+                      <Label text="Order ID :">
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label layoutX="98.0" text="D001">
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
+               </children>
+            </Group>
+                <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="1051.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/gridicons_add-outline.png" />
+                    </image>
+                </ImageView>
+                <JFXButton layoutX="774.0" layoutY="659.0" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #E07830;" text="Update" textFill="#efeded">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </JFXButton>
+            <ImageView fitHeight="167.0" fitWidth="248.0" layoutX="792.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Shirt.jpg" />
+               </image>
+            </ImageView>
+            <Group layoutX="761.0" layoutY="415.0">
+               <children>
+                  <Label layoutY="4.0" text="Name">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Product name" />
+               </children>
+            </Group>
+            <Group layoutX="761.0" layoutY="455.0">
+               <children>
+                  <Label layoutY="4.0" text="Category">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox layoutX="69.0" layoutY="1.0" prefHeight="25.0" prefWidth="124.0" promptText="Category" />
+               </children>
+            </Group>
+            <Group layoutX="761.0" layoutY="495.0">
+               <children>
+                  <Label layoutY="4.0" text="Supplier">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Supplier name" />
+               </children>
+            </Group>
+            <Group layoutX="761.0" layoutY="535.0">
+               <children>
+                  <Label layoutY="4.0" text="Qty">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="71.0" promptText="Quantitiy" />
+               </children>
+            </Group>
+            <Group layoutX="929.0" layoutY="535.0">
+               <children>
+                  <Label layoutY="4.0" text="Size">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox layoutX="56.0" layoutY="2.0" prefHeight="25.0" prefWidth="86.0" promptText="Size" />
+               </children>
+            </Group>
+            <Group layoutX="761.0" layoutY="575.0">
+               <children>
+                  <Label layoutY="4.0" text="Price">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Price" />
+               </children>
+            </Group>
+            <JFXButton layoutX="939.0" layoutY="659.0" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #9E3433;" text="Delete" textFill="#efeded">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="1010.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/bx_image-add.png" />
+               </image>
+            </ImageView>
+
+            </children>
+        </AnchorPane>
+    </children>
+</Group>

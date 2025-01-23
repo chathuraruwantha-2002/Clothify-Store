@@ -29,6 +29,14 @@ public class HomepageFormController {
 
     @FXML
     public void InventoryButton(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/Inventory.fxml");
+
+        assert resource != null;
+
+        Parent load = FXMLLoader.load(resource);
+
+        UiLoadingArea.getChildren().clear();
+        UiLoadingArea.getChildren().add(load);
 
     }
 
@@ -38,18 +46,39 @@ public class HomepageFormController {
     }
 
     @FXML
-    public void OrderDetailsbutton(ActionEvent event) {
+    public void OrderDetailsbutton(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/OrderDetails.fxml");
 
+        assert resource != null;
+
+        Parent load = FXMLLoader.load(resource);
+
+        UiLoadingArea.getChildren().clear();
+        UiLoadingArea.getChildren().add(load);
     }
 
     @FXML
-    public void PlaceOrderButton(ActionEvent event) {
+    public void PlaceOrderButton(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/PlaceOrder.fxml");
 
+        assert resource != null;
+
+        Parent load = FXMLLoader.load(resource);
+
+        UiLoadingArea.getChildren().clear();
+        UiLoadingArea.getChildren().add(load);
     }
 
     @FXML
-    public void ProductsDetailsButton(ActionEvent event) {
+    public void ProductsDetailsButton(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/ProductsDetails.fxml");
 
+        assert resource != null;
+
+        Parent load = FXMLLoader.load(resource);
+
+        UiLoadingArea.getChildren().clear();
+        UiLoadingArea.getChildren().add(load);
     }
 
     @FXML
