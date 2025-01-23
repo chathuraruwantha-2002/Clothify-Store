@@ -82,9 +82,38 @@ public class HomepageFormController {
     }
 
     @FXML
-    public void SuppliersButton(ActionEvent event) {
+    public void SuppliersButton(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/Suppliers.fxml");
+
+        assert resource != null;
+
+        Parent load = FXMLLoader.load(resource);
+
+        UiLoadingArea.getChildren().clear();
+        UiLoadingArea.getChildren().add(load);
 
     }
 
+    public void ReportsButton(ActionEvent actionEvent) throws IOException {
+        URL resource = this.getClass().getResource("/view/Reports.fxml");
+
+        assert resource != null;
+
+        Parent load = FXMLLoader.load(resource);
+
+        UiLoadingArea.getChildren().clear();
+        UiLoadingArea.getChildren().add(load);
+    }
+
+    public void EmployeesButton(ActionEvent actionEvent) throws IOException {
+        URL resource = this.getClass().getResource("/view/Employees.fxml");
+
+        assert resource != null;
+
+        Parent load = FXMLLoader.load(resource);
+
+        UiLoadingArea.getChildren().clear();
+        UiLoadingArea.getChildren().add(load);
+    }
 }
 
