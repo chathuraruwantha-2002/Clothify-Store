@@ -2,21 +2,23 @@ package DBConnection;
 
 import lombok.Getter;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DBConnection {
-
     private static DBConnection instance;
 
     @Getter
-    private int connection; // connection ref
-    private DBConnection(){
-        //Sql connection code
-        connection = 100;
+    private Connection connection;
+    private DBConnection() throws SQLException {
+        String URL="jdbc:mysql://localhost:3306/clothifystore";
+        String userName="root";
+        String password="";
+        connection = DriverManager.getConnection(URL, userName, password);
     }
 
-
-    public static DBConnection getInstance() {
+    public static DBConnection getInstance() throws SQLException {
         return instance==null?instance = new DBConnection():instance;
     }
-
 }

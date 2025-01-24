@@ -47,10 +47,16 @@
                 <JFXTextField layoutX="96.0" layoutY="183.0" prefHeight="26.0" prefWidth="230.0" promptText="Search item stocks.." />
                 <Group layoutX="761.0" layoutY="226.0" />
                 <Group layoutX="761.0" layoutY="650.0" />
-                <TableView layoutX="68.0" layoutY="217.0" prefHeight="501.0" prefWidth="998.0">
+                <TableView fx:id="tblInventory" layoutX="68.0" layoutY="217.0" prefHeight="501.0" prefWidth="998.0">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
+                        <TableColumn fx:id="ColItemID" prefWidth="68.80001831054688" text="Item ID" />
+                        <TableColumn fx:id="ColProductName" prefWidth="174.40005493164062" text="Product Name" />
+                  <TableColumn fx:id="ColCategory" prefWidth="113.60003662109375" text="Category" />
+                  <TableColumn fx:id="ColQtyinStock" prefWidth="103.19992065429688" text="Qty In Stock" />
+                  <TableColumn fx:id="ColSupplier" prefWidth="171.20001220703125" text="Supplier" />
+                  <TableColumn fx:id="ColLastRestocked" prefWidth="109.60003662109375" text="Last Restocked" />
+                  <TableColumn fx:id="ColLastRestockerID" prefWidth="114.39996337890625" text="Last Restocker ID" />
+                  <TableColumn fx:id="ColAction" prefWidth="140.800048828125" text="Action" />
                     </columns>
                 </TableView>
                 <JFXButton layoutX="982.0" layoutY="183.0" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #E07830;" text="Print" textFill="WHITE">

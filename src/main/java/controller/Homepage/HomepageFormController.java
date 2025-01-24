@@ -1,5 +1,6 @@
 package controller.Homepage;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+
 
 public class HomepageFormController {
 
@@ -103,6 +105,8 @@ public class HomepageFormController {
 
         UiLoadingArea.getChildren().clear();
         UiLoadingArea.getChildren().add(load);
+
+
     }
 
     public void EmployeesButton(ActionEvent actionEvent) throws IOException {

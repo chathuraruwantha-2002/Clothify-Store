@@ -8,6 +8,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -329,6 +330,7 @@
                   <Image url="@../icons/bx_image-add.png" />
                </image>
             </ImageView>
+            <VBox fx:id="productContainer" layoutX="68.0" layoutY="275.0" prefHeight="444.0" prefWidth="616.0" />
 
             </children>
         </AnchorPane>
