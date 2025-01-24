@@ -44,10 +44,10 @@
                         </ImageView>
                     </children>
                 </Group>
-                <JFXTextField layoutX="96.0" layoutY="183.0" prefHeight="26.0" prefWidth="230.0" promptText="Search item stocks.." />
+                <JFXTextField fx:id="Searchareainput" layoutX="96.0" layoutY="183.0" onKeyReleased="#Searchinput" prefHeight="26.0" prefWidth="230.0" promptText="Search item stocks.." />
                 <Group layoutX="761.0" layoutY="226.0" />
                 <Group layoutX="761.0" layoutY="650.0" />
-                <TableView fx:id="tblInventory" layoutX="68.0" layoutY="217.0" prefHeight="501.0" prefWidth="998.0">
+                <TableView fx:id="tblInventory" layoutX="68.0" layoutY="217.0" onMouseClicked="#SelectedRowAc" prefHeight="501.0" prefWidth="998.0">
                     <columns>
                         <TableColumn fx:id="ColItemID" prefWidth="68.80001831054688" text="Item ID" />
                         <TableColumn fx:id="ColProductName" prefWidth="174.40005493164062" text="Product Name" />

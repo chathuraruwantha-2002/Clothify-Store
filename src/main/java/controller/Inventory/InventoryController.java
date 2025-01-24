@@ -2,10 +2,7 @@ package controller.Inventory;
 
 import DBConnection.DBConnection;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,4 +44,55 @@ public class InventoryController {
 
         return combinedProductDataList;
     }
+
+    public List<Inventory> search(String input) {
+        List<Inventory> datalist = new ArrayList<>();
+
+        // Base query with a WHERE clause to filter results
+        String query = "SELECT " +
+                "p.ProductID, " +
+                "p.Name AS ProductName, " +
+                "p.SupplierID, " +
+                "c.Name AS CategoryName, " +
+                "i.Qty AS QuantityInStock, " +
+                "i.LastUpdate AS LastRestockedDate " +
+                "FROM Product p " +
+                "JOIN Category c ON p.CategoryID = c.CategoryID " +
+                "JOIN Inventory i ON p.InventoryID = i.InventoryID " +
+                "WHERE p.ProductID LIKE ? " +
+                "OR p.Name LIKE ? " +
+                "OR p.SupplierID LIKE ? " +
+                "OR c.Name LIKE ?";
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            // Setting the search parameter for all columns
+            String searchPattern = "%" + input + "%";
+            for (int i = 1; i <= 4; i++) {
+                preparedStatement.setString(i, searchPattern);
+            }
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Inventory data = new Inventory(
+                        resultSet.getInt("ProductID"),
+                        resultSet.getString("ProductName"),
+                        resultSet.getInt("SupplierID"),
+                        resultSet.getString("CategoryName"),
+                        resultSet.getInt("QuantityInStock"),
+                        resultSet.getString("LastRestockedDate")
+                );
+                datalist.add(data);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return datalist;
+    }
+
+
 }
