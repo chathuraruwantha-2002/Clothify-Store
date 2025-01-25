@@ -1,5 +1,6 @@
 package controller.Inventory;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,29 +64,35 @@ public class InventoryFormController implements Initializable {
        // ColLastRestockerID.setCellValueFactory(new PropertyValueFactory<>("lastRestockerId")); // will be implement
        // ColAction.setCellValueFactory(new PropertyValueFactory<>("action")); // will be implement
 
-        ColAction.setCellFactory(param -> new TableCell<Inventory, String>() {
-            private final ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/icons/People.png")));
+        // Set up the Action column with buttons
+        ColAction.setCellFactory(param -> new TableCell<Inventory, Void>() {
+            private final JFXButton btnDelete = new JFXButton();
+            private final ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/icons/delete icon.png")));
+
 
             @Override
-            protected void updateItem(String item, boolean empty) {
+            protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
+
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    deleteIcon.setFitHeight(20);
+                    btnDelete.setStyle("-fx-background-color: #FF4C4C; -fx-text-fill: white;");
                     deleteIcon.setFitWidth(20);
-                    setGraphic(deleteIcon);
-                    deleteIcon.setOnMouseClicked(event -> {
-                        System.out.println("Icon clicked!");
+                    deleteIcon.setFitHeight(20);
+                    btnDelete.setGraphic(deleteIcon);
+                    btnDelete.setOnAction(event -> {
                         Inventory selectedInventory = getTableRow().getItem();
                         if (selectedInventory != null) {
                             handleDelete(selectedInventory);
                         }
                     });
 
+                    setGraphic(btnDelete);
                 }
             }
         });
+
 
 
         loadTableData();
