@@ -20,7 +20,9 @@ public class InventoryController {
                 "i.LastUpdate AS LastRestockedDate " +
                 "FROM Product p " +
                 "JOIN Category c ON p.CategoryID = c.CategoryID " +
-                "JOIN Inventory i ON p.InventoryID = i.InventoryID;";
+                "JOIN Inventory i ON p.InventoryID = i.InventoryID " +
+                "ORDER BY p.ProductID ASC;";
+
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();

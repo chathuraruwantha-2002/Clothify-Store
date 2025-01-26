@@ -69,7 +69,7 @@ public class InventoryFormController implements Initializable {
         // Set up the Action column with buttons and textfields
         ColAction.setCellFactory(param -> new TableCell<Inventory, Void>() {
             private final JFXButton btnAdd = new JFXButton();
-            private final ImageView AddIcon = new ImageView(new Image(getClass().getResourceAsStream("/icons/ri_user-add-line.png")));
+            private final ImageView AddIcon = new ImageView(new Image(getClass().getResourceAsStream("/icons/Add.png")));
 
 
             @Override
@@ -130,6 +130,7 @@ public class InventoryFormController implements Initializable {
         ObservableList<Inventory> inventoryList = FXCollections.observableArrayList();
         List<Inventory> dataList = new InventoryController().getAllCombinedProductData();
         inventoryList.addAll(dataList);
+        System.out.println(dataList);
         tblInventory.setItems(inventoryList);
     }
 
@@ -149,7 +150,7 @@ public class InventoryFormController implements Initializable {
 
         if (selectedInventory != null) {
 
-            int productId = selectedInventory.getProductId();
+            int productId = selectedInventory.getProductID();
             System.out.println("Selected Product ID: " + productId);
 
         }
@@ -157,7 +158,7 @@ public class InventoryFormController implements Initializable {
 
     //////dddd/////
     private void UpdateStock(Inventory selectedInventory,String inputStock) {
-        int productId = selectedInventory.getProductId();
+        int productId = selectedInventory.getProductID();
         int Stock = Integer.parseInt(inputStock);
         System.out.println("Update clicked for Product ID @ Stock : " + productId+ " " +Stock);
         new InventoryController().update(Stock,productId);

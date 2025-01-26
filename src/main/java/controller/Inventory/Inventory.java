@@ -17,4 +17,17 @@ public class Inventory {
     private String categoryName;
     private int quantityInStock;
     private String lastRestockedDate;
+
+    public String getProductId() {
+        return "P" + String.format("%03d", productId);
+    }
+    public int getProductID() {
+        return productId;
+    }
+    public String getSupplierId() {
+        return "S" + String.format("%03d", supplierId);
+    }
+    public int getSupplierID() {
+        return supplierId;
+    }
 }
