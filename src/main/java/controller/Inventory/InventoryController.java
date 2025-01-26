@@ -48,7 +48,7 @@ public class InventoryController {
     public List<Inventory> search(String input) {
         List<Inventory> datalist = new ArrayList<>();
 
-        // Base query with a WHERE clause to filter results
+
         String query = "SELECT " +
                 "p.ProductID, " +
                 "p.Name AS ProductName, " +
@@ -94,9 +94,24 @@ public class InventoryController {
         return datalist;
     }
 
-    public void delete (Inventory obj ) {
+    public void update(int stock, int inventoryID) {
+
+
+        String query = "UPDATE inventory SET Qty = Qty + ?, LastUpdate = CURRENT_TIMESTAMP WHERE InventoryID = ?";
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, stock);
+            preparedStatement.setInt(2, inventoryID);
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
-
 
 }

@@ -63,10 +63,10 @@ public class InventoryFormController implements Initializable {
         ColSupplier.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
         ColQtyinStock.setCellValueFactory(new PropertyValueFactory<>("quantityInStock"));
         ColLastRestocked.setCellValueFactory(new PropertyValueFactory<>("lastRestockedDate"));
-       // ColLastRestockerID.setCellValueFactory(new PropertyValueFactory<>("lastRestockerId")); // will be implement
-       // ColAction.setCellValueFactory(new PropertyValueFactory<>("action")); // will be implement
+        // ColLastRestockerID.setCellValueFactory(new PropertyValueFactory<>("lastRestockerId")); // will be implement
+        // ColAction.setCellValueFactory(new PropertyValueFactory<>("action")); // will be implement
 
-        // Set up the Action column with buttons
+        // Set up the Action column with buttons and textfields
         ColAction.setCellFactory(param -> new TableCell<Inventory, Void>() {
             private final JFXButton btnAdd = new JFXButton();
             private final ImageView AddIcon = new ImageView(new Image(getClass().getResourceAsStream("/icons/ri_user-add-line.png")));
@@ -89,7 +89,7 @@ public class InventoryFormController implements Initializable {
                     // TextField for adding stock
                     TextField txtAddStock = new TextField();
                     txtAddStock.setPromptText("Add stock");
-                    txtAddStock.setPrefWidth(80); // Adjust width as needed
+                    txtAddStock.setPrefWidth(80);
 
                     // Restrict to numbers only
                     txtAddStock.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -98,22 +98,22 @@ public class InventoryFormController implements Initializable {
                         }
                     });
 
-                    // Combine add button and text field into an HBox
+
                     HBox actionContainer = new HBox(10, btnAdd, txtAddStock);
                     setGraphic(actionContainer);
 
-                    // Enable/Disable the button based on the text field value
+
                     txtAddStock.textProperty().addListener((observable, oldValue, newValue) -> {
-                        btnAdd.setDisable(newValue.trim().isEmpty()); // Disable button if text field is empty
+                        btnAdd.setDisable(newValue.trim().isEmpty());
                     });
 
-                    // Event for Add button when text field is not empty
+
                     btnAdd.setOnAction(event -> {
                         Inventory selectedInventory = getTableRow().getItem();
                         if (selectedInventory != null) {
                             String inputStock = txtAddStock.getText();
-                            handleUpdate(selectedInventory, inputStock);
-                            txtAddStock.clear(); // Clear the text field after action
+                            UpdateStock(selectedInventory, inputStock);
+                            txtAddStock.clear();
                         }
                     });
                 }
@@ -142,37 +142,27 @@ public class InventoryFormController implements Initializable {
 
     }
 
+    //experimental purpose
     public void SelectedRowAc(MouseEvent mouseEvent) {
-        // Get the selected item (Inventory object) from the table
+
         Inventory selectedInventory = (Inventory) tblInventory.getSelectionModel().getSelectedItem();
 
-        // Check if an item is selected
         if (selectedInventory != null) {
-            // Get the ProductID from the selected row
-            int productId = selectedInventory.getProductId(); // Assuming getProductId() method exists in Inventory class
+
+            int productId = selectedInventory.getProductId();
             System.out.println("Selected Product ID: " + productId);
 
-            // You can now use productId for further actions (e.g., fetching detailed product info, etc.)
         }
     }
 
     //////dddd/////
-    private void handleUpdate(Inventory selectedInventory,String inputStock) {
+    private void UpdateStock(Inventory selectedInventory,String inputStock) {
         int productId = selectedInventory.getProductId();
         int Stock = Integer.parseInt(inputStock);
-        System.out.println("Delete clicked for Product ID @ Stock : " + productId+ " " +Stock);
-
-
-        // Call your deletion logic
-        deleteProduct(productId);
-    }
-
-    private void deleteProduct(int productId) {
-        System.out.println("Product with ID " + productId + " has been deleted.");
-        // Perform deletion from database or data source here
-
-        // Reload data to update the table
+        System.out.println("Update clicked for Product ID @ Stock : " + productId+ " " +Stock);
+        new InventoryController().update(Stock,productId);
         loadTableData();
+
     }
 
 }
