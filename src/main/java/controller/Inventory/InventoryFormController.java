@@ -9,11 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -66,8 +68,8 @@ public class InventoryFormController implements Initializable {
 
         // Set up the Action column with buttons
         ColAction.setCellFactory(param -> new TableCell<Inventory, Void>() {
-            private final JFXButton btnDelete = new JFXButton();
-            private final ImageView deleteIcon = new ImageView(new Image(getClass().getResourceAsStream("/icons/delete icon.png")));
+            private final JFXButton btnAdd = new JFXButton();
+            private final ImageView AddIcon = new ImageView(new Image(getClass().getResourceAsStream("/icons/ri_user-add-line.png")));
 
 
             @Override
@@ -77,18 +79,43 @@ public class InventoryFormController implements Initializable {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    btnDelete.setStyle("-fx-background-color: #FF4C4C; -fx-text-fill: white;");
-                    deleteIcon.setFitWidth(20);
-                    deleteIcon.setFitHeight(20);
-                    btnDelete.setGraphic(deleteIcon);
-                    btnDelete.setOnAction(event -> {
-                        Inventory selectedInventory = getTableRow().getItem();
-                        if (selectedInventory != null) {
-                            handleDelete(selectedInventory);
+                    // Add button
+                    btnAdd.setStyle("-fx-background-color: #FF4C4C; -fx-text-fill: white;");
+                    AddIcon.setFitWidth(20);
+                    AddIcon.setFitHeight(20);
+                    btnAdd.setGraphic(AddIcon);
+                    btnAdd.setDisable(true);
+
+                    // TextField for adding stock
+                    TextField txtAddStock = new TextField();
+                    txtAddStock.setPromptText("Add stock");
+                    txtAddStock.setPrefWidth(80); // Adjust width as needed
+
+                    // Restrict to numbers only
+                    txtAddStock.textProperty().addListener((observable, oldValue, newValue) -> {
+                        if (!newValue.matches("\\d*")) {
+                            txtAddStock.setText(newValue.replaceAll("[^\\d]", ""));
                         }
                     });
 
-                    setGraphic(btnDelete);
+                    // Combine add button and text field into an HBox
+                    HBox actionContainer = new HBox(10, btnAdd, txtAddStock);
+                    setGraphic(actionContainer);
+
+                    // Enable/Disable the button based on the text field value
+                    txtAddStock.textProperty().addListener((observable, oldValue, newValue) -> {
+                        btnAdd.setDisable(newValue.trim().isEmpty()); // Disable button if text field is empty
+                    });
+
+                    // Event for Add button when text field is not empty
+                    btnAdd.setOnAction(event -> {
+                        Inventory selectedInventory = getTableRow().getItem();
+                        if (selectedInventory != null) {
+                            String inputStock = txtAddStock.getText();
+                            handleUpdate(selectedInventory, inputStock);
+                            txtAddStock.clear(); // Clear the text field after action
+                        }
+                    });
                 }
             }
         });
@@ -130,9 +157,11 @@ public class InventoryFormController implements Initializable {
     }
 
     //////dddd/////
-    private void handleDelete(Inventory selectedInventory) {
+    private void handleUpdate(Inventory selectedInventory,String inputStock) {
         int productId = selectedInventory.getProductId();
-        System.out.println("Delete clicked for Product ID: " + productId);
+        int Stock = Integer.parseInt(inputStock);
+        System.out.println("Delete clicked for Product ID @ Stock : " + productId+ " " +Stock);
+
 
         // Call your deletion logic
         deleteProduct(productId);

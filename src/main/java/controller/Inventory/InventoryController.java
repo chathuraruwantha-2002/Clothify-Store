@@ -94,5 +94,9 @@ public class InventoryController {
         return datalist;
     }
 
+    public void delete (Inventory obj ) {
+
+    }
+
 
 }
