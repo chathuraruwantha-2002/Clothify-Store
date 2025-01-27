@@ -27,6 +27,7 @@ public class ProductCardController {
 
         ProductName.setText(product.getName());
         ProductPrice.setText(String.valueOf(product.getPrice()));
+
         // ProductQty.setText(String.valueOf(product.getProductQty()));
 
     }
