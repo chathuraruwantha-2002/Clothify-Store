@@ -5,33 +5,29 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.Button;
-
 
 public class ProductCardController {
 
     @FXML
-    private Label lblProductName;
+    private ImageView ProductImage;
 
     @FXML
-    private Label lblProductPrice;
+    private Label ProductName;
 
     @FXML
-    private ImageView productImg;
+    private Label ProductPrice;
 
     @FXML
-    private Button btnAddToCart;
+    private Label ProductQty;
 
-    // Method to set product data into the card
-    public void setProductData(Product product) {
-        lblProductName.setText(product.getName());
-        lblProductPrice.setText("$" + product.getPrice());
-        productImg.setImage(new Image(product.getImageUrl()));  // Assuming Product has getImageUrl()
-    }
 
-    // Method to handle the Add to Cart button action
-    @FXML
-    private void onAddToCart() {
-        System.out.println(lblProductName.getText() + " added to cart!");
+    public void setData(Product product){
+        Image productImage = new Image(getClass().getResourceAsStream(product.getImageUrl()));
+        ProductImage.setImage(productImage);
+
+        ProductName.setText(product.getName());
+        ProductPrice.setText(String.valueOf(product.getPrice()));
+        // ProductQty.setText(String.valueOf(product.getProductQty()));
+
     }
 }
