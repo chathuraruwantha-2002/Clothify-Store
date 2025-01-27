@@ -26,6 +26,7 @@ public class ProductCardController {
         ProductImage.setImage(productImage);
 
         ProductName.setText(product.getName());
+
         ProductPrice.setText(String.valueOf(product.getPrice()));
 
         // ProductQty.setText(String.valueOf(product.getProductQty()));
