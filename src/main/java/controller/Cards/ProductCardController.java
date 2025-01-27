@@ -22,8 +22,8 @@ public class ProductCardController {
 
 
     public void setData(Product product){
-        Image productImage = new Image(getClass().getResourceAsStream(product.getImageUrl()));
-        ProductImage.setImage(productImage);
+       // Image productImage = new Image(getClass().getResourceAsStream(product.getImageUrl()));
+        //ProductImage.setImage(productImage);
 
         ProductName.setText(product.getName());
 
