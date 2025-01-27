@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class ProductCardController {
 
@@ -19,9 +20,10 @@ public class ProductCardController {
 
     @FXML
     private Label ProductQty;
-
+    private Product product;
 
     public void setData(Product product){
+        this.product = product;
        // Image productImage = new Image(getClass().getResourceAsStream(product.getImageUrl()));
         //ProductImage.setImage(productImage);
 
@@ -31,5 +33,9 @@ public class ProductCardController {
 
         // ProductQty.setText(String.valueOf(product.getProductQty()));
 
+    }
+
+    public void CardData(MouseEvent mouseEvent) {
+        System.out.println(product);
     }
 }

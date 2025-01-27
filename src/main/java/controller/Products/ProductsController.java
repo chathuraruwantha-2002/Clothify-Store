@@ -16,7 +16,6 @@ public class ProductsController {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM product");
-            resultSet.next();
 
             while (resultSet.next()){
                 Product product = new Product(
@@ -31,7 +30,6 @@ public class ProductsController {
                         resultSet.getInt(9)
                 );
                 productList.add(product);
-                resultSet.next();
 
             }
         } catch (SQLException e) {
