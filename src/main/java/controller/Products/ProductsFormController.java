@@ -14,6 +14,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -56,6 +57,7 @@ public class ProductsFormController implements Initializable {
     @FXML
     private GridPane ProductsContainer;
     //private List<Product> ProductList;
+    private Product product;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,6 +75,7 @@ public class ProductsFormController implements Initializable {
     }
 
     public void viewProductDetailsSide(Product product){
+        this.product = product;
 
         ProductIDSideView.setText(String.format("P%03d", product.getProductID()));
         ProductNameSideView.setText(product.getName());
@@ -117,4 +120,32 @@ public class ProductsFormController implements Initializable {
         }
     }
 
+
+    public void btnupdate(MouseEvent mouseEvent) {
+        //ProductIDSideView.getText();
+        product.setName(ProductNameSideView.getText());
+        product.setCategoryId(CategorySideView.getSelectionModel().getSelectedIndex()+1);
+        //product.setCategoryName((String) CategorySideView.getValue());
+        product.setSupplierName(SupllierNameSideView.getText());
+        product.setQty(Integer.parseInt(QtySideView.getText()));
+        product.setSize((String) SizeSideView.getValue());
+        product.setPrice(Double.parseDouble(PriceSideView.getText()));
+        new ProductsController().updateProductDetails(product);
+        //System.out.println(SizeSideView.getValue());
+        LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
+        clearform();
+    }
+
+    public void btndelete(MouseEvent mouseEvent) {
+    }
+
+    private void clearform(){
+        ProductIDSideView.setText("");
+        ProductNameSideView.setText("");
+        CategorySideView.setValue("");
+        SupllierNameSideView.setText("");
+        QtySideView.setText("");
+        SizeSideView.setValue("");
+        PriceSideView.setText("");
+    }
 }

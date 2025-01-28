@@ -102,7 +102,7 @@
                         <Image url="@../icons/gridicons_add-outline.png" />
                     </image>
                 </ImageView>
-                <JFXButton layoutX="774.0" layoutY="659.0" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #E07830;" text="Update" textFill="#efeded">
+                <JFXButton fx:id="btnUpdate" layoutX="774.0" layoutY="659.0" onMouseClicked="#btnupdate" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #E07830;" text="Update" textFill="#efeded">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
@@ -172,7 +172,7 @@
                   <JFXTextField fx:id="PriceSideView" layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Price" />
                </children>
             </Group>
-            <JFXButton layoutX="939.0" layoutY="659.0" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #9E3433;" text="Delete" textFill="#efeded">
+            <JFXButton fx:id="btnDelete" layoutX="939.0" layoutY="659.0" onMouseClicked="#btndelete" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #9E3433;" text="Delete" textFill="#efeded">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

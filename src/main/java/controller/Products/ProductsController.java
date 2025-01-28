@@ -110,5 +110,67 @@ public class ProductsController {
 
         return productList;
     }
+    public void updateProductDetails(Product product) {
+        // Queries for updating the respective tables
+        String productUpdateQuery = "UPDATE Product SET " +
+                "Name = ?, " +
+                "Size = ?, " +
+                "Image = ?, " +
+                "Price = ?, " +
+                "CategoryID = ? " +
+                "WHERE ProductID = ?";
+
+        String supplierUpdateQuery = "UPDATE Supplier SET Name = ? WHERE SupplierID = ?";
+        String inventoryUpdateQuery = "UPDATE Inventory SET Qty = ?, LastUpdate = NOW() WHERE InventoryID = ?";
+
+        try {
+            // Get database connection
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            // Begin transaction
+            connection.setAutoCommit(false);
+
+            // Update Product table
+            try (PreparedStatement productStatement = connection.prepareStatement(productUpdateQuery)) {
+                productStatement.setString(1, product.getName());
+                productStatement.setString(2, product.getSize());
+                productStatement.setString(3, product.getImageUrl());
+                productStatement.setDouble(4, product.getPrice());
+                productStatement.setDouble(5, product.getCategoryId());
+                productStatement.setInt(6, product.getProductID());
+                productStatement.executeUpdate();
+            }
+
+
+            // Update Supplier table
+            try (PreparedStatement supplierStatement = connection.prepareStatement(supplierUpdateQuery)) {
+                supplierStatement.setString(1, product.getSupplierName());
+                supplierStatement.setInt(2, product.getSupplierId());
+                supplierStatement.executeUpdate();
+            }
+
+            // Update Inventory table
+            try (PreparedStatement inventoryStatement = connection.prepareStatement(inventoryUpdateQuery)) {
+                inventoryStatement.setInt(1, product.getQty());
+                inventoryStatement.setInt(2, product.getInventoryId());
+                inventoryStatement.executeUpdate();
+            }
+
+            // Commit transaction
+            connection.commit();
+            System.out.println("Product details updated successfully for ProductID: " + product.getProductID());
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating product details: " + product.getProductID(), e);
+        } finally {
+            try {
+                // Reset auto-commit
+                DBConnection.getInstance().getConnection().setAutoCommit(true);
+            } catch (SQLException autoCommitEx) {
+                throw new RuntimeException("Error resetting auto-commit", autoCommitEx);
+            }
+        }
+    }
+
+
 
 }
