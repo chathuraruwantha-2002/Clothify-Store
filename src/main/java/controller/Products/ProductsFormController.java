@@ -3,6 +3,8 @@ package controller.Products;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import controller.Cards.ProductCardController;
+import controller.Inventory.Inventory;
+import controller.Inventory.InventoryController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -45,22 +48,55 @@ public class ProductsFormController implements Initializable {
     @FXML
     private JFXTextField SupllierNameSideView;
 
+    @FXML
+    private JFXTextField fieldSearchProducts;
+
 
 
     @FXML
     private GridPane ProductsContainer;
-    private List<Product> ProductList;
+    //private List<Product> ProductList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ProductList = new ArrayList<>(new ProductsController().GetAllProducts());
 
+
+        LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
+
+
+        // ComboBox setup for Category and Size
+        ObservableList<String> categoryValues = FXCollections.observableArrayList("Ladies", "Gents", "Kids");
+        CategorySideView.setItems(categoryValues);
+
+        ObservableList<String> sizeValues = FXCollections.observableArrayList("S", "M", "L", "XL", "XXL");
+        SizeSideView.setItems(sizeValues);
+    }
+
+    public void viewProductDetailsSide(Product product){
+
+        ProductIDSideView.setText(String.format("P%03d", product.getProductID()));
+        ProductNameSideView.setText(product.getName());
+        CategorySideView.setValue(product.getCategoryName());
+        SupllierNameSideView.setText(product.getSupplierName());
+        QtySideView.setText(String.valueOf(product.getQty()));
+        SizeSideView.setValue(product.getSize());
+        PriceSideView.setText(String.valueOf(product.getPrice()));
+
+    }
+
+    public void FSearchProducts(KeyEvent keyEvent) {
+        LoadGridCards(new ProductsController().search(fieldSearchProducts.getText()));
+    }
+
+    public void LoadGridCards(List<Product> productlist){
+
+        ProductsContainer.getChildren().clear();
 
         int column = 0;
         int row = 1;
 
         try{
-            for (Product product :ProductList) {
+            for (Product product :productlist) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/view/ProductCard.fxml"));
                 VBox productCard = fxmlLoader.load();
@@ -79,28 +115,6 @@ public class ProductsFormController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
-
-        // ComboBox setup for Category and Size
-        ObservableList<String> categoryValues = FXCollections.observableArrayList("Ladies", "Gents", "Kids");
-        CategorySideView.setItems(categoryValues);
-        //CategorySideView.setValue("Ladies");
-
-        ObservableList<String> sizeValues = FXCollections.observableArrayList("S", "M", "L", "XL", "XXL");
-        SizeSideView.setItems(sizeValues);
-    }
-
-    public void viewProductDetailsSide(Product product){
-
-        ProductIDSideView.setText(String.format("P%03d", product.getProductID()));
-        ProductNameSideView.setText(product.getName());
-        CategorySideView.setValue(product.getCategoryName());
-        SupllierNameSideView.setText(product.getSupplierName());
-        QtySideView.setText(String.valueOf(product.getQty()));
-        SizeSideView.setValue(product.getSize());
-        PriceSideView.setText(String.valueOf(product.getPrice()));
-
     }
 
 }
