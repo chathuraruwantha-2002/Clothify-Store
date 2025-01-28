@@ -1,6 +1,5 @@
 package controller.Products;
 
-
 import DBConnection.DBConnection;
 
 import java.sql.Connection;
@@ -15,22 +14,31 @@ public class ProductsController {
         ArrayList<Product> productList = new ArrayList<>();
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM product");
+            String query = "SELECT p.ProductID, p.Name, p.Size, p.Image, p.Price, p.CategoryID, p.UserID, p.InventoryID, p.SupplierID, " +
+                    "c.Name AS CategoryName, s.Name AS SupplierName, i.Qty " +
+                    "FROM Product p " +
+                    "JOIN Category c ON p.CategoryID = c.CategoryID " +
+                    "JOIN Supplier s ON p.SupplierID = s.SupplierID " +
+                    "JOIN Inventory i ON p.InventoryID = i.InventoryID";
+
+            ResultSet resultSet = connection.createStatement().executeQuery(query);
 
             while (resultSet.next()){
                 Product product = new Product(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getDouble(5),
-                        resultSet.getInt(6),
-                        resultSet.getInt(7),
-                        resultSet.getInt(8),
-                        resultSet.getInt(9)
+                        resultSet.getInt("ProductID"),
+                        resultSet.getString("Name"),
+                        resultSet.getString("Size"),
+                        resultSet.getString("Image"),
+                        resultSet.getDouble("Price"),
+                        resultSet.getInt("CategoryID"),
+                        resultSet.getInt("UserID"),
+                        resultSet.getInt("InventoryID"),
+                        resultSet.getInt("SupplierID"),
+                        resultSet.getString("CategoryName"),
+                        resultSet.getString("SupplierName"),
+                        resultSet.getInt("Qty")
                 );
                 productList.add(product);
-
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -40,5 +48,3 @@ public class ProductsController {
         return productList;
     }
 }
-
-

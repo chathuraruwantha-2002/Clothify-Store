@@ -20,6 +20,8 @@ public class Product {
     private int userId;
     private int inventoryId;
     private int supplierId;
+    private String categoryName;
+    private String supplierName;
+    private int qty;
 
 }
-

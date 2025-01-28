@@ -90,7 +90,7 @@
                               <Font name="System Bold" size="18.0" />
                           </font>
                       </Label>
-                      <Label layoutX="98.0" text="D001">
+                      <Label fx:id="ProductIDSideView" layoutX="98.0" text="D001">
                           <font>
                               <Font name="System Bold" size="18.0" />
                           </font>
@@ -107,7 +107,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </JFXButton>
-            <ImageView fitHeight="167.0" fitWidth="248.0" layoutX="792.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ProductImgSideView" fitHeight="167.0" fitWidth="248.0" layoutX="792.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/Shirt.jpg" />
                </image>
@@ -119,7 +119,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Product name" />
+                  <JFXTextField fx:id="ProductNameSideView" layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Product name" />
                </children>
             </Group>
             <Group layoutX="761.0" layoutY="455.0">
@@ -129,7 +129,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXComboBox layoutX="69.0" layoutY="1.0" prefHeight="25.0" prefWidth="124.0" promptText="Category" />
+                  <JFXComboBox fx:id="CategorySideView" layoutX="69.0" layoutY="1.0" prefHeight="25.0" prefWidth="124.0" promptText="Category" />
                </children>
             </Group>
             <Group layoutX="761.0" layoutY="495.0">
@@ -139,7 +139,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Supplier name" />
+                  <JFXTextField fx:id="SupllierNameSideView" layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Supplier name" />
                </children>
             </Group>
             <Group layoutX="761.0" layoutY="535.0">
@@ -149,7 +149,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="71.0" promptText="Quantitiy" />
+                  <JFXTextField fx:id="QtySideView" layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="71.0" promptText="Quantitiy" />
                </children>
             </Group>
             <Group layoutX="929.0" layoutY="535.0">
@@ -159,7 +159,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXComboBox layoutX="56.0" layoutY="2.0" prefHeight="25.0" prefWidth="86.0" promptText="Size" />
+                  <JFXComboBox fx:id="SizeSideView" layoutX="56.0" layoutY="2.0" prefHeight="25.0" prefWidth="86.0" promptText="Size" />
                </children>
             </Group>
             <Group layoutX="761.0" layoutY="575.0">
@@ -169,7 +169,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Price" />
+                  <JFXTextField fx:id="PriceSideView" layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Price" />
                </children>
             </Group>
             <JFXButton layoutX="939.0" layoutY="659.0" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #9E3433;" text="Delete" textFill="#efeded">

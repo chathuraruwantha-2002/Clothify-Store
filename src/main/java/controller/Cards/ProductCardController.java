@@ -1,6 +1,7 @@
 package controller.Cards;
 
 import controller.Products.Product;
+import controller.Products.ProductsFormController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -21,9 +22,11 @@ public class ProductCardController {
     @FXML
     private Label ProductQty;
     private Product product;
+    private ProductsFormController parentFormController;
 
-    public void setData(Product product){
+    public void setData(Product product, ProductsFormController parentFormController){
         this.product = product;
+        this.parentFormController = parentFormController;
        // Image productImage = new Image(getClass().getResourceAsStream(product.getImageUrl()));
         //ProductImage.setImage(productImage);
 
@@ -36,6 +39,10 @@ public class ProductCardController {
     }
 
     public void CardData(MouseEvent mouseEvent) {
-        System.out.println(product);
+
+        if (parentFormController != null) {
+            parentFormController.viewProductDetailsSide(product);
+        }
+
     }
 }
