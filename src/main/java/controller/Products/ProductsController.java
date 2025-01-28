@@ -171,6 +171,48 @@ public class ProductsController {
         }
     }
 
+    public void deleteProduct(Product product) {
+        // Query to delete the product from the Product table
+        String deleteProductQuery = "DELETE FROM Product WHERE ProductID = ?";
+
+        // Query to delete the product's inventory from the Inventory table
+        String deleteInventoryQuery = "DELETE FROM Inventory WHERE InventoryID = ?";
+
+        try {
+            // Get the database connection
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            // Begin transaction
+            connection.setAutoCommit(false);
+
+            // Delete from Product table
+            try (PreparedStatement productStatement = connection.prepareStatement(deleteProductQuery)) {
+                productStatement.setInt(1, product.getProductID());
+                productStatement.executeUpdate();
+            }
+
+            // Delete from Inventory table
+            try (PreparedStatement inventoryStatement = connection.prepareStatement(deleteInventoryQuery)) {
+                inventoryStatement.setInt(1, product.getInventoryId());
+                inventoryStatement.executeUpdate();
+            }
+
+            // Commit transaction
+            connection.commit();
+            System.out.println("Product deleted successfully for ProductID: " + product.getProductID());
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting product: " + product.getProductID(), e);
+        } finally {
+            try {
+                // Reset auto-commit
+                DBConnection.getInstance().getConnection().setAutoCommit(true);
+            } catch (SQLException autoCommitEx) {
+                throw new RuntimeException("Error resetting auto-commit", autoCommitEx);
+            }
+        }
+    }
+
+
 
 
 }

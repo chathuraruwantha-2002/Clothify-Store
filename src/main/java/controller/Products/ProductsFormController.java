@@ -137,6 +137,9 @@ public class ProductsFormController implements Initializable {
     }
 
     public void btndelete(MouseEvent mouseEvent) {
+        new ProductsController().deleteProduct(product);
+        clearform();
+        LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
     }
 
     private void clearform(){
