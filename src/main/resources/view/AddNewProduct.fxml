@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="newProductForm" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Products.AddNewProductFormController">
+    <children>
+        <Group>
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="581.0" stroke="TRANSPARENT" strokeType="INSIDE" width="388.0" />
+                <Label layoutX="17.0" layoutY="14.0" text="New Product" textFill="#563b2f">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Group layoutX="17.0" layoutY="225.0">
+                    <children>
+                        <Label text="Order ID :">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="98.0" text="D001">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Group>
+                <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="333.0" layoutY="37.0" onMouseClicked="#FbtnReturn" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/streamline_return-2-solid.png" />
+                    </image>
+                </ImageView>
+                <JFXButton layoutX="56.0" layoutY="522.0" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #E07830;" text="Add" textFill="#efeded">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </JFXButton>
+                <ImageView fitHeight="167.0" fitWidth="248.0" layoutX="74.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/Shirt.jpg" />
+                    </image>
+                </ImageView>
+                <Group layoutX="43.0" layoutY="279.0">
+                    <children>
+                        <Label layoutY="4.0" text="Name">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <JFXTextField layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Product name" />
+                    </children>
+                </Group>
+                <Group layoutX="43.0" layoutY="319.0">
+                    <children>
+                        <Label layoutY="4.0" text="Category">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <JFXComboBox layoutX="69.0" layoutY="1.0" prefHeight="25.0" prefWidth="124.0" promptText="Category" />
+                    </children>
+                </Group>
+                <Group layoutX="43.0" layoutY="359.0">
+                    <children>
+                        <Label layoutY="4.0" text="Supplier">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <JFXTextField layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Supplier name" />
+                    </children>
+                </Group>
+                <Group layoutX="43.0" layoutY="399.0">
+                    <children>
+                        <Label layoutY="4.0" text="Qty">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <JFXTextField layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="71.0" promptText="Quantitiy" />
+                    </children>
+                </Group>
+                <Group layoutX="211.0" layoutY="400.0">
+                    <children>
+                        <Label layoutY="4.0" text="Size">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <JFXComboBox layoutX="56.0" layoutY="2.0" prefHeight="25.0" prefWidth="86.0" promptText="Size" />
+                    </children>
+                </Group>
+                <Group layoutX="43.0" layoutY="439.0">
+                    <children>
+                        <Label layoutY="4.0" text="Price">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <JFXTextField layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Price" />
+                    </children>
+                </Group>
+                <JFXButton layoutX="221.0" layoutY="522.0" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #9E3433;" text="Clear" textFill="#efeded">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </JFXButton>
+                <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="292.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/bx_image-add.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Group>
+    </children>
+</AnchorPane>

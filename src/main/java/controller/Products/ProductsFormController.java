@@ -11,19 +11,31 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class ProductsFormController implements Initializable {
+
+    @FXML
+    private ImageView btnAddNewProduct;
+
+    @FXML
+    AnchorPane productDetailsarea;
+
+    @FXML
+    AnchorPane overlayPane;
 
     @FXML
     private JFXComboBox CategorySideView;
@@ -52,12 +64,12 @@ public class ProductsFormController implements Initializable {
     @FXML
     private JFXTextField fieldSearchProducts;
 
-
-
     @FXML
     private GridPane ProductsContainer;
-    //private List<Product> ProductList;
     private Product product;
+
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -142,6 +154,28 @@ public class ProductsFormController implements Initializable {
         LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
     }
 
+    @FXML
+    private void loadAddProductForm() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddNewProduct.fxml"));
+            Parent newForm = loader.load();
+
+            AddNewProductFormController addProductFormController = loader.getController();
+
+            addProductFormController.setParentController(this);
+
+
+            overlayPane.getChildren().clear();
+            overlayPane.getChildren().add(newForm);
+
+            overlayPane.setVisible(true);
+            overlayPane.setMouseTransparent(false);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void clearform(){
         ProductIDSideView.setText("");
         ProductNameSideView.setText("");
@@ -151,4 +185,10 @@ public class ProductsFormController implements Initializable {
         SizeSideView.setValue("");
         PriceSideView.setText("");
     }
+
+    public void btnfAddNewProduct(MouseEvent mouseEvent) {
+        loadAddProductForm();
+    }
+
+
 }
