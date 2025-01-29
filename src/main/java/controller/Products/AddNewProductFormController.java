@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddNewProductFormController implements Initializable {
@@ -92,11 +93,16 @@ public class AddNewProductFormController implements Initializable {
                 Double.parseDouble(PriceSideView.getText()),
                 CategorySideView.getSelectionModel().getSelectedIndex() + 1,
                 0,
-                (String) SupllierNameSideView.getValue(),
+                new ProductsController().getSupplierIdByName((String) SupllierNameSideView.getValue()),
                 Integer.parseInt(QtySideView.getText())
         );
 
+        boolean success = new ProductsController().addProduct(product);
+        System.out.println(success);
+
         System.out.println(product);
+        clearform();
+        parentController.LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
 
     }
 

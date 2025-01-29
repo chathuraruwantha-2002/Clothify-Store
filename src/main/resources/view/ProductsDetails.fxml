@@ -80,7 +80,6 @@
                 <JFXTextField fx:id="fieldSearchProducts" layoutX="425.0" layoutY="232.0" onKeyReleased="#FSearchProducts" prefHeight="26.0" prefWidth="230.0" promptText="   Search Products" />
             <StackPane layoutX="718.0" layoutY="137.0">
                <children>
-                  <AnchorPane fx:id="overlayPane" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
                   <AnchorPane fx:id="productDetailsarea">
                      <children>
                             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="581.0" stroke="TRANSPARENT" strokeType="INSIDE" width="388.0" />
@@ -190,6 +189,7 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
+                  <AnchorPane fx:id="overlayPane" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
                </children>
             </StackPane>
             <ScrollPane layoutX="68.0" layoutY="276.0" prefHeight="450.0" prefWidth="616.0">

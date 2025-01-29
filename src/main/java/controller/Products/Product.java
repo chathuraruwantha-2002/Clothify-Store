@@ -24,7 +24,7 @@ public class Product {
     private String supplierName;
     private int qty;
 
-    Product (int ProductID, String name, String  size, String imageUrl, double price, int categoryId, int userId, String supplierName, int qty ){
+    Product (int ProductID, String name, String  size, String imageUrl, double price, int categoryId, int userId, int supplierId, int qty ){
         this.ProductID = ProductID;
         this.name = name;
         this.size = size;
@@ -32,7 +32,7 @@ public class Product {
         this.price = price;
         this.categoryId = categoryId;
         this.userId = userId;
-        this.supplierName = supplierName;
+        this.supplierId = supplierId;
         this.qty = qty;
     }
 

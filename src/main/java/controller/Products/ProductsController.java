@@ -112,7 +112,8 @@ public class ProductsController {
     }
     public void updateProductDetails(Product product) {
         // Queries for updating the respective tables
-        String productUpdateQuery = "UPDATE Product SET " +
+        String productUpdateQuery =
+                "UPDATE Product SET " +
                 "Name = ?, " +
                 "Size = ?, " +
                 "Image = ?, " +
@@ -205,7 +206,52 @@ public class ProductsController {
         }
     }
 
-    public void addProduct(Product product){
+    public Boolean addProduct(Product product){
+        try {
+            String query = "INSERT INTO Product (Name, Size, Image, Price, CategoryID,  UserID, InventoryID, SupplierID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setString(2, product.getSize());
+            preparedStatement.setString(3, product.getImageUrl());
+            preparedStatement.setDouble(4, product.getPrice());
+            preparedStatement.setInt(5, product.getCategoryId());
+            preparedStatement.setInt(6, product.getUserId());
+            preparedStatement.setInt(7, product.getProductID());
+            preparedStatement.setInt(8, product.getSupplierId());
+
+
+            if (preparedStatement.executeUpdate() > 0) {
+                boolean result = addProductInventory(product);
+                if (result) {
+                    return true;
+                }
+            }
+            return false;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    //add product inventory
+    public Boolean addProductInventory(Product product){
+        try {
+            String query = "INSERT INTO Inventory (Qty, LastUpdate) VALUES (?, NOW())";
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setInt(1, product.getQty());
+
+            return preparedStatement.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
