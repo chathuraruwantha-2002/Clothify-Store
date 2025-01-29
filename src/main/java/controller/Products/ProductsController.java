@@ -212,6 +212,10 @@ public class ProductsController {
         }
     }
 
+    public void addProduct(Product product){
+
+    }
+
 
 
 
