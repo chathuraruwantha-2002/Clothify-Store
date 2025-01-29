@@ -59,13 +59,14 @@ public class ProductsFormController implements Initializable {
     private JFXComboBox SizeSideView;
 
     @FXML
-    private JFXTextField SupllierNameSideView;
-
-    @FXML
     private JFXTextField fieldSearchProducts;
 
     @FXML
     private GridPane ProductsContainer;
+
+    @FXML
+    private JFXComboBox SupllierNameSideView;
+
     private Product product;
 
 
@@ -84,6 +85,9 @@ public class ProductsFormController implements Initializable {
 
         ObservableList<String> sizeValues = FXCollections.observableArrayList("S", "M", "L", "XL", "XXL");
         SizeSideView.setItems(sizeValues);
+
+        //load all suppliers to the combobox
+        SupllierNameSideView.setItems(FXCollections.observableArrayList(new ProductsController().getAllSupplierNames()));
     }
 
     public void viewProductDetailsSide(Product product){
@@ -92,7 +96,7 @@ public class ProductsFormController implements Initializable {
         ProductIDSideView.setText(String.format("P%03d", product.getProductID()));
         ProductNameSideView.setText(product.getName());
         CategorySideView.setValue(product.getCategoryName());
-        SupllierNameSideView.setText(product.getSupplierName());
+        SupllierNameSideView.setValue(product.getSupplierName());
         QtySideView.setText(String.valueOf(product.getQty()));
         SizeSideView.setValue(product.getSize());
         PriceSideView.setText(String.valueOf(product.getPrice()));
@@ -134,16 +138,15 @@ public class ProductsFormController implements Initializable {
 
 
     public void btnupdate(MouseEvent mouseEvent) {
-        //ProductIDSideView.getText();
         product.setName(ProductNameSideView.getText());
         product.setCategoryId(CategorySideView.getSelectionModel().getSelectedIndex()+1);
-        //product.setCategoryName((String) CategorySideView.getValue());
-        product.setSupplierName(SupllierNameSideView.getText());
+        product.setSupplierName((String) SupllierNameSideView.getValue());
+        product.setSupplierId(new ProductsController().getSupplierIdByName((String) SupllierNameSideView.getValue()));
         product.setQty(Integer.parseInt(QtySideView.getText()));
         product.setSize((String) SizeSideView.getValue());
         product.setPrice(Double.parseDouble(PriceSideView.getText()));
+
         new ProductsController().updateProductDetails(product);
-        //System.out.println(SizeSideView.getValue());
         LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
         clearform();
     }
@@ -180,7 +183,7 @@ public class ProductsFormController implements Initializable {
         ProductIDSideView.setText("");
         ProductNameSideView.setText("");
         CategorySideView.setValue("");
-        SupllierNameSideView.setText("");
+        SupllierNameSideView.setValue("");
         QtySideView.setText("");
         SizeSideView.setValue("");
         PriceSideView.setText("");

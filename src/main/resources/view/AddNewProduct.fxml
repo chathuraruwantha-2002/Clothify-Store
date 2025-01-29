@@ -75,7 +75,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="SupllierNameSideView" layoutX="70.0" layoutY="1.0" prefHeight="26.0" prefWidth="240.0" promptText="Supplier name" />
+            <JFXComboBox fx:id="SupllierNameSideView" layoutX="70.0" layoutY="2.0" prefHeight="26.0" prefWidth="240.0" />
          </children>
       </Group>
       <Group layoutX="43.0" layoutY="399.0">

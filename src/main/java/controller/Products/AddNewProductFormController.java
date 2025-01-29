@@ -39,10 +39,11 @@ public class AddNewProductFormController implements Initializable {
     private JFXComboBox SizeSideView;
 
     @FXML
-    private JFXTextField SupllierNameSideView;
+    private AnchorPane productDetailsarea;
 
     @FXML
-    private AnchorPane productDetailsarea;
+    private JFXComboBox SupllierNameSideView;
+
     private ProductsFormController parentController;
 
     private Product product;
@@ -55,6 +56,12 @@ public class AddNewProductFormController implements Initializable {
 
         ObservableList<String> sizeValues = FXCollections.observableArrayList("S", "M", "L", "XL", "XXL");
         SizeSideView.setItems(sizeValues);
+
+        //set productID
+        ProductIDSideView.setText(String.format("P%03d", new ProductsController().getLastProductID()+1));
+
+        //load all suppliers to the combobox
+        SupllierNameSideView.setItems(FXCollections.observableArrayList(new ProductsController().getAllSupplierNames()));
 
     }
 
@@ -78,14 +85,14 @@ public class AddNewProductFormController implements Initializable {
 
         //product object
         Product product = new Product(
-                CategorySideView.getSelectionModel().getSelectedIndex() + 1,
+                Integer.parseInt(ProductIDSideView.getText().substring(1)),
                 ProductNameSideView.getText(),
                 (String) SizeSideView.getValue(),
                 "/img/Shirt.jpg",
                 Double.parseDouble(PriceSideView.getText()),
                 CategorySideView.getSelectionModel().getSelectedIndex() + 1,
                 0,
-                SupllierNameSideView.getText(),
+                (String) SupllierNameSideView.getValue(),
                 Integer.parseInt(QtySideView.getText())
         );
 
@@ -101,7 +108,7 @@ public class AddNewProductFormController implements Initializable {
         ProductIDSideView.setText("");
         ProductNameSideView.setText("");
         CategorySideView.setValue("");
-        SupllierNameSideView.setText("");
+        SupllierNameSideView.setValue("");
         QtySideView.setText("");
         SizeSideView.setValue("");
         PriceSideView.setText("");

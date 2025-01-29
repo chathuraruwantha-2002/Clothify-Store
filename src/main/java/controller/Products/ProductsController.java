@@ -117,10 +117,10 @@ public class ProductsController {
                 "Size = ?, " +
                 "Image = ?, " +
                 "Price = ?, " +
+                "SupplierID = ?, " +
                 "CategoryID = ? " +
                 "WHERE ProductID = ?";
 
-        String supplierUpdateQuery = "UPDATE Supplier SET Name = ? WHERE SupplierID = ?";
         String inventoryUpdateQuery = "UPDATE Inventory SET Qty = ?, LastUpdate = NOW() WHERE InventoryID = ?";
 
         try {
@@ -136,17 +136,10 @@ public class ProductsController {
                 productStatement.setString(2, product.getSize());
                 productStatement.setString(3, product.getImageUrl());
                 productStatement.setDouble(4, product.getPrice());
-                productStatement.setDouble(5, product.getCategoryId());
-                productStatement.setInt(6, product.getProductID());
+                productStatement.setInt(5, product.getSupplierId());
+                productStatement.setDouble(6, product.getCategoryId());
+                productStatement.setInt(7, product.getProductID());
                 productStatement.executeUpdate();
-            }
-
-
-            // Update Supplier table
-            try (PreparedStatement supplierStatement = connection.prepareStatement(supplierUpdateQuery)) {
-                supplierStatement.setString(1, product.getSupplierName());
-                supplierStatement.setInt(2, product.getSupplierId());
-                supplierStatement.executeUpdate();
             }
 
             // Update Inventory table
@@ -214,6 +207,59 @@ public class ProductsController {
 
     public void addProduct(Product product){
 
+    }
+
+    public int getLastProductID() {
+        try {
+
+            Connection connection = DBConnection.getInstance().getConnection();
+            String query = "SELECT MAX(ProductID) FROM Product";
+            ResultSet resultSet = connection.createStatement().executeQuery(query);
+
+
+            if (resultSet.next()) {
+                int lastProductID = resultSet.getInt(1);
+                System.out.println("Last inserted product ID: " + lastProductID);
+                return lastProductID;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error getting last inserted product ID", e);
+        }
+        return 0;
+    }
+
+
+    public List<String> getAllSupplierNames() {
+        List<String> supplierNames = new ArrayList<>();
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            String query = "SELECT Name FROM Supplier";
+            ResultSet resultSet = connection.createStatement().executeQuery(query);
+            while (resultSet.next()) {
+                supplierNames.add(resultSet.getString("Name"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error getting supplier names", e);
+        }
+        return supplierNames;
+    }
+
+    //find supplier id by name
+    public int getSupplierIdByName(String supplierName) {
+        int supplierId = 0;
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            String query = "SELECT SupplierID FROM Supplier WHERE Name = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, supplierName);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                supplierId = resultSet.getInt("SupplierID");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error getting supplier ID by name", e);
+        }
+        return supplierId;
     }
 
 
