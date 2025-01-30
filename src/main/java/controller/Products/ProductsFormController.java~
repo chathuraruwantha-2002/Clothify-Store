@@ -147,19 +147,15 @@ public class ProductsFormController implements Initializable {
         product.setSize((String) SizeSideView.getValue());
         product.setPrice(Double.parseDouble(PriceSideView.getText()));
 
-        boolean result = new ProductsController().updateProductDetails(product);
-        if(result){
-            LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
-        }
+        new ProductsController().updateProductDetails(product);
+        LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
         clearform();
     }
 
     public void btndelete(MouseEvent mouseEvent) {
-        boolean result = new ProductsController().deleteProduct(product);
-        if(result){
-            LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
-        }
+        new ProductsController().deleteProduct(product);
         clearform();
+        LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
     }
 
     @FXML

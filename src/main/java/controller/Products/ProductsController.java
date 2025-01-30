@@ -110,7 +110,7 @@ public class ProductsController {
 
         return productList;
     }
-    public void updateProductDetails(Product product) {
+    public boolean updateProductDetails(Product product) {
         // Queries for updating the respective tables
         String productUpdateQuery =
                 "UPDATE Product SET " +
@@ -163,9 +163,11 @@ public class ProductsController {
                 throw new RuntimeException("Error resetting auto-commit", autoCommitEx);
             }
         }
+
+        return true;
     }
 
-    public void deleteProduct(Product product) {
+    public boolean deleteProduct(Product product) {
         // Query to delete the product from the Product table
         String deleteProductQuery = "DELETE FROM Product WHERE ProductID = ?";
 
@@ -204,9 +206,10 @@ public class ProductsController {
                 throw new RuntimeException("Error resetting auto-commit", autoCommitEx);
             }
         }
+        return true;
     }
 
-    public Boolean addProduct(Product product){
+    public boolean addProduct(Product product){
         try {
             String query = "INSERT INTO Product (Name, Size, Image, Price, CategoryID,  UserID, InventoryID, SupplierID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             Connection connection = DBConnection.getInstance().getConnection();
@@ -238,7 +241,7 @@ public class ProductsController {
     }
 
     //add product inventory
-    public Boolean addProductInventory(Product product){
+    public boolean addProductInventory(Product product){
         try {
             String query = "INSERT INTO Inventory (Qty, LastUpdate) VALUES (?, NOW())";
             Connection connection = DBConnection.getInstance().getConnection();

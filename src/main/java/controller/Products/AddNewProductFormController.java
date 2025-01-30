@@ -96,13 +96,15 @@ public class AddNewProductFormController implements Initializable {
                 new ProductsController().getSupplierIdByName((String) SupllierNameSideView.getValue()),
                 Integer.parseInt(QtySideView.getText())
         );
-
-        boolean success = new ProductsController().addProduct(product);
-        System.out.println(success);
-
         System.out.println(product);
+
+        boolean result = new ProductsController().addProduct(product);
+
+        if (result) {
+            parentController.LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
+        }
         clearform();
-        parentController.LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
+
 
     }
 

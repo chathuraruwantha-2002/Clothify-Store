@@ -22,11 +22,11 @@ public class ProductCardController {
     @FXML
     private Label ProductQty;
     private Product product;
-    private ProductsFormController parentFormController;
+    private ProductsFormController parentController;
 
-    public void setData(Product product, ProductsFormController parentFormController){
+    public boolean setData(Product product, ProductsFormController parentFormController){
         this.product = product;
-        this.parentFormController = parentFormController;
+        this.parentController = parentFormController;
        // Image productImage = new Image(getClass().getResourceAsStream(product.getImageUrl()));
         //ProductImage.setImage(productImage);
 
@@ -36,12 +36,20 @@ public class ProductCardController {
 
         // ProductQty.setText(String.valueOf(product.getProductQty()));
 
+        return (product!=null && parentFormController!=null ? true : false);
+
     }
 
     public void CardData(MouseEvent mouseEvent) {
 
-        if (parentFormController != null) {
-            parentFormController.viewProductDetailsSide(product);
+        if (parentController != null) {
+            parentController.viewProductDetailsSide(product);
+
+            parentController.overlayPane.setVisible(false);
+            parentController.overlayPane.setMouseTransparent(true);
+
+            parentController.productDetailsarea.setVisible(true);
+            parentController.productDetailsarea.setMouseTransparent(false);
         }
 
     }
