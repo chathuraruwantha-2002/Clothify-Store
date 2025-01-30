@@ -2,6 +2,7 @@ package controller.Products;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import controller.Suppliers.SuppliersController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -64,7 +65,7 @@ public class AddNewProductFormController implements Initializable {
         ProductIDSideView.setText(String.format("P%03d", new ProductsController().getLastProductID()+1));
 
         //load all suppliers to the combobox
-        SupllierNameSideView.setItems(FXCollections.observableArrayList(new ProductsController().getAllSupplierNames()));
+        SupllierNameSideView.setItems(FXCollections.observableArrayList(new SuppliersController().getAllSupplierNames()));
 
     }
 
@@ -96,7 +97,7 @@ public class AddNewProductFormController implements Initializable {
                 Double.parseDouble(PriceSideView.getText()),
                 CategorySideView.getSelectionModel().getSelectedIndex() + 1,
                 0,
-                new ProductsController().getSupplierIdByName((String) SupllierNameSideView.getValue()),
+                new SuppliersController().getSupplierIdByName((String) SupllierNameSideView.getValue()),
                 Integer.parseInt(QtySideView.getText())
         );
         System.out.println(product);

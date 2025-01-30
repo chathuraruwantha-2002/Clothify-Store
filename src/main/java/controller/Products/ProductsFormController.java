@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import controller.Cards.ProductCardController;
 import controller.Inventory.Inventory;
 import controller.Inventory.InventoryController;
+import controller.Suppliers.SuppliersController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -89,7 +90,7 @@ public class ProductsFormController implements Initializable {
         SizeSideView.setItems(sizeValues);
 
         //load all suppliers to the combobox
-        SupllierNameSideView.setItems(FXCollections.observableArrayList(new ProductsController().getAllSupplierNames()));
+        SupllierNameSideView.setItems(FXCollections.observableArrayList(new SuppliersController().getAllSupplierNames()));
     }
 
     public void viewProductDetailsSide(Product product){
@@ -106,7 +107,7 @@ public class ProductsFormController implements Initializable {
     }
 
     public void FSearchProducts(KeyEvent keyEvent) {
-        LoadGridCards(new ProductsController().search(fieldSearchProducts.getText()));
+        LoadGridCards(new ProductsController().searchProduct(fieldSearchProducts.getText()));
     }
 
     public void LoadGridCards(List<Product> productlist){
@@ -144,14 +145,14 @@ public class ProductsFormController implements Initializable {
         product.setName(ProductNameSideView.getText());
         product.setCategoryId(CategorySideView.getSelectionModel().getSelectedIndex()+1);
         product.setSupplierName((String) SupllierNameSideView.getValue());
-        product.setSupplierId(new ProductsController().getSupplierIdByName((String) SupllierNameSideView.getValue()));
+        product.setSupplierId(new SuppliersController().getSupplierIdByName((String) SupllierNameSideView.getValue()));
         product.setQty(Integer.parseInt(QtySideView.getText()));
         product.setSize((String) SizeSideView.getValue());
         product.setPrice(Double.parseDouble(PriceSideView.getText()));
 
         boolean result = false;
         try {
-            result = new ProductsController().updateProductDetails(product);
+            result = new ProductsController().updateProduct(product);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

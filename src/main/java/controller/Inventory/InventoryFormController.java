@@ -128,7 +128,7 @@ public class InventoryFormController implements Initializable {
 
     private void loadTableData() {
         ObservableList<Inventory> inventoryList = FXCollections.observableArrayList();
-        List<Inventory> dataList = new InventoryController().getAllCombinedProductData();
+        List<Inventory> dataList = new InventoryController().getAllInventoryList();
         inventoryList.addAll(dataList);
         System.out.println(dataList);
         tblInventory.setItems(inventoryList);
@@ -136,7 +136,7 @@ public class InventoryFormController implements Initializable {
 
     public void Searchinput(KeyEvent keyEvent) {
         ObservableList<Inventory> inventoryList = FXCollections.observableArrayList();
-        List<Inventory> dataListS = new InventoryController().search(Searchareainput.getText());
+        List<Inventory> dataListS = new InventoryController().searchInventory(Searchareainput.getText());
         System.out.println(dataListS);
         inventoryList.addAll(dataListS);
         tblInventory.setItems(inventoryList);
@@ -161,7 +161,7 @@ public class InventoryFormController implements Initializable {
         int productId = selectedInventory.getProductID();
         int Stock = Integer.parseInt(inputStock);
         System.out.println("Update clicked for Product ID @ Stock : " + productId+ " " +Stock);
-        new InventoryController().update(Stock,productId);
+        new InventoryController().updateInventory(Stock,productId);
         loadTableData();
 
     }

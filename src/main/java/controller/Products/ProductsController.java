@@ -2,6 +2,7 @@ package controller.Products;
 
 import DBConnection.DBConnection;
 import controller.Inventory.Inventory;
+import controller.Inventory.InventoryController;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,7 +51,7 @@ public class ProductsController {
         return productList;
     }
 
-    public List<Product> search(String input) {
+    public List<Product> searchProduct(String input) {
         List<Product> productList = new ArrayList<>();
 
         String query = "SELECT " +
@@ -112,7 +113,7 @@ public class ProductsController {
     }
 
     //update product tansaction completely done
-    public boolean updateProductDetails(Product product) throws SQLException {
+    public boolean updateProduct(Product product) throws SQLException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String productUpdateQuery =
@@ -140,7 +141,7 @@ public class ProductsController {
             boolean isUpdated = productStatement.executeUpdate() > 0;
 
             if (isUpdated) {
-                boolean isUpdatedInventory = updateInventory(product);
+                boolean isUpdatedInventory = new InventoryController().updateInventory(product);
                 if (isUpdatedInventory) {
                     connection.commit();
                     return true;
@@ -154,55 +155,34 @@ public class ProductsController {
         return false;
     }
 
-    private boolean updateInventory(Product product) {
-        String inventoryUpdateQuery = "UPDATE Inventory SET Qty = ?, LastUpdate = NOW() WHERE InventoryID = ?";
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(inventoryUpdateQuery);
-            preparedStatement.setInt(1, product.getQty());
-            preparedStatement.setInt(2, product.getInventoryId());
-            return preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 
     //delete product transaction completely done
     public boolean deleteProduct(Product product) throws SQLException {
         Connection connection = DBConnection.getInstance().getConnection();
         String deleteProductQuery = "DELETE FROM Product WHERE ProductID = ?";
         try {
-            connection.setAutoCommit(false); // Begin transaction
+            connection.setAutoCommit(false);
             PreparedStatement productStatement = connection.prepareStatement(deleteProductQuery);
             productStatement.setInt(1, product.getProductID());
             boolean isDeleted = productStatement.executeUpdate() > 0;
 
             if (isDeleted) {
-                boolean isDeletedFromInventory = deleteProductfromInventory(product.getInventoryId());
+                boolean isDeletedFromInventory = new InventoryController().deleteProductInventory(product.getInventoryId());
                 if (isDeletedFromInventory) {
-                    connection.commit(); // Commit the transaction
+                    connection.commit();
                     return true;
                 }
             }
         } finally {
-            connection.setAutoCommit(true); // Reset auto-commit
+            connection.setAutoCommit(true);
         }
 
-        connection.rollback(); // Rollback the transaction
+        connection.rollback();
         return false;
     }
 
-    private boolean deleteProductfromInventory(int inventoryId) {
-        String query = "DELETE FROM Inventory WHERE InventoryID = ?";
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, inventoryId);
-            return preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 
     //completely done with transactions
     public boolean addProduct(Product product) throws SQLException {
@@ -223,7 +203,7 @@ public class ProductsController {
             boolean isInserted = preparedStatement.executeUpdate() > 0;
 
             if (isInserted) {
-                boolean isInsertedInventory = addProductInventory(product);
+                boolean isInsertedInventory = new InventoryController().addProductInventory(product);
                 if (isInsertedInventory) {
                     connection.commit();
                     return true;
@@ -237,23 +217,6 @@ public class ProductsController {
     }
 
     //add product inventory
-    public boolean addProductInventory(Product product){
-        try {
-            String query = "INSERT INTO Inventory (Qty, LastUpdate) VALUES (?, NOW())";
-            Connection connection = DBConnection.getInstance().getConnection();
-
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-
-            preparedStatement.setInt(1, product.getQty());
-
-            return preparedStatement.executeUpdate() > 0;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
     public int getLastProductID() {
         try {
 
@@ -272,42 +235,6 @@ public class ProductsController {
         }
         return 0;
     }
-
-
-    public List<String> getAllSupplierNames() {
-        List<String> supplierNames = new ArrayList<>();
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            String query = "SELECT Name FROM Supplier";
-            ResultSet resultSet = connection.createStatement().executeQuery(query);
-            while (resultSet.next()) {
-                supplierNames.add(resultSet.getString("Name"));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Error getting supplier names", e);
-        }
-        return supplierNames;
-    }
-
-    //find supplier id by name
-    public int getSupplierIdByName(String supplierName) {
-        int supplierId = 0;
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            String query = "SELECT SupplierID FROM Supplier WHERE Name = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, supplierName);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                supplierId = resultSet.getInt("SupplierID");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Error getting supplier ID by name", e);
-        }
-        return supplierId;
-    }
-
-
 
 
 }

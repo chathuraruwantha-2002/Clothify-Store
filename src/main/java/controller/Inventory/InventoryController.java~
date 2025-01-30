@@ -9,7 +9,7 @@ import java.util.List;
 
 public class InventoryController {
 
-    public List<Inventory> getAllInventoryList() {
+    public List<Inventory> getAllCombinedProductData() {
         List<Inventory> combinedProductDataList = new ArrayList<>();
 
         String query = "SELECT " +
@@ -48,7 +48,7 @@ public class InventoryController {
         return combinedProductDataList;
     }
 
-    public List<Inventory> searchInventory(String input) {
+    public List<Inventory> search(String input) {
         List<Inventory> datalist = new ArrayList<>();
 
 
@@ -97,7 +97,7 @@ public class InventoryController {
         return datalist;
     }
 
-    public void updateInventory(int stock, int inventoryID) {
+    public void update(int stock, int inventoryID) {
 
 
         String query = "UPDATE inventory SET Qty = Qty + ?, LastUpdate = CURRENT_TIMESTAMP WHERE InventoryID = ?";
@@ -117,8 +117,7 @@ public class InventoryController {
 
     }
 
-
-    public boolean updateInventory(Product product) {
+    private boolean updateInventory(Product product) {
         String inventoryUpdateQuery = "UPDATE Inventory SET Qty = ?, LastUpdate = NOW() WHERE InventoryID = ?";
         try {
             Connection connection = DBConnection.getInstance().getConnection();
@@ -131,7 +130,7 @@ public class InventoryController {
         }
     }
 
-    public boolean deleteProductInventory(int inventoryId) {
+    private boolean deleteProductfromInventory(int inventoryId) {
         String query = "DELETE FROM Inventory WHERE InventoryID = ?";
         try {
             Connection connection = DBConnection.getInstance().getConnection();
