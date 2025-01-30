@@ -18,10 +18,10 @@ public class ProductsController {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             String query = "SELECT p.ProductID, p.Name, p.Size, p.Image, p.Price, p.CategoryID, p.UserID, p.InventoryID, p.SupplierID, " +
-                    "c.Name AS CategoryName, s.Name AS SupplierName, i.Qty " +
+                    "c.Name AS CategoryName, COALESCE(s.Name, 'Supplier Deleted') AS SupplierName, i.Qty " +
                     "FROM Product p " +
                     "JOIN Category c ON p.CategoryID = c.CategoryID " +
-                    "JOIN Supplier s ON p.SupplierID = s.SupplierID " +
+                    "LEFT JOIN Supplier s ON p.SupplierID = s.SupplierID " +
                     "JOIN Inventory i ON p.InventoryID = i.InventoryID";
 
             ResultSet resultSet = connection.createStatement().executeQuery(query);
@@ -65,11 +65,11 @@ public class ProductsController {
                 "p.InventoryID, " +
                 "p.SupplierID, " +
                 "c.Name AS CategoryName, " +
-                "s.Name AS SupplierName, " +
+                "COALESCE(s.Name, 'Supplier Deleted') AS SupplierName, " +
                 "i.Qty AS QuantityInStock " +
                 "FROM Product p " +
                 "JOIN Category c ON p.CategoryID = c.CategoryID " +
-                "JOIN Supplier s ON p.SupplierID = s.SupplierID " +
+                "LEFT JOIN Supplier s ON p.SupplierID = s.SupplierID " +
                 "JOIN Inventory i ON p.InventoryID = i.InventoryID " +
                 "WHERE p.ProductID LIKE ? " +
                 "OR p.Name LIKE ? " +

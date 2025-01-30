@@ -11,7 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -118,13 +120,46 @@ public class SuppliersFormController implements Initializable {
 
     public void btnUpdateSupplier(MouseEvent mouseEvent) {
 
+        supplier.setName(SupNameSideView.getText());
+        supplier.setGender((String) SupGenderSideView.getValue());
+        supplier.setAddress(SupAddressSideView.getText());
+        supplier.setPhone(SupPhnoSideView.getText());
+        supplier.setEmail(SupEmailSideView.getText());
+        supplier.setCompany(SupCompanySideView.getText());
+
+        boolean isUpdated = new SuppliersController().updateSupplier(supplier);
+        if(isUpdated){
+            LoadGridCards(new ArrayList<>(new SuppliersController().getAllSuppliers()));
+            new Alert(Alert.AlertType.INFORMATION,"Supplier Updated Successfully.!!").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Supplier Updation Failed.!!").show();
+        }
+        clearForm();
     }
 
     public void btnDeleteSupplier(MouseEvent mouseEvent) {
 
+        boolean isDeleted = new SuppliersController().deleteSupplier(supplier.getSupplierId());
+        if(isDeleted){
+            LoadGridCards(new ArrayList<>(new SuppliersController().getAllSuppliers()));
+            new Alert(Alert.AlertType.INFORMATION,"Supplier Deleted Successfully.!!").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Supplier Deletion Failed.!!").show();
+        }
+        clearForm();
     }
 
     public void btnAddNewSupplier(MouseEvent mouseEvent) {
 
+    }
+    public void clearForm(){
+        //SupImgSideView.setImage();
+        SupIdSideView.setText("");
+        SupNameSideView.setText("");
+        SupGenderSideView.setValue("");
+        SupAddressSideView.setText("");
+        SupPhnoSideView.setText("");
+        SupEmailSideView.setText("");
+        SupCompanySideView.setText("");
     }
 }

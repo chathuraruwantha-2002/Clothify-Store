@@ -68,4 +68,44 @@ public class SuppliersController {
         }
         return supplierId;
     }
+
+    public boolean updateSupplier(Supplier supplier){
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            String query = "UPDATE Supplier SET  Name = ?, Gender = ?, Company = ?, Address = ?, Contact = ?, Email = ? WHERE SupplierID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, supplier.getName());
+            preparedStatement.setString(2, supplier.getGender());
+            preparedStatement.setString(3, supplier.getCompany());
+            preparedStatement.setString(4, supplier.getAddress());
+            preparedStatement.setString(5, supplier.getPhone());
+            preparedStatement.setString(6, supplier.getEmail());
+            preparedStatement.setInt(7, supplier.getSupplierId());
+            boolean result = preparedStatement.executeUpdate()>0;
+            if(result){
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+    public boolean deleteSupplier(int supplierId) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            String query = "DELETE FROM Supplier WHERE SupplierID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, supplierId);
+            boolean result = preparedStatement.executeUpdate() > 0;
+            if (result) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
 }
