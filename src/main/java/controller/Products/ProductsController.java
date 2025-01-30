@@ -167,55 +167,51 @@ public class ProductsController {
         return true;
     }
 
-    public boolean deleteProduct(Product product) {
-        // Query to delete the product from the Product table
+    //delete product transaction completely done
+    public boolean deleteProduct(Product product) throws SQLException {
+        Connection connection = DBConnection.getInstance().getConnection();
         String deleteProductQuery = "DELETE FROM Product WHERE ProductID = ?";
-
-        // Query to delete the product's inventory from the Inventory table
-        String deleteInventoryQuery = "DELETE FROM Inventory WHERE InventoryID = ?";
-
         try {
-            // Get the database connection
-            Connection connection = DBConnection.getInstance().getConnection();
+            connection.setAutoCommit(false); // Begin transaction
+            PreparedStatement productStatement = connection.prepareStatement(deleteProductQuery);
+            productStatement.setInt(1, product.getProductID());
+            boolean isDeleted = productStatement.executeUpdate() > 0;
 
-            // Begin transaction
-            connection.setAutoCommit(false);
-
-            // Delete from Product table
-            try (PreparedStatement productStatement = connection.prepareStatement(deleteProductQuery)) {
-                productStatement.setInt(1, product.getProductID());
-                productStatement.executeUpdate();
+            if (isDeleted) {
+                boolean isDeletedFromInventory = deleteProductfromInventory(product.getInventoryId());
+                if (isDeletedFromInventory) {
+                    connection.commit(); // Commit the transaction
+                    return true;
+                }
             }
-
-            // Delete from Inventory table
-            try (PreparedStatement inventoryStatement = connection.prepareStatement(deleteInventoryQuery)) {
-                inventoryStatement.setInt(1, product.getInventoryId());
-                inventoryStatement.executeUpdate();
-            }
-
-            // Commit transaction
-            connection.commit();
-            System.out.println("Product deleted successfully for ProductID: " + product.getProductID());
-        } catch (SQLException e) {
-            throw new RuntimeException("Error deleting product: " + product.getProductID(), e);
         } finally {
-            try {
-                // Reset auto-commit
-                DBConnection.getInstance().getConnection().setAutoCommit(true);
-            } catch (SQLException autoCommitEx) {
-                throw new RuntimeException("Error resetting auto-commit", autoCommitEx);
-            }
+            connection.setAutoCommit(true); // Reset auto-commit
         }
-        return true;
+
+        connection.rollback(); // Rollback the transaction
+        return false;
     }
 
-    public boolean addProduct(Product product){
+    private boolean deleteProductfromInventory(int inventoryId) {
+        String query = "DELETE FROM Inventory WHERE InventoryID = ?";
         try {
-            String query = "INSERT INTO Product (Name, Size, Image, Price, CategoryID,  UserID, InventoryID, SupplierID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             Connection connection = DBConnection.getInstance().getConnection();
-
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, inventoryId);
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    //completely done with transactions
+    public boolean addProduct(Product product) throws SQLException {
+        String query = "INSERT INTO Product (Name, Size, Image, Price, CategoryID,  UserID, InventoryID, SupplierID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        Connection connection = DBConnection.getInstance().getConnection();
+
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getSize());
             preparedStatement.setString(3, product.getImageUrl());
@@ -224,20 +220,20 @@ public class ProductsController {
             preparedStatement.setInt(6, product.getUserId());
             preparedStatement.setInt(7, product.getProductID());
             preparedStatement.setInt(8, product.getSupplierId());
+            boolean isInserted = preparedStatement.executeUpdate() > 0;
 
-
-            if (preparedStatement.executeUpdate() > 0) {
-                boolean result = addProductInventory(product);
-                if (result) {
+            if (isInserted) {
+                boolean isInsertedInventory = addProductInventory(product);
+                if (isInsertedInventory) {
+                    connection.commit();
                     return true;
                 }
             }
-            return false;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } finally {
+            connection.setAutoCommit(true);
         }
-
+        connection.rollback();
+        return false;
     }
 
     //add product inventory

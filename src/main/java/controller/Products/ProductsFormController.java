@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -22,6 +23,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -155,9 +157,17 @@ public class ProductsFormController implements Initializable {
     }
 
     public void btndelete(MouseEvent mouseEvent) {
-        boolean result = new ProductsController().deleteProduct(product);
+        boolean result = false;
+        try {
+            result = new ProductsController().deleteProduct(product);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         if(result){
             LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
+            new Alert(Alert.AlertType.INFORMATION,"Product Deleted Successfully.!!").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Product Deletion Failed.!!").show();
         }
         clearform();
     }

@@ -8,12 +8,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -82,6 +84,7 @@ public class AddNewProductFormController implements Initializable {
         parentController.productDetailsarea.setMouseTransparent(false);
     }
 
+    //completely done
     public void btnAdd(MouseEvent mouseEvent) {
 
         //product object
@@ -98,14 +101,19 @@ public class AddNewProductFormController implements Initializable {
         );
         System.out.println(product);
 
-        boolean result = new ProductsController().addProduct(product);
-
+        boolean result = false;
+        try {
+            result = new ProductsController().addProduct(product);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         if (result) {
             parentController.LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
+            new Alert(Alert.AlertType.INFORMATION,"Product Added Successfully.!!").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Product Adding Failed.!!").show();
         }
         clearform();
-
-
     }
 
     public void btnClear(MouseEvent mouseEvent) {
