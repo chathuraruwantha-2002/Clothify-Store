@@ -1,12 +1,19 @@
 package controller.Suppliers;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import controller.Cards.ProductCardController;
 import controller.Cards.SupplierCardFormController;
 import controller.Products.ProductsController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.Product;
@@ -20,11 +27,43 @@ import java.util.ResourceBundle;
 public class SuppliersFormController implements Initializable {
 
     @FXML
+    private JFXTextField SupAddressSideView;
+
+    @FXML
+    private JFXTextField SupCompanySideView;
+
+    @FXML
+    private JFXTextField SupEmailSideView;
+
+    @FXML
+    private JFXComboBox SupGenderSideView;
+
+    @FXML
+    private Label SupIdSideView;
+
+    @FXML
+    private ImageView SupImgSideView;
+
+    @FXML
+    private JFXTextField SupNameSideView;
+
+    @FXML
+    private JFXTextField SupPhnoSideView;
+
+
+
+    @FXML
     private GridPane SuppliersContainer;
+
+    private Supplier supplier;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LoadGridCards(new ArrayList<>(new SuppliersController().getAllSuppliers()));
+
+        // ComboBox gender
+        ObservableList<String> genderValues = FXCollections.observableArrayList("Male", "Female");
+        SupGenderSideView.setItems(genderValues);
     }
 
     public void LoadGridCards(List<Supplier> supplierList){
@@ -57,6 +96,35 @@ public class SuppliersFormController implements Initializable {
 
     }
 
+    public void viewSupplierDetailsSide(Supplier supplier){
+        this.supplier = supplier;
+
+        SupIdSideView.setText(String.format("S%03d" , supplier.getSupplierId()));
+        SupNameSideView.setText(supplier.getName());
+        SupGenderSideView.setValue(supplier.getGender());
+        SupAddressSideView.setText(supplier.getAddress());
+        SupPhnoSideView.setText(supplier.getPhone());
+        SupEmailSideView.setText(supplier.getEmail());
+        SupCompanySideView.setText(supplier.getCompany());
+
+        if(supplier.getGender().equals("Male")){
+            SupImgSideView.setImage(new ImageView("/img/man.png").getImage());
+        }else{
+            SupImgSideView.setImage(new ImageView("/img/woman.png").getImage());
+        }
+
+    }
 
 
+    public void btnUpdateSupplier(MouseEvent mouseEvent) {
+
+    }
+
+    public void btnDeleteSupplier(MouseEvent mouseEvent) {
+
+    }
+
+    public void btnAddNewSupplier(MouseEvent mouseEvent) {
+
+    }
 }

@@ -36,7 +36,7 @@ public class SupplierCardFormController {
         return (supplier != null && suppliersFormController != null ? true : false);
     }
     public void CardData(MouseEvent mouseEvent) {
-
+        suppliersFormController.viewSupplierDetailsSide(supplier);
     }
 
 }

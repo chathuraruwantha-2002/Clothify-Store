@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
@@ -55,12 +56,12 @@
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
-                <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="1051.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="1051.0" layoutY="174.0" onMouseClicked="#btnAddNewSupplier" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../icons/gridicons_add-outline.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="73.0" fitWidth="75.0" layoutX="882.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="SupImgSideView" fitHeight="73.0" fitWidth="75.0" layoutX="882.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../img/man.png" />
                     </image>
@@ -72,71 +73,71 @@
                                 <Font name="System Bold" size="18.0" />
                             </font>
                         </Label>
-                        <Label layoutX="120.0" text="S001">
+                        <Label fx:id="SupIdSideView" layoutX="120.0" text="S001">
                             <font>
                                 <Font name="System Bold" size="18.0" />
                             </font>
                         </Label>
                     </children>
                 </Group>
-                <JFXButton layoutX="774.0" layoutY="659.0" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #E07830;" text="Update" textFill="#efeded">
+                <JFXButton layoutX="774.0" layoutY="659.0" onMouseClicked="#btnUpdateSupplier" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #E07830;" text="Update" textFill="#efeded">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </JFXButton>
-                <JFXButton layoutX="939.0" layoutY="659.0" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #9E3433;" text="Delete" textFill="#efeded">
+                <JFXButton layoutX="939.0" layoutY="659.0" onMouseClicked="#btnDeleteSupplier" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #9E3433;" text="Delete" textFill="#efeded">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </JFXButton>
-            <Group layoutX="763.0" layoutY="359.0">
+            <Group layoutX="763.0" layoutY="350.0">
                <children>
-                  <Label layoutY="4.0" text="Company">
+                  <Label layoutY="4.0" text="Gender">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Supplier's Company" />
+                  <JFXComboBox fx:id="SupGenderSideView" layoutX="90.0" layoutY="3.0" prefHeight="25.0" prefWidth="92.0" promptText="Gender" />
                </children>
             </Group>
-            <Group layoutX="763.0" layoutY="401.0">
+            <Group layoutX="763.0" layoutY="386.0">
                <children>
                   <Label layoutY="4.0" text="Address">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Supplier's Address" />
+                  <JFXTextField fx:id="SupAddressSideView" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Supplier's Address" />
                </children>
             </Group>
-            <Group layoutX="763.0" layoutY="443.0">
+            <Group layoutX="763.0" layoutY="422.0">
                <children>
                   <Label layoutY="4.0" text="Phone">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Supplier's Phone Number" />
+                  <JFXTextField fx:id="SupPhnoSideView" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Supplier's Phone Number" />
                </children>
             </Group>
-                <Group layoutX="762.0" layoutY="316.0">
+                <Group layoutX="763.0" layoutY="316.0">
                     <children>
                         <Label layoutY="4.0" text="Name">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
                         </Label>
-                        <JFXTextField layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Supplier's name" />
+                        <JFXTextField fx:id="SupNameSideView" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Supplier's name" />
                     </children>
                 </Group>
-            <Group layoutX="763.0" layoutY="486.0">
+            <Group layoutX="763.0" layoutY="458.0">
                <children>
                   <Label layoutY="4.0" text="Email">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <JFXTextField layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Supplier's Email" />
+                  <JFXTextField fx:id="SupEmailSideView" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Supplier's Email" />
                </children>
             </Group>
 
@@ -162,6 +163,16 @@
                   </GridPane>
                </content>
             </ScrollPane>
+            <Group layoutX="763.0" layoutY="492.0">
+               <children>
+                  <Label layoutY="4.0" text="Company">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="SupCompanySideView" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Supplier's Company" />
+               </children>
+            </Group>
 
             </children>
         </AnchorPane>
