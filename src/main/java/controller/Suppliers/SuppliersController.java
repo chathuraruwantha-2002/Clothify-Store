@@ -1,6 +1,7 @@
 package controller.Suppliers;
 
 import DBConnection.DBConnection;
+import model.Supplier;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SuppliersController {
+
+
+    public List<Supplier> getAllSuppliers() {
+        List<Supplier> suppliers = new ArrayList<>();
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            String query = "SELECT * FROM Supplier";
+            ResultSet resultSet = connection.createStatement().executeQuery(query);
+            while (resultSet.next()) {
+                int supplierId = resultSet.getInt("SupplierID");
+                int userId = resultSet.getInt("UserID");
+                String gender = resultSet.getString("Gender");
+                String name = resultSet.getString("Name");
+                String company = resultSet.getString("Company");
+                String address = resultSet.getString("Address");
+                String phone = resultSet.getString("Contact");
+                String email = resultSet.getString("Email");
+                Supplier supplier = new Supplier(supplierId, userId, gender, name, company, address, phone, email);
+                suppliers.add(supplier);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error getting suppliers", e);
+        }
+        return suppliers;
+    }
 
     public List<String> getAllSupplierNames() {
         List<String> supplierNames = new ArrayList<>();

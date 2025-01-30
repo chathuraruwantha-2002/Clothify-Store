@@ -192,7 +192,7 @@
                   <AnchorPane fx:id="overlayPane" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
                </children>
             </StackPane>
-            <ScrollPane layoutX="68.0" layoutY="276.0" prefHeight="450.0" prefWidth="616.0">
+            <ScrollPane layoutX="68.0" layoutY="276.0" prefHeight="450.0" prefWidth="616.0" style="-fx-background-color: #ede0d4;">
                <content>
                   <GridPane fx:id="ProductsContainer" prefHeight="0.0" prefWidth="0.0">
                     <rowConstraints>

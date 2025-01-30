@@ -1,7 +1,8 @@
 package controller.Inventory;
 
 import DBConnection.DBConnection;
-import controller.Products.Product;
+import model.Inventory;
+import model.Product;
 
 import java.sql.*;
 import java.util.ArrayList;

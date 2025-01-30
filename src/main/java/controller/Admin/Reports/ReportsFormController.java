@@ -1,6 +1,6 @@
 package controller.Admin.Reports;
 
-import controller.Products.Product;
+import model.Product;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;

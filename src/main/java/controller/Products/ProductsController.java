@@ -1,8 +1,8 @@
 package controller.Products;
 
 import DBConnection.DBConnection;
-import controller.Inventory.Inventory;
 import controller.Inventory.InventoryController;
+import model.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

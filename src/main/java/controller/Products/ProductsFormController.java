@@ -3,8 +3,6 @@ package controller.Products;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import controller.Cards.ProductCardController;
-import controller.Inventory.Inventory;
-import controller.Inventory.InventoryController;
 import controller.Suppliers.SuppliersController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
