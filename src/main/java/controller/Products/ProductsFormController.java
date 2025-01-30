@@ -149,9 +149,17 @@ public class ProductsFormController implements Initializable {
         product.setSize((String) SizeSideView.getValue());
         product.setPrice(Double.parseDouble(PriceSideView.getText()));
 
-        boolean result = new ProductsController().updateProductDetails(product);
-        if(result){
+        boolean result = false;
+        try {
+            result = new ProductsController().updateProductDetails(product);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if (result) {
             LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
+            new Alert(Alert.AlertType.INFORMATION,"Product Updated Successfully.!!").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR,"Product Updation Failed.!!").show();
         }
         clearform();
     }

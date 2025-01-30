@@ -110,8 +110,11 @@ public class ProductsController {
 
         return productList;
     }
-    public boolean updateProductDetails(Product product) {
-        // Queries for updating the respective tables
+
+    //update product tansaction completely done
+    public boolean updateProductDetails(Product product) throws SQLException {
+
+        Connection connection = DBConnection.getInstance().getConnection();
         String productUpdateQuery =
                 "UPDATE Product SET " +
                 "Name = ?, " +
@@ -122,49 +125,46 @@ public class ProductsController {
                 "CategoryID = ? " +
                 "WHERE ProductID = ?";
 
-        String inventoryUpdateQuery = "UPDATE Inventory SET Qty = ?, LastUpdate = NOW() WHERE InventoryID = ?";
-
         try {
-            // Get database connection
-            Connection connection = DBConnection.getInstance().getConnection();
 
-            // Begin transaction
             connection.setAutoCommit(false);
 
-            // Update Product table
-            try (PreparedStatement productStatement = connection.prepareStatement(productUpdateQuery)) {
-                productStatement.setString(1, product.getName());
-                productStatement.setString(2, product.getSize());
-                productStatement.setString(3, product.getImageUrl());
-                productStatement.setDouble(4, product.getPrice());
-                productStatement.setInt(5, product.getSupplierId());
-                productStatement.setDouble(6, product.getCategoryId());
-                productStatement.setInt(7, product.getProductID());
-                productStatement.executeUpdate();
+            PreparedStatement productStatement = connection.prepareStatement(productUpdateQuery);
+            productStatement.setString(1, product.getName());
+            productStatement.setString(2, product.getSize());
+            productStatement.setString(3, product.getImageUrl());
+            productStatement.setDouble(4, product.getPrice());
+            productStatement.setInt(5, product.getSupplierId());
+            productStatement.setDouble(6, product.getCategoryId());
+            productStatement.setInt(7, product.getProductID());
+            boolean isUpdated = productStatement.executeUpdate() > 0;
+
+            if (isUpdated) {
+                boolean isUpdatedInventory = updateInventory(product);
+                if (isUpdatedInventory) {
+                    connection.commit();
+                    return true;
+                }
             }
 
-            // Update Inventory table
-            try (PreparedStatement inventoryStatement = connection.prepareStatement(inventoryUpdateQuery)) {
-                inventoryStatement.setInt(1, product.getQty());
-                inventoryStatement.setInt(2, product.getInventoryId());
-                inventoryStatement.executeUpdate();
-            }
-
-            // Commit transaction
-            connection.commit();
-            System.out.println("Product details updated successfully for ProductID: " + product.getProductID());
-        } catch (SQLException e) {
-            throw new RuntimeException("Error updating product details: " + product.getProductID(), e);
         } finally {
-            try {
-                // Reset auto-commit
-                DBConnection.getInstance().getConnection().setAutoCommit(true);
-            } catch (SQLException autoCommitEx) {
-                throw new RuntimeException("Error resetting auto-commit", autoCommitEx);
-            }
+            connection.setAutoCommit(true);
         }
+        connection.rollback();
+        return false;
+    }
 
-        return true;
+    private boolean updateInventory(Product product) {
+        String inventoryUpdateQuery = "UPDATE Inventory SET Qty = ?, LastUpdate = NOW() WHERE InventoryID = ?";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(inventoryUpdateQuery);
+            preparedStatement.setInt(1, product.getQty());
+            preparedStatement.setInt(2, product.getInventoryId());
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //delete product transaction completely done
