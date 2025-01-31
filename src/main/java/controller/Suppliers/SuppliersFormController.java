@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import controller.Cards.ProductCardController;
 import controller.Cards.SupplierCardFormController;
+import controller.Products.AddNewProductFormController;
 import controller.Products.ProductsController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,22 +12,33 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.Product;
 import model.Supplier;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class SuppliersFormController implements Initializable {
+
+    @FXML
+    public AnchorPane SupplierDetailsArea;
+
+    @FXML
+    public AnchorPane OverlayPane;
+
 
     @FXML
     private JFXTextField SupAddressSideView;
@@ -52,6 +64,9 @@ public class SuppliersFormController implements Initializable {
     @FXML
     private JFXTextField SupPhnoSideView;
 
+    @FXML
+    private JFXTextField searchbar;
+
 
 
     @FXML
@@ -61,14 +76,14 @@ public class SuppliersFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LoadGridCards(new ArrayList<>(new SuppliersController().getAllSuppliers()));
+        LoadGridCards(new SuppliersController().getAllSuppliers());
 
         // ComboBox gender
         ObservableList<String> genderValues = FXCollections.observableArrayList("Male", "Female");
         SupGenderSideView.setItems(genderValues);
     }
 
-    public void LoadGridCards(List<Supplier> supplierList){
+    public void LoadGridCards (List<Supplier> supplierList){
 
         SuppliersContainer.getChildren().clear();
 
@@ -129,7 +144,7 @@ public class SuppliersFormController implements Initializable {
 
         boolean isUpdated = new SuppliersController().updateSupplier(supplier);
         if(isUpdated){
-            LoadGridCards(new ArrayList<>(new SuppliersController().getAllSuppliers()));
+            LoadGridCards(new SuppliersController().getAllSuppliers());
             new Alert(Alert.AlertType.INFORMATION,"Supplier Updated Successfully.!!").show();
         }else{
             new Alert(Alert.AlertType.ERROR,"Supplier Updation Failed.!!").show();
@@ -141,7 +156,7 @@ public class SuppliersFormController implements Initializable {
 
         boolean isDeleted = new SuppliersController().deleteSupplier(supplier.getSupplierId());
         if(isDeleted){
-            LoadGridCards(new ArrayList<>(new SuppliersController().getAllSuppliers()));
+            LoadGridCards(new SuppliersController().getAllSuppliers());
             new Alert(Alert.AlertType.INFORMATION,"Supplier Deleted Successfully.!!").show();
         }else{
             new Alert(Alert.AlertType.ERROR,"Supplier Deletion Failed.!!").show();
@@ -149,9 +164,6 @@ public class SuppliersFormController implements Initializable {
         clearForm();
     }
 
-    public void btnAddNewSupplier(MouseEvent mouseEvent) {
-
-    }
     public void clearForm(){
         //SupImgSideView.setImage();
         SupIdSideView.setText("");
@@ -162,4 +174,32 @@ public class SuppliersFormController implements Initializable {
         SupEmailSideView.setText("");
         SupCompanySideView.setText("");
     }
+
+    public void FSearchSupplier(KeyEvent keyEvent) {
+        LoadGridCards(new SuppliersController().searchSupplier(searchbar.getText()));
+    }
+
+    public void btnAddNewSupplier(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddNewSupplier.fxml"));
+            Parent newForm = loader.load();
+
+            AddNewSupplierFormController addNewSupplierFormController = loader.getController();
+
+            addNewSupplierFormController.setParentController(this);
+
+
+            OverlayPane.getChildren().clear();
+            OverlayPane.getChildren().add(newForm);
+
+            OverlayPane.setVisible(true);
+            OverlayPane.setMouseTransparent(false);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 }

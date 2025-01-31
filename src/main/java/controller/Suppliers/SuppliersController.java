@@ -108,4 +108,53 @@ public class SuppliersController {
         return false;
     }
 
+    public List<Supplier> searchSupplier(String supplierName) {
+        List<Supplier> suppliers = new ArrayList<>();
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            String query = "SELECT * FROM Supplier WHERE Name LIKE ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, "%" + supplierName + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int supplierId = resultSet.getInt("SupplierID");
+                int userId = resultSet.getInt("UserID");
+                String gender = resultSet.getString("Gender");
+                String name = resultSet.getString("Name");
+                String company = resultSet.getString("Company");
+                String address = resultSet.getString("Address");
+                String phone = resultSet.getString("Contact");
+                String email = resultSet.getString("Email");
+                Supplier supplier = new Supplier(supplierId, userId, gender, name, company, address, phone, email);
+                suppliers.add(supplier);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return suppliers;
+    }
+
+    //last written method.
+    public boolean AddSupplier (Supplier supplier) {
+        String query = "INSERT INTO Supplier (Name, Email, Company, Contact, Address, UserID, Gender) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, supplier.getName());
+            preparedStatement.setString(2, supplier.getEmail());
+            preparedStatement.setString(3, supplier.getCompany());
+            preparedStatement.setString(4, supplier.getPhone());
+            preparedStatement.setString(5, supplier.getAddress());
+            preparedStatement.setInt(6, supplier.getUserId());
+            preparedStatement.setString(7, supplier.getGender());
+            boolean IsAdded = preparedStatement.executeUpdate() > 0;
+            if(IsAdded){
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
 }

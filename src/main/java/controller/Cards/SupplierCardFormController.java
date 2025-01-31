@@ -19,12 +19,13 @@ public class SupplierCardFormController {
 
     @FXML
     private Label SupplierPhno;
-    private SuppliersFormController suppliersFormController;
+    private SuppliersFormController parentController;
     private Supplier supplier;
 
-    public boolean setData(Supplier supplier, SuppliersFormController suppliersFormController) {
-        this.suppliersFormController = suppliersFormController;
+    public boolean setData(Supplier supplier, SuppliersFormController parentController) {
+        this.parentController = parentController;
         this.supplier = supplier;
+
         SupplierName.setText(supplier.getName());
         SupplierPhno.setText(supplier.getPhone());
 
@@ -33,10 +34,16 @@ public class SupplierCardFormController {
         }else{
             SupplierImage.setImage(new ImageView("/img/woman.png").getImage());
         }
-        return (supplier != null && suppliersFormController != null ? true : false);
+        return (supplier != null && parentController != null ? true : false);
     }
     public void CardData(MouseEvent mouseEvent) {
-        suppliersFormController.viewSupplierDetailsSide(supplier);
+        parentController.viewSupplierDetailsSide(supplier);
+
+        parentController.OverlayPane.setVisible(false);
+        parentController.OverlayPane.setMouseTransparent(true);
+
+        parentController.SupplierDetailsArea.setVisible(true);
+        parentController.SupplierDetailsArea.setMouseTransparent(false);
     }
 
 }
