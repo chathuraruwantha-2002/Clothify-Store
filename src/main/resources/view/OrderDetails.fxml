@@ -46,7 +46,7 @@
                         </ImageView>
                     </children>
                 </Group>
-                <JFXTextField layoutX="82.0" layoutY="200.0" prefHeight="26.0" prefWidth="230.0" promptText="   Search Orders" />
+                <JFXTextField fx:id="SearchField" layoutX="82.0" layoutY="200.0" onKeyReleased="#fSearchOrders" prefHeight="26.0" prefWidth="230.0" promptText="   Search Orders" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="581.0" layoutX="718.0" layoutY="137.0" stroke="TRANSPARENT" strokeType="INSIDE" width="388.0" />
                 <Label layoutX="735.0" layoutY="151.0" text="Order Details" textFill="#563b2f">
                     <font>
@@ -101,10 +101,16 @@
                       </Label>
                </children>
             </Group>
-            <TableView layoutX="68.0" layoutY="236.0" prefHeight="482.0" prefWidth="616.0">
+            <TableView fx:id="orderDetailsTable" layoutX="68.0" layoutY="236.0" prefHeight="482.0" prefWidth="616.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="colOrderId" prefWidth="51.20001220703125" text="OrderID" />
+                <TableColumn fx:id="colTotAmount" prefWidth="84.0" text="TotalAmount" />
+                  <TableColumn fx:id="colPaymentMethod" prefWidth="81.5999755859375" text="Method" />
+                  <TableColumn fx:id="colDate" prefWidth="128.800048828125" text="Date" />
+                  <TableColumn fx:id="colOrderStatus" prefWidth="72.800048828125" text="Status" />
+                  <TableColumn fx:id="colEmpId" prefWidth="47.2000732421875" text="Emp ID" />
+                  <TableColumn fx:id="colCustId" prefWidth="45.5999755859375" text="Cust ID" />
+                  <TableColumn fx:id="colAction" prefWidth="108.79998779296875" text="Action" />
               </columns>
             </TableView>
             <JFXButton layoutX="603.0" layoutY="202.0" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #E07830;" text="Print" textFill="WHITE">
