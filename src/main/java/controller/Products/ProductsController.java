@@ -239,7 +239,11 @@ public class ProductsController {
 
     public List <Product> getSupplierProductList(int supplierId){
         List <Product> productList = new ArrayList<>();
-        String query = "SELECT ProductID, Name, Size, Price, CategoryID  FROM product  WHERE SupplierID = ?";
+        String query = "SELECT p.ProductID, p.Name, p.Size, p.Price, p.CategoryID, c.Name AS Category " +
+                "FROM product p " +
+                "JOIN Category c ON p.CategoryID = c.CategoryID " +
+                "WHERE p.SupplierID = ?";
+
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -249,14 +253,17 @@ public class ProductsController {
 
             while (resultSet.next()){
                 Product product = new Product(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
+                        resultSet.getInt("ProductID"),
+                        resultSet.getString("Name"),
+                        resultSet.getString("Size"),
                         null,
-                        resultSet.getDouble(4),
-                        resultSet.getInt(5),
+                        resultSet.getDouble("Price"),
+                        resultSet.getInt("CategoryID"),
                         0,
                         0,
+                        0,
+                        resultSet.getString("Category"),
+                        null,
                         0
                 );
                 productList.add(product);

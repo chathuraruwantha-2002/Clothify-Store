@@ -15,6 +15,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -32,6 +35,22 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class SuppliersFormController implements Initializable {
+
+
+    @FXML
+    private TableView tableSupProducts;
+
+    @FXML
+    private TableColumn colCategory;
+
+    @FXML
+    private TableColumn colProductId;
+
+    @FXML
+    private TableColumn colProductName;
+
+    @FXML
+    private TableColumn ColPrice;
 
     @FXML
     public AnchorPane SupplierDetailsArea;
@@ -78,6 +97,12 @@ public class SuppliersFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         LoadGridCards(new SuppliersController().getAllSuppliers());
 
+        // setcell values
+        colProductId.setCellValueFactory(new PropertyValueFactory<>("ProductID"));
+        colProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colCategory.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
+        ColPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+
         // ComboBox gender
         ObservableList<String> genderValues = FXCollections.observableArrayList("Male", "Female");
         SupGenderSideView.setItems(genderValues);
@@ -115,7 +140,8 @@ public class SuppliersFormController implements Initializable {
 
     public void viewSupplierDetailsSide(Supplier supplier){
         this.supplier = supplier;
-        System.out.println(new ProductsController().getSupplierProductList(supplier.getSupplierId()));
+        //System.out.println(new ProductsController().getSupplierProductList(supplier.getSupplierId()));
+        setSupplierProducts(new ProductsController().getSupplierProductList(supplier.getSupplierId()));
 
         SupIdSideView.setText(String.format("S%03d" , supplier.getSupplierId()));
         SupNameSideView.setText(supplier.getName());
@@ -130,6 +156,15 @@ public class SuppliersFormController implements Initializable {
         }else{
             SupImgSideView.setImage(new ImageView("/img/woman.png").getImage());
         }
+
+    }
+
+    private void setSupplierProducts (List<Product> productList) {
+
+        tableSupProducts.getItems().clear();
+        ObservableList<Product> itemsList = FXCollections.observableArrayList();
+        itemsList.addAll(productList);
+        tableSupProducts.setItems(itemsList);
 
     }
 
