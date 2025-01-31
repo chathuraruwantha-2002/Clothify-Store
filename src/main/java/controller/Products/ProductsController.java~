@@ -239,7 +239,7 @@ public class ProductsController {
 
     public List <Product> getSupplierProductList(int supplierId){
         List <Product> productList = new ArrayList<>();
-        String query = "SELECT ProductID, Name, Size, Price, CategoryID  FROM product  WHERE SupplierID = ?";
+        String query = "SELECT ProdcutID, Name, Size, Price, CategoryID  FROM product  WHERE SupplierID = ?";
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);

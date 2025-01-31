@@ -158,7 +158,7 @@ public class SuppliersController {
     }
 
     public int GetLastSupplierID (){
-        String query = "SELECT MAX(SupplierID) FROM Supplier ";
+        String query = "SELECT MAX(SupplerID) FROM Supplier ";
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             ResultSet resultSet = connection.createStatement().executeQuery(query);

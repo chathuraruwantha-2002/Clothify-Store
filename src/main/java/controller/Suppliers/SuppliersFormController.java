@@ -115,6 +115,7 @@ public class SuppliersFormController implements Initializable {
 
     public void viewSupplierDetailsSide(Supplier supplier){
         this.supplier = supplier;
+        System.out.println(new ProductsController().getSupplierProductList(supplier.getSupplierId()));
 
         SupIdSideView.setText(String.format("S%03d" , supplier.getSupplierId()));
         SupNameSideView.setText(supplier.getName());
@@ -176,10 +177,12 @@ public class SuppliersFormController implements Initializable {
     }
 
     public void FSearchSupplier(KeyEvent keyEvent) {
+        clearForm(); //added
         LoadGridCards(new SuppliersController().searchSupplier(searchbar.getText()));
     }
 
     public void btnAddNewSupplier(MouseEvent mouseEvent) {
+        clearForm(); //added
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddNewSupplier.fxml"));
             Parent newForm = loader.load();
