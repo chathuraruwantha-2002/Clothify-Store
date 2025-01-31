@@ -75,7 +75,8 @@ public class OrderDetailsFormController implements Initializable {
     }
 
     public void fSearchOrders(KeyEvent keyEvent) {
-
+        LoadTableData(new OrderDetailsController().SearchOrder(SearchField.getText()));
+        System.out.println(new OrderDetailsController().SearchOrder(SearchField.getText()));
     }
 
 }
