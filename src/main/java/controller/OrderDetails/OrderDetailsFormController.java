@@ -6,10 +6,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import model.Inventory;
 import model.Order;
 
@@ -50,6 +52,41 @@ public class OrderDetailsFormController implements Initializable {
     private TableView orderDetailsTable;
 
 
+    @FXML
+    private Label custId;
+
+    @FXML
+    private Label custName;
+
+    @FXML
+    private Label discountSales;
+
+    @FXML
+    private Label empId;
+
+    @FXML
+    private Label empName;
+
+    @FXML
+    private Label finalTotAmount;
+
+    @FXML
+    private Label orderDate;
+
+    @FXML
+    private Label orderId;
+
+    @FXML
+    private Label paymentMethod;
+
+    @FXML
+    private Label subTotal;
+
+    @FXML
+    private Label tax;
+
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,7 +94,7 @@ public class OrderDetailsFormController implements Initializable {
         LoadTableData(new OrderDetailsController().GetAllOrderList());
 
         colOrderId.setCellValueFactory(new PropertyValueFactory<>("orderId"));
-        colTotAmount.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
+        colTotAmount.setCellValueFactory(new PropertyValueFactory<>("grandTotal"));
         colOrderStatus.setCellValueFactory(new PropertyValueFactory<>("isReturned"));
         colPaymentMethod.setCellValueFactory(new PropertyValueFactory<>("paymentType"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -75,8 +112,41 @@ public class OrderDetailsFormController implements Initializable {
     }
 
     public void fSearchOrders(KeyEvent keyEvent) {
+        clearform();
         LoadTableData(new OrderDetailsController().SearchOrder(SearchField.getText()));
-        System.out.println(new OrderDetailsController().SearchOrder(SearchField.getText()));
+    }
+
+    public void fTableRowSelection(MouseEvent mouseEvent) {
+        ShowDataSideview((Order) orderDetailsTable.getSelectionModel().getSelectedItem());
+    }
+
+    private void ShowDataSideview (Order datalist){
+
+        orderDate.setText(datalist.getDate().substring(0,10));
+        orderId.setText(String.format("D%03d",datalist.getOrderId()));
+        empId.setText(String.format("E%03d",datalist.getEmpId()));
+        //empName.setText(datalist.getEmpName());
+        custId.setText(String.format("C%03d",datalist.getCustId()));
+        //custName.setText(datalist.getCustName());
+        subTotal.setText(String.valueOf(datalist.getSubTotal()));
+        discountSales.setText(String.valueOf(datalist.getDiscount()));
+        tax.setText(String.valueOf(datalist.getTax()));
+        finalTotAmount.setText(String.valueOf(datalist.getGrandTotal()));
+        paymentMethod.setText(datalist.getPaymentType());
+    }
+
+    private void clearform(){
+        orderDate.setText("");
+        orderId.setText("");
+        empId.setText("");
+        //empName.setText("");
+        custId.setText("");
+        //custName.setText("");
+        subTotal.setText("");
+        discountSales.setText("");
+        tax.setText("");
+        finalTotAmount.setText("");
+        paymentMethod.setText("");
     }
 
 }

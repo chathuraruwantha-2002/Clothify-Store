@@ -53,7 +53,6 @@
                 <JFXTextField fx:id="searchbar" layoutX="82.0" layoutY="174.0" onKeyReleased="#FSearchSupplier" prefHeight="26.0" prefWidth="230.0" promptText="   Search Suppliers" />
             <StackPane layoutX="718.0" layoutY="137.0">
                <children>
-                  <AnchorPane fx:id="OverlayPane" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" />
                   <AnchorPane fx:id="SupplierDetailsArea">
                      <children>
                             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="581.0" stroke="TRANSPARENT" strokeType="INSIDE" width="388.0" />
@@ -168,6 +167,7 @@
                         </Group>
                      </children>
                   </AnchorPane>
+                  <AnchorPane fx:id="OverlayPane" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </StackPane>
 

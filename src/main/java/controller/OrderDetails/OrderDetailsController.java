@@ -23,13 +23,15 @@ public class OrderDetailsController {
 
             while (resultSet.next()){
                Order order = new Order(
-                       resultSet.getInt(1),
-                       resultSet.getDouble(2),
-                       resultSet.getString(3),
-                       resultSet.getString(4),
-                       resultSet.getString(5),
-                       resultSet.getInt(6),
-                       resultSet.getInt(7)
+                       resultSet.getInt("OrderID"),
+                       resultSet.getDouble("TotalAmount"),
+                       resultSet.getDouble("Discount"),
+                       resultSet.getDouble("Tax"),
+                       resultSet.getString("IsReturned"),
+                       resultSet.getString("PaymentType"),
+                       resultSet.getString("Date"),
+                       resultSet.getInt("UserID"),
+                       resultSet.getInt("CustomerId")
                );
                orderList.add(order);
             }
@@ -56,13 +58,15 @@ public class OrderDetailsController {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 Order order = new Order(
-                        resultSet.getInt(1),
-                        resultSet.getDouble(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getInt(6),
-                        resultSet.getInt(7)
+                        resultSet.getInt("OrderID"),
+                        resultSet.getDouble("TotalAmount"),
+                        resultSet.getDouble("Discount"),
+                        resultSet.getDouble("Tax"),
+                        resultSet.getString("IsReturned"),
+                        resultSet.getString("PaymentType"),
+                        resultSet.getString("Date"),
+                        resultSet.getInt("UserID"),
+                        resultSet.getInt("CustomerId")
                 );
                 SearchResult.add(order);
             }

@@ -60,14 +60,14 @@
                               <Font name="System Bold" size="18.0" />
                           </font>
                       </Label>
-                      <Label layoutX="98.0" text="D001">
+                      <Label fx:id="orderId" layoutX="98.0" text="D001">
                           <font>
                               <Font size="18.0" />
                           </font>
                       </Label>
                </children>
             </Group>
-                <Label layoutX="989.0" layoutY="186.0" text="2025-01-24" textFill="#563b2f">
+                <Label fx:id="orderDate" layoutX="989.0" layoutY="186.0" text="2025-01-24" textFill="#563b2f">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
@@ -79,11 +79,11 @@
                       <Label layoutX="12.0" layoutY="9.0" text="Sub Total" />
                       <Label layoutX="12.0" layoutY="26.0" text="Discount Sales" />
                       <Label layoutX="12.0" layoutY="44.0" text="Tax" />
-                      <Label layoutX="210.0" layoutY="9.0" text="Rs 3 300 . 00" />
-                      <Label layoutX="210.0" layoutY="26.0" text="Rs 3 000 . 00" />
-                      <Label layoutX="210.0" layoutY="44.0" text="Rs 3 000 . 00" />
+                      <Label fx:id="subTotal" layoutX="210.0" layoutY="9.0" text="Rs 3 300 . 00" />
+                      <Label fx:id="discountSales" layoutX="210.0" layoutY="26.0" text="Rs 3 000 . 00" />
+                      <Label fx:id="tax" layoutX="210.0" layoutY="44.0" text="Rs 3 000 . 00" />
                   <Label layoutX="12.0" layoutY="59.0" text="Payment Method" />
-                  <Label layoutX="210.0" layoutY="59.0" text="Cache" />
+                  <Label fx:id="paymentMethod" layoutX="210.0" layoutY="59.0" text="Cache" />
                </children>
             </Group>
             <Group layoutX="761.0" layoutY="650.0">
@@ -94,14 +94,14 @@
                               <Font name="System Bold" size="18.0" />
                           </font>
                       </Label>
-                      <Label layoutX="180.0" layoutY="8.0" text="Rs 3 000 . 00" textFill="#9e3433">
+                      <Label fx:id="finalTotAmount" layoutX="180.0" layoutY="8.0" text="Rs 3 000 . 00" textFill="#9e3433">
                           <font>
                               <Font size="18.0" />
                           </font>
                       </Label>
                </children>
             </Group>
-            <TableView fx:id="orderDetailsTable" layoutX="68.0" layoutY="236.0" prefHeight="482.0" prefWidth="616.0">
+            <TableView fx:id="orderDetailsTable" layoutX="68.0" layoutY="236.0" onMouseClicked="#fTableRowSelection" prefHeight="482.0" prefWidth="616.0">
               <columns>
                 <TableColumn fx:id="colOrderId" prefWidth="51.20001220703125" text="OrderID" />
                 <TableColumn fx:id="colTotAmount" prefWidth="84.0" text="TotalAmount" />
@@ -125,7 +125,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="98.0" text="E001">
+                  <Label fx:id="empId" layoutX="98.0" text="E001">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -139,7 +139,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="120.0" text="Sandaruwan Bandara">
+                  <Label fx:id="empName" layoutX="120.0" text="Sandaruwan Bandara">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -153,7 +153,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="90.0" text="C001">
+                  <Label fx:id="custId" layoutX="90.0" text="C001">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -167,7 +167,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="120.0" text="Sandaruwan Bandara">
+                  <Label fx:id="custName" layoutX="120.0" text="Sandaruwan Bandara">
                      <font>
                         <Font size="18.0" />
                      </font>
