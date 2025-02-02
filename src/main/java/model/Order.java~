@@ -22,7 +22,6 @@ public class Order {
     private int empId;
     private int custId;
 
-    //custom constructor
     public Order(int orderId, double subTotal, double discount, double tax, String isReturned, String paymentType, String date, int empId, int custId) {
         this.orderId = orderId;
         this.subTotal = subTotal;
