@@ -130,7 +130,7 @@ public class ProductsFormController implements Initializable {
                         ++row;
                     }
                     ProductsContainer.add(productCard,column++,row);
-                    GridPane.setMargin(productCard,new Insets(7.5));
+                    GridPane.setMargin(productCard,new Insets(5.5));
                 }
             }
 

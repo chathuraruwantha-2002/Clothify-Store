@@ -78,5 +78,44 @@ public class OrderDetailsController {
     }
 
 
+    //additional methods
+
+    //get Emp name using emp id
+    public String getEmpName(int empId) {
+        String query = "SELECT Name FROM employee WHERE EMPID = ?";
+        String empName = null;
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, empId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                empName = resultSet.getString("Name");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return empName;
+    }
+
+    //get Customer name using customer id
+    public String getCustomerName(int customerId) {
+        String query = "SELECT Name FROM customer WHERE CustomerID = ?";
+        String customerName = null;
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, customerId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                customerName = resultSet.getString("Name");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return customerName;
+    }
+
+
 
 }

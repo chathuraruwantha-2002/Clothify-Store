@@ -125,9 +125,9 @@ public class OrderDetailsFormController implements Initializable {
         orderDate.setText(datalist.getDate().substring(0,10));
         orderId.setText(String.format("D%03d",datalist.getOrderId()));
         empId.setText(String.format("E%03d",datalist.getEmpId()));
-        //empName.setText(datalist.getEmpName());
+        empName.setText(new OrderDetailsController().getEmpName(datalist.getEmpId()));
         custId.setText(String.format("C%03d",datalist.getCustId()));
-        //custName.setText(datalist.getCustName());
+        custName.setText(new OrderDetailsController().getCustomerName(datalist.getCustId()));
         subTotal.setText(String.valueOf(datalist.getSubTotal()));
         discountSales.setText(String.valueOf(datalist.getDiscount()));
         tax.setText(String.valueOf(datalist.getTax()));

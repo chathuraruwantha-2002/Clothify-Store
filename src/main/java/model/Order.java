@@ -36,7 +36,6 @@ public class Order {
         this.grandTotal = subTotal - discount + tax;
     }
 
-
 }
 
 
