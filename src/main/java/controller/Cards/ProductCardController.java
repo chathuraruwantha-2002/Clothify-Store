@@ -70,8 +70,7 @@ public class ProductCardController {
             parentController.productDetailsarea.setMouseTransparent(false);
 
         } else if (parentControllerPlaceOrder != null) {
-            //parentControllerPlaceOrder.viewProductDetailsSide(product);
-            System.out.println(product);
+            parentControllerPlaceOrder.DisplayOrderDetailsOnSide(product);
             //parentControllerPlaceOrder.overlayPane.setVisible(false);
             //parentControllerPlaceOrder.overlayPane.setMouseTransparent(true);
 

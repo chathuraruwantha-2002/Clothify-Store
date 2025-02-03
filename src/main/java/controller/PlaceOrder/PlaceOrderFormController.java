@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -23,11 +24,25 @@ public class PlaceOrderFormController implements Initializable {
     @FXML
     private JFXTextField searchProducts;
 
+    @FXML
+    private JFXTextField customerName;
+
+    @FXML
+    private Label date;
+
+    @FXML
+    private Label orderId;
+
+    @FXML
+    private JFXTextField searchCustomer;
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LoadGridCards(new ProductsController().GetAllProducts());
+        this.date.setText(java.time.LocalDate.now().toString());
+        this.orderId.setText(String.format("O%03d", new PlaceOrderController().getTopOrderID()+1));
 
     }
 
@@ -66,5 +81,14 @@ public class PlaceOrderFormController implements Initializable {
         LoadGridCards(new ProductsController().searchProduct(searchProducts.getText()));
     }
 
+
+    public void fsearchCustomerbyPhno(KeyEvent keyEvent) {
+        customerName.setText(new PlaceOrderController().getCustomerName(searchCustomer.getText()));
+    }
+
+    public void DisplayOrderDetailsOnSide (Product product) {
+        System.out.println(product);
+
+    }
 
 }

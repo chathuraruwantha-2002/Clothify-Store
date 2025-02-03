@@ -2,10 +2,11 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -87,12 +88,12 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="834.0" layoutY="216.0" text="D001">
+            <Label fx:id="orderId" layoutX="834.0" layoutY="216.0" text="D001">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="991.0" layoutY="216.0" text="2025-01-24" textFill="#563b2f">
+            <Label fx:id="date" layoutX="991.0" layoutY="216.0" text="2025-01-24" textFill="#563b2f">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -102,9 +103,8 @@
                   <Image url="@../icons/ri_user-add-line.png" />
                </image>
             </ImageView>
-            <JFXTextField layoutX="752.0" layoutY="274.0" prefHeight="26.0" prefWidth="320.0" promptText="Search customer by Phno" />
-            <JFXTextField editable="false" layoutX="752.0" layoutY="322.0" prefHeight="26.0" prefWidth="320.0" promptText="Customer Name" />
-            <JFXTreeTableView layoutX="760.0" layoutY="363.0" prefHeight="154.0" prefWidth="303.0" />
+            <JFXTextField fx:id="searchCustomer" layoutX="752.0" layoutY="274.0" onKeyReleased="#fsearchCustomerbyPhno" prefHeight="26.0" prefWidth="320.0" promptText="Search customer by Phno" />
+            <JFXTextField fx:id="customerName" editable="false" layoutX="752.0" layoutY="322.0" prefHeight="26.0" prefWidth="320.0" promptText="Customer Name" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="70.0" layoutX="760.0" layoutY="526.0" stroke="TRANSPARENT" strokeType="INSIDE" width="303.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="44.0" layoutX="761.0" layoutY="604.0" stroke="TRANSPARENT" strokeType="INSIDE" width="303.0" />
             <JFXButton layoutX="786.0" layoutY="660.0" prefHeight="35.0" prefWidth="252.0" style="-fx-background-color: #E07830;" text="Place Order" textFill="#efeded">
@@ -137,6 +137,14 @@
                   </GridPane>
                </content>
             </ScrollPane>
+            <TableView layoutX="760.0" layoutY="363.0" prefHeight="154.0" prefWidth="303.0">
+              <columns>
+                <TableColumn prefWidth="118.39996337890625" text="Product Name" />
+                <TableColumn prefWidth="38.4000244140625" text="Qty" />
+                  <TableColumn prefWidth="67.99993896484375" />
+                  <TableColumn prefWidth="81.60003662109375" text="Total" />
+              </columns>
+            </TableView>
 
             </children>
         </AnchorPane>
