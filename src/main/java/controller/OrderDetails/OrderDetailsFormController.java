@@ -2,6 +2,7 @@ package controller.OrderDetails;
 
 import com.jfoenix.controls.JFXTextField;
 import controller.Inventory.InventoryController;
+import controller.Products.ProductsController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,12 +15,33 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Inventory;
 import model.Order;
+import model.OrderItemsDetails;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class OrderDetailsFormController implements Initializable {
+
+    @FXML
+    private TableView tableItemview;
+
+    @FXML
+    private TableColumn colItemId;
+
+    @FXML
+    private TableColumn colItemName;
+
+    @FXML
+    private TableColumn colItemPrice;
+
+    @FXML
+    private TableColumn colItemQty;
+
+    @FXML
+    private TableColumn colIQTotPrice;
+
+
 
     @FXML
     private JFXTextField SearchField;
@@ -93,6 +115,7 @@ public class OrderDetailsFormController implements Initializable {
 
         LoadTableData(new OrderDetailsController().GetAllOrderList());
 
+        //orderDetails main table
         colOrderId.setCellValueFactory(new PropertyValueFactory<>("orderId"));
         colTotAmount.setCellValueFactory(new PropertyValueFactory<>("grandTotal"));
         colOrderStatus.setCellValueFactory(new PropertyValueFactory<>("isReturned"));
@@ -101,6 +124,14 @@ public class OrderDetailsFormController implements Initializable {
         colEmpId.setCellValueFactory(new PropertyValueFactory<>("empId"));
         colCustId.setCellValueFactory(new PropertyValueFactory<>("custId"));
 
+        //items table
+        colItemId.setCellValueFactory(new PropertyValueFactory<>("productId"));
+        colItemName.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        colItemQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        colItemPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        colIQTotPrice.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+
+
     }
 
     private void LoadTableData(List<Order> OrdersList) {
@@ -108,6 +139,14 @@ public class OrderDetailsFormController implements Initializable {
         ObservableList<Order> ordersList = FXCollections.observableArrayList();
         ordersList.addAll(OrdersList);
         orderDetailsTable.setItems(ordersList);
+
+    }
+
+    private void loadItemsTableData(List<OrderItemsDetails> ItemsList){
+
+        ObservableList<OrderItemsDetails> itemsList = FXCollections.observableArrayList();
+        itemsList.addAll(ItemsList);
+        tableItemview.setItems(itemsList);
 
     }
 
@@ -133,20 +172,22 @@ public class OrderDetailsFormController implements Initializable {
         tax.setText(String.valueOf(datalist.getTax()));
         finalTotAmount.setText(String.valueOf(datalist.getGrandTotal()));
         paymentMethod.setText(datalist.getPaymentType());
+        loadItemsTableData(new OrderDetailsController().getItemList(datalist.getOrderId()));
     }
 
     private void clearform(){
         orderDate.setText("");
         orderId.setText("");
         empId.setText("");
-        //empName.setText("");
+        empName.setText("");
         custId.setText("");
-        //custName.setText("");
+        custName.setText("");
         subTotal.setText("");
         discountSales.setText("");
         tax.setText("");
         finalTotAmount.setText("");
         paymentMethod.setText("");
+        tableItemview.getItems().clear();
     }
 
 }

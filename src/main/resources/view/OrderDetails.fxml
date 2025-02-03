@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -58,7 +57,6 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-                <JFXTreeTableView layoutX="760.0" layoutY="393.0" prefHeight="154.0" prefWidth="303.0" />
             <Group layoutX="760.0" layoutY="560.0">
                <children>
                       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="81.0" stroke="TRANSPARENT" strokeType="INSIDE" width="303.0" />
@@ -179,6 +177,15 @@
                   </Group>
                </children>
             </Group>
+            <TableView fx:id="tableItemview" layoutX="760.0" layoutY="393.0" prefHeight="154.0" prefWidth="303.0">
+              <columns>
+                <TableColumn fx:id="colItemId" prefWidth="46.4000244140625" text="Item ID" />
+                <TableColumn fx:id="colItemName" prefWidth="98.4000244140625" text="Item Name" />
+                  <TableColumn fx:id="colItemPrice" minWidth="7.199951171875" prefWidth="63.199951171875" text="Unit Price" />
+                  <TableColumn fx:id="colItemQty" prefWidth="32.800048828125" text="Qty" />
+                  <TableColumn fx:id="colIQTotPrice" prefWidth="59.20006103515624" text="Tot Price" />
+              </columns>
+            </TableView>
 
             </children>
         </AnchorPane>

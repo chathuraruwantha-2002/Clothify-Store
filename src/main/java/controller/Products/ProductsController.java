@@ -275,5 +275,38 @@ public class ProductsController {
         return productList;
     }
 
+    //get product name by id
+    public String getProductNameById (int productId){
+        String query = "SELECT Name  FROM product  WHERE ProductID = ?";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,productId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                return resultSet.getString("Name");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return "Removed Product";
+    }
+
+    public double getProductPriceById (int productId){
+        String query = "SELECT Price  FROM product  WHERE ProductID = ?";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,productId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                return resultSet.getDouble("Price");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0.0;
+    }
+
 
 }

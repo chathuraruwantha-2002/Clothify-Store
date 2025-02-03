@@ -93,7 +93,7 @@ public class OrderDetailsController {
                         new ProductsController().getProductNameById(resultSet.getInt("ProductID")),
                         resultSet.getInt("Qty"),
                         new ProductsController().getProductPriceById(resultSet.getInt("ProductID")),
-                        resultSet.getInt("Qty")*new ProductsController().getProductPriceById(resultSet.getInt("ProductID"))
+                        resultSet.getDouble("Price")
                 );
                 itemList.add(item);
             }
