@@ -19,7 +19,9 @@ public class SupplierCardFormController {
 
     @FXML
     private Label SupplierPhno;
+
     private SuppliersFormController parentController;
+
     private Supplier supplier;
 
     public boolean setData(Supplier supplier, SuppliersFormController parentController) {

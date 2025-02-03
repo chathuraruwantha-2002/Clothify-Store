@@ -5,9 +5,12 @@
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -44,7 +47,6 @@
                       </ImageView>
                </children>
             </Group>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="444.0" layoutX="68.0" layoutY="274.0" stroke="TRANSPARENT" strokeType="INSIDE" width="616.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="70.0" layoutX="102.0" layoutY="197.0" stroke="TRANSPARENT" strokeType="INSIDE" width="268.0" />
             <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="119.0" layoutY="202.0" style="-fx-background-color: #8E3D4C;" text="Button">
                <graphic>
@@ -73,158 +75,8 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXTextField layoutX="425.0" layoutY="232.0" prefHeight="26.0" prefWidth="230.0" promptText="   Search Products" />
+            <JFXTextField fx:id="searchProducts" layoutX="425.0" layoutY="232.0" onKeyReleased="#FSearchProducts" prefHeight="26.0" prefWidth="230.0" promptText="   Search Products" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="581.0" layoutX="718.0" layoutY="137.0" stroke="TRANSPARENT" strokeType="INSIDE" width="388.0" />
-            <Group layoutX="102.0" layoutY="302.0">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4ede6" height="135.0" stroke="TRANSPARENT" strokeType="INSIDE" width="138.0" />
-                  <ImageView fitHeight="70.0" fitWidth="131.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/Shirt.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="41.0" layoutY="85.0" text="Trouser" textFill="#563b2f">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="36.0" layoutY="107.0" text="Rs 1000.00" textFill="#9e3433">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="99.0" layoutY="3.0" prefWidth="29.0" text=" Q 50">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Group>
-            <Group layoutX="301.0" layoutY="302.0">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4ede6" height="135.0" stroke="TRANSPARENT" strokeType="INSIDE" width="138.0" />
-                  <ImageView fitHeight="70.0" fitWidth="131.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/Shirt.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="41.0" layoutY="85.0" text="Trouser" textFill="#563b2f">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="36.0" layoutY="107.0" text="Rs 1000.00" textFill="#9e3433">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="99.0" layoutY="3.0" prefWidth="29.0" text=" Q 50">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Group>
-            <Group layoutX="101.0" layoutY="496.0">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4ede6" height="135.0" stroke="TRANSPARENT" strokeType="INSIDE" width="138.0" />
-                  <ImageView fitHeight="70.0" fitWidth="131.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/Shirt.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="41.0" layoutY="85.0" text="Trouser" textFill="#563b2f">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="36.0" layoutY="107.0" text="Rs 1000.00" textFill="#9e3433">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="99.0" layoutY="3.0" prefWidth="29.0" text=" Q 50">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Group>
-            <Group layoutX="300.0" layoutY="496.0">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4ede6" height="135.0" stroke="TRANSPARENT" strokeType="INSIDE" width="138.0" />
-                  <ImageView fitHeight="70.0" fitWidth="131.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/Shirt.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="41.0" layoutY="85.0" text="Trouser" textFill="#563b2f">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="36.0" layoutY="107.0" text="Rs 1000.00" textFill="#9e3433">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="99.0" layoutY="3.0" prefWidth="29.0" text=" Q 50">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Group>
-            <Group layoutX="503.0" layoutY="302.0">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4ede6" height="135.0" stroke="TRANSPARENT" strokeType="INSIDE" width="138.0" />
-                  <ImageView fitHeight="70.0" fitWidth="131.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/Shirt.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="41.0" layoutY="85.0" text="Trouser" textFill="#563b2f">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="36.0" layoutY="107.0" text="Rs 1000.00" textFill="#9e3433">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="99.0" layoutY="3.0" prefWidth="29.0" text=" Q 50">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Group>
-            <Group layoutX="503.0" layoutY="496.0">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4ede6" height="135.0" layoutX="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="138.0" />
-                  <ImageView fitHeight="70.0" fitWidth="131.0" layoutX="7.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/Shirt.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="41.0" layoutY="85.0" text="Trouser" textFill="#563b2f">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="36.0" layoutY="107.0" text="Rs 1000.00" textFill="#9e3433">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="99.0" layoutY="3.0" prefWidth="29.0" text=" Q 50">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Group>
             <Label layoutX="735.0" layoutY="151.0" text="Order Details" textFill="#563b2f">
                <font>
                   <Font name="System Bold" size="24.0" />
@@ -276,6 +128,15 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <ScrollPane layoutX="68.0" layoutY="274.0" prefHeight="444.0" prefWidth="616.0">
+               <content>
+                  <GridPane fx:id="ProductsContainer" prefHeight="0.0" prefWidth="0.0">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
 
             </children>
         </AnchorPane>

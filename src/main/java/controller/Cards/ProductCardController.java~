@@ -1,6 +1,5 @@
 package controller.Cards;
 
-import controller.PlaceOrder.PlaceOrderFormController;
 import model.Product;
 import controller.Products.ProductsFormController;
 import javafx.fxml.FXML;
@@ -24,8 +23,6 @@ public class ProductCardController {
     private Product product;
     private ProductsFormController parentController;
 
-    private PlaceOrderFormController parentControllerPlaceOrder;
-
     public boolean setData(Product product, ProductsFormController parentFormController){
         this.product = product;
         this.parentController = parentFormController;
@@ -42,22 +39,6 @@ public class ProductCardController {
 
     }
 
-    public boolean setData(Product product, PlaceOrderFormController parentFormControllerPlaceOrder) {
-        this.product = product;
-        this.parentControllerPlaceOrder = parentFormControllerPlaceOrder;
-        // Image productImage = new Image(getClass().getResourceAsStream(product.getImageUrl()));
-        //ProductImage.setImage(productImage);
-
-        ProductName.setText(product.getName());
-
-        ProductPrice.setText(String.valueOf(product.getPrice()));
-
-        // ProductQty.setText(String.valueOf(product.getProductQty()));
-
-        return (product!=null && parentFormControllerPlaceOrder!=null ? true : false);
-
-    }
-
     public void CardData(MouseEvent mouseEvent) {
 
         if (parentController != null) {
@@ -68,17 +49,7 @@ public class ProductCardController {
 
             parentController.productDetailsarea.setVisible(true);
             parentController.productDetailsarea.setMouseTransparent(false);
-
-        } else if (parentControllerPlaceOrder != null) {
-            //parentControllerPlaceOrder.viewProductDetailsSide(product);
-            System.out.println(product);
-            //parentControllerPlaceOrder.overlayPane.setVisible(false);
-            //parentControllerPlaceOrder.overlayPane.setMouseTransparent(true);
-
-           // parentControllerPlaceOrder.productDetailsarea.setVisible(true);
-           // parentControllerPlaceOrder.productDetailsarea.setMouseTransparent(false);
         }
 
     }
-
 }
