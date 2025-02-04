@@ -119,7 +119,7 @@ public class PlaceOrderFormController implements Initializable {
         customerName.setText(new PlaceOrderController().getCustomerName(searchCustomer.getText()));
     }
 
-    //rewrite this again
+    //rewrite this again (done )
     public void DisplayOrderDetailsOnSide (Product product) {
         if(!SelectedProductList.contains(product)){
             SelectedProductList.add(product);
