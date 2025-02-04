@@ -137,12 +137,12 @@
                   </GridPane>
                </content>
             </ScrollPane>
-            <TableView layoutX="760.0" layoutY="363.0" prefHeight="154.0" prefWidth="303.0">
+            <TableView fx:id="TableProductsView" layoutX="760.0" layoutY="363.0" prefHeight="154.0" prefWidth="303.0">
               <columns>
-                <TableColumn prefWidth="118.39996337890625" text="Product Name" />
-                <TableColumn prefWidth="38.4000244140625" text="Qty" />
-                  <TableColumn prefWidth="67.99993896484375" />
-                  <TableColumn prefWidth="81.60003662109375" text="Total" />
+                <TableColumn fx:id="colProductName" prefWidth="118.39996337890625" text="Product Name" />
+                <TableColumn fx:id="colQty" prefWidth="38.4000244140625" text="Qty" />
+                  <TableColumn fx:id="colActions" prefWidth="67.99993896484375" />
+                  <TableColumn fx:id="colTotal" prefWidth="81.60003662109375" text="Total" />
               </columns>
             </TableView>
 
