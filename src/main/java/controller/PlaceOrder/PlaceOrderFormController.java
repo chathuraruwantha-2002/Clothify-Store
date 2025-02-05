@@ -74,8 +74,8 @@ public class PlaceOrderFormController implements Initializable {
 
         //set table column names
         colProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
-        colTotal.setCellValueFactory(new PropertyValueFactory<>("price"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("qtyBuying"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("TotalQtyPrice"));
 
     }
 
@@ -121,13 +121,21 @@ public class PlaceOrderFormController implements Initializable {
 
     //rewrite this again (done )
     public void DisplayOrderDetailsOnSide (Product product) {
-        if(!SelectedProductList.contains(product)){
-            SelectedProductList.add(product);
-        } else{
-            SelectedProductList.get(SelectedProductList.indexOf(product)).setQty(SelectedProductList.get(SelectedProductList.indexOf(product)).getQty()+1);
+
+        for (Product productlistItem : SelectedProductList) {
+            if (productlistItem.getProductID() == product.getProductID()){
+                productlistItem.setQtyBuying(productlistItem.getQtyBuying()+1);
+                productlistItem.setTotalQtyPrice(productlistItem.getPrice()*productlistItem.getQtyBuying());
+                LoadProductsTable();
+                return;
+            }
         }
+        product.setQtyBuying(1);
+        product.setTotalQtyPrice(product.getPrice());
+        SelectedProductList.add(product);
         LoadProductsTable();
-        System.out.println(product);
+        System.out.println(SelectedProductList);
+
     }
 
     private void LoadProductsTable() {

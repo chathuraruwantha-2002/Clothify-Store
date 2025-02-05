@@ -23,6 +23,8 @@ public class Product {
     private String categoryName;
     private String supplierName;
     private int qty;
+    private int qtyBuying;
+    private double totalQtyPrice;
 
     public Product (int ProductID, String name, String  size, String imageUrl, double price, int categoryId, int userId, int supplierId, int qty ){
         this.ProductID = ProductID;

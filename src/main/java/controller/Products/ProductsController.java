@@ -40,7 +40,9 @@ public class ProductsController {
                         resultSet.getInt("SupplierID"),
                         resultSet.getString("CategoryName"),
                         resultSet.getString("SupplierName"),
-                        resultSet.getInt("Qty")
+                        resultSet.getInt("Qty"),
+                        0,//edited
+                        0.0
                 );
                 productList.add(product);
             }
@@ -102,7 +104,9 @@ public class ProductsController {
                         resultSet.getInt("SupplierID"),
                         resultSet.getString("CategoryName"),
                         resultSet.getString("SupplierName"),
-                        resultSet.getInt("QuantityInStock")
+                        resultSet.getInt("QuantityInStock"),
+                        0,//edited
+                        0.0
                 );
                 productList.add(product);
             }
@@ -264,7 +268,9 @@ public class ProductsController {
                         0,
                         resultSet.getString("Category"),
                         null,
-                        0
+                        0,
+                        0,//edited
+                        0.0
                 );
                 productList.add(product);
             }
