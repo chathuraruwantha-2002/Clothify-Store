@@ -107,7 +107,7 @@
             <JFXTextField fx:id="customerName" editable="false" layoutX="752.0" layoutY="322.0" prefHeight="26.0" prefWidth="320.0" promptText="Customer Name" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="70.0" layoutX="760.0" layoutY="526.0" stroke="TRANSPARENT" strokeType="INSIDE" width="303.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fcfcfc" height="44.0" layoutX="761.0" layoutY="604.0" stroke="TRANSPARENT" strokeType="INSIDE" width="303.0" />
-            <JFXButton layoutX="786.0" layoutY="660.0" prefHeight="35.0" prefWidth="252.0" style="-fx-background-color: #E07830;" text="Place Order" textFill="#efeded">
+            <JFXButton layoutX="786.0" layoutY="660.0" onMouseClicked="#FPlaceOrder" prefHeight="35.0" prefWidth="252.0" style="-fx-background-color: #E07830;" text="Place Order" textFill="#efeded">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -115,15 +115,15 @@
             <Label layoutX="772.0" layoutY="535.0" text="Sub Total" />
             <Label layoutX="772.0" layoutY="552.0" text="Discount Sales" />
             <Label layoutX="772.0" layoutY="570.0" text="Tax" />
-            <Label layoutX="970.0" layoutY="535.0" text="Rs 3 300 . 00" />
-            <Label layoutX="970.0" layoutY="552.0" text="Rs 3 000 . 00" />
-            <Label layoutX="970.0" layoutY="570.0" text="Rs 3 000 . 00" />
+            <Label fx:id="subTotalDisplay" layoutX="970.0" layoutY="535.0" text="Rs 3 300 . 00" />
+            <Label fx:id="discountDisplay" layoutX="970.0" layoutY="552.0" text="Rs 3 000 . 00" />
+            <Label fx:id="taxDisplay" layoutX="970.0" layoutY="570.0" text="Rs 3 000 . 00" />
             <Label layoutX="777.0" layoutY="612.0" text="Total" textFill="#9e3433">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="941.0" layoutY="612.0" text="Rs 3 000 . 00" textFill="#9e3433">
+            <Label fx:id="totalDisplay" layoutX="941.0" layoutY="612.0" text="Rs 3 000 . 00" textFill="#9e3433">
                <font>
                   <Font size="18.0" />
                </font>
@@ -137,7 +137,7 @@
                   </GridPane>
                </content>
             </ScrollPane>
-            <TableView fx:id="TableProductsView" layoutX="760.0" layoutY="363.0" prefHeight="154.0" prefWidth="303.0">
+            <TableView fx:id="TableProductsView" layoutX="760.0" layoutY="363.0" prefHeight="115.0" prefWidth="303.0">
               <columns>
                 <TableColumn fx:id="colProductName" prefWidth="118.39996337890625" text="Product Name" />
                 <TableColumn fx:id="colQty" prefWidth="38.4000244140625" text="Qty" />
@@ -145,6 +145,8 @@
                   <TableColumn fx:id="colTotal" prefWidth="81.60003662109375" text="Total" />
               </columns>
             </TableView>
+            <JFXTextField fx:id="discountInput" layoutX="763.0" layoutY="482.0" onKeyReleased="#fDiscountCheck" prefHeight="26.0" prefWidth="119.0" promptText="Discount" />
+            <JFXTextField fx:id="taxInput" layoutX="939.0" layoutY="482.0" onKeyReleased="#fTaxCheck" prefHeight="26.0" prefWidth="119.0" promptText="Tax" />
 
             </children>
         </AnchorPane>
