@@ -181,8 +181,8 @@ public class PlaceOrderFormController implements Initializable {
 
 
     public void FPlaceOrder(MouseEvent mouseEvent) {
+       // clearForm();
         PlaceOrder();
-        clearForm();
     }
 
     public void fDiscountCheck(KeyEvent keyEvent) {
