@@ -24,6 +24,7 @@ import model.Order;
 import model.Product;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -244,7 +245,12 @@ public class PlaceOrderFormController implements Initializable {
         order.setOrderId(new PlaceOrderController().getTopOrderID()+1);
         order.setEmpId(1);
 
-        boolean result = new PlaceOrderController().placeOrder(order, SelectedProductList);
+        boolean result = false;
+        try {
+            result = new PlaceOrderController().placeOrder(order, SelectedProductList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         if(result){
             System.out.println("order placed...!");
         }
