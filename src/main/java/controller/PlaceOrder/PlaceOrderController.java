@@ -1,14 +1,14 @@
 package controller.PlaceOrder;
 
 import DBConnection.DBConnection;
+import controller.Inventory.InventoryController;
+import controller.Products.ProductsController;
 import model.Order;
 import model.OrderItemsDetails;
 import model.Product;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class PlaceOrderController {
@@ -75,14 +75,14 @@ public class PlaceOrderController {
             preparedStatement.setDouble(4, order.getTax());
             preparedStatement.setString(5, order.getIsReturned());
             preparedStatement.setString(6, order.getPaymentType());
-            preparedStatement.setString(7, order.getDate());
+            preparedStatement.setTimestamp(7, Timestamp.valueOf(LocalDateTime.now()));
             preparedStatement.setInt(8, order.getEmpId());
             preparedStatement.setInt(9, order.getCustId());
             boolean isInserted = preparedStatement.executeUpdate() > 0;
 
             if (isInserted) {
-                boolean ItemsIsInserted = addOrderItemsDetails(order.getOrderId(), productList);
-                if (ItemsIsInserted){
+                boolean ItemsIsInsertedandUpdated = addOrderItemsDetails(order.getOrderId(), productList);
+                if (ItemsIsInsertedandUpdated){
                     return true;
                 }
             }
@@ -103,7 +103,8 @@ public class PlaceOrderController {
                     orderedProduct.getTotalQtyPrice()
             );
             boolean isInserted = addOrderItemsDetails(orderId, orderItemDetails);
-            if(!isInserted){
+            boolean isUpdated = new InventoryController().updateInventory(orderedProduct);
+            if(!isInserted && !isUpdated){
                 return false;
             }
         }

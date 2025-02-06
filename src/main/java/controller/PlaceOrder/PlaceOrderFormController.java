@@ -149,6 +149,7 @@ public class PlaceOrderFormController implements Initializable {
             if (productlistItem.getProductID() == product.getProductID()){
                 productlistItem.setQtyBuying(productlistItem.getQtyBuying()+1);
                 productlistItem.setTotalQtyPrice(productlistItem.getPrice()*productlistItem.getQtyBuying());
+                productlistItem.setQty(productlistItem.getQty() - productlistItem.getQtyBuying()); //added one
                 LoadProductsTable();
                 return;
             }
@@ -225,6 +226,7 @@ public class PlaceOrderFormController implements Initializable {
         discountDisplay.setText("");
         totalDisplay.setText("");
         TableProductsView.getItems().clear();
+        SelectedProductList.clear();
     }
 
     private void PlaceOrder () {
@@ -252,8 +254,14 @@ public class PlaceOrderFormController implements Initializable {
             throw new RuntimeException(e);
         }
         if(result){
-            System.out.println("order placed...!");
+            new Alert(Alert.AlertType.INFORMATION,"Order Placed Successfully.!!").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Order Placing Failed.!!").show();
         }
+
+
+        this.date.setText(java.time.LocalDate.now().toString());
+        this.orderId.setText(String.format("O%03d", new PlaceOrderController().getTopOrderID()+1));
 
     }
 
