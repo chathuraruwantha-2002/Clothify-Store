@@ -74,8 +74,8 @@ public class EmployeeFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        ClearForm();
         LoadGridCards(new EmployeeController().getAllEmployees());
-
         // ComboBox gender
         ObservableList<String> genderValues = FXCollections.observableArrayList("Male", "Female");
         empGenderSideview.setItems(genderValues);
@@ -157,6 +157,7 @@ public class EmployeeFormController implements Initializable {
         }
 
     }
+
 
     private void ClearForm(){
         empIdSideview.setText("");

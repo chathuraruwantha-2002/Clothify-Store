@@ -7,10 +7,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import model.Employee;
+import model.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,6 +45,9 @@ public class AddNewEmployeeFormController implements Initializable {
     private JFXTextField empPositionSideview;
 
     @FXML
+    private JFXTextField empPwSideview;
+
+    @FXML
     private AnchorPane EmployeeDetailsArea;
 
     private EmployeeFormController parentController;
@@ -57,6 +63,8 @@ public class AddNewEmployeeFormController implements Initializable {
         ObservableList<String> genderValues = FXCollections.observableArrayList("Male", "Female");
         empGenderSideview.setItems(genderValues);
 
+        empIdSideview.setText(String.format("E%03d", new EmployeeController().getTopEmployeeID()+1));
+
     }
 
     public void setParentController(EmployeeFormController parentController) {
@@ -65,7 +73,37 @@ public class AddNewEmployeeFormController implements Initializable {
 
 
     public void fAddBtn(MouseEvent mouseEvent) {
+        addEmployee();
+        parentController.LoadGridCards(new EmployeeController().getAllEmployees());
+        ClearForm();
+    }
 
+    private void addEmployee(){
+        Employee employee = new Employee(
+                Integer.parseInt(empIdSideview.getText().substring(1)),
+                empNameSideview.getText(),
+                empPhoneSideview.getText(),
+                empEmailSideview.getText(),
+                empAddressSideview.getText(),
+                Integer.parseInt(empIdSideview.getText().substring(1)),
+                empPositionSideview.getText(),
+                empGenderSideview.getValue().toString()
+        );
+
+        User user = new User(
+                Integer.parseInt(empIdSideview.getText().substring(1)),
+                empEmailSideview.getText(),
+                empPwSideview.getText(),
+                empPositionSideview.getText()
+        );
+
+
+        boolean result = new EmployeeController().addEmployee(employee,user);
+        if(result){
+            new Alert(Alert.AlertType.INFORMATION,"Employee Added Successfully.!!").show();
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Employee Adding Failed.!!").show();
+        }
     }
 
     public void fCancelBtn(MouseEvent mouseEvent) {
@@ -88,5 +126,6 @@ public class AddNewEmployeeFormController implements Initializable {
         empNameSideview.setText("");
         empPhoneSideview.setText("");
         empPositionSideview.setText("");
+        empPwSideview.setText("");
     }
 }

@@ -23,6 +23,12 @@ public class EmployeeCardFormController {
 
     public void CardData(MouseEvent mouseEvent) {
         parentController.viewEmployeeDetailsSide(employee);
+
+        parentController.OverlayPane.setVisible(false);
+        parentController.OverlayPane.setMouseTransparent(true);
+
+        parentController.EmployeeDetailsArea.setVisible(true);
+        parentController.EmployeeDetailsArea.setMouseTransparent(false);
     }
 
     public boolean setData(Employee employee, EmployeeFormController parentController) {
