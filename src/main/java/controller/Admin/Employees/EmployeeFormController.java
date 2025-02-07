@@ -1,5 +1,6 @@
 package controller.Admin.Employees;
 
+import com.jfoenix.controls.JFXTextField;
 import controller.Cards.EmployeeCardFormController;
 import controller.Cards.SupplierCardFormController;
 import controller.Suppliers.SuppliersController;
@@ -7,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.Employee;
@@ -17,7 +19,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class EmployeeFormController implements Initializable {
+    @FXML
+    private JFXTextField searchInput;
 
+    @FXML
+    private GridPane EmployeesContainer;
 
 
     @Override
@@ -25,8 +31,6 @@ public class EmployeeFormController implements Initializable {
         LoadGridCards(new EmployeeController().getAllEmployees());
     }
 
-    @FXML
-    private GridPane EmployeesContainer;
 
     public void LoadGridCards (List<Employee> employeeList){
 
@@ -58,4 +62,7 @@ public class EmployeeFormController implements Initializable {
 
     }
 
+    public void FSearchEmp(KeyEvent keyEvent) {
+        LoadGridCards(new EmployeeController().searchEmployee(searchInput.getText()));
+    }
 }

@@ -46,7 +46,7 @@
                         </ImageView>
                     </children>
                 </Group>
-                <JFXTextField layoutX="82.0" layoutY="174.0" prefHeight="26.0" prefWidth="230.0" promptText="   Search Employees" />
+                <JFXTextField fx:id="searchInput" layoutX="82.0" layoutY="174.0" onKeyReleased="#FSearchEmp" prefHeight="26.0" prefWidth="230.0" promptText="   Search Employees" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="581.0" layoutX="718.0" layoutY="137.0" stroke="TRANSPARENT" strokeType="INSIDE" width="388.0" />
                 <Label layoutX="735.0" layoutY="151.0" text="Employee Details" textFill="#563b2f">
                     <font>
