@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
@@ -58,7 +59,7 @@
                         <Image url="@../icons/gridicons_add-outline.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="90.0" fitWidth="83.0" layoutX="870.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="empImgSideview" fitHeight="90.0" fitWidth="83.0" layoutX="870.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../img/man.png" />
                     </image>
@@ -70,7 +71,7 @@
                                 <Font name="System Bold" size="18.0" />
                             </font>
                         </Label>
-                        <Label layoutX="125.0" text="E001">
+                        <Label fx:id="empIdSideview" layoutX="125.0" text="E001">
                             <font>
                                 <Font name="System Bold" size="18.0" />
                             </font>
@@ -87,34 +88,34 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </JFXButton>
-                <Group layoutX="764.0" layoutY="416.0">
+                <Group layoutX="764.0" layoutY="450.0">
                     <children>
                         <Label layoutY="4.0" text="Position">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
                         </Label>
-                        <JFXTextField layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's Position" />
+                        <JFXTextField fx:id="empPositionSideview" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's Position" />
                     </children>
                 </Group>
-                <Group layoutX="764.0" layoutY="471.0">
+                <Group layoutX="764.0" layoutY="495.0">
                     <children>
                         <Label layoutY="4.0" text="Address">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
                         </Label>
-                        <JFXTextField layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's Address" />
+                        <JFXTextField fx:id="empAddressSideview" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's Address" />
                     </children>
                 </Group>
-                <Group layoutX="764.0" layoutY="526.0">
+                <Group layoutX="764.0" layoutY="540.0">
                     <children>
                         <Label layoutY="4.0" text="Phone">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
                         </Label>
-                        <JFXTextField layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's Phone Number" />
+                        <JFXTextField fx:id="empPhoneSideview" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's Phone Number" />
                     </children>
                 </Group>
                 <Group layoutX="764.0" layoutY="361.0">
@@ -124,17 +125,17 @@
                                 <Font name="System Bold" size="14.0" />
                             </font>
                         </Label>
-                        <JFXTextField layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's name" />
+                        <JFXTextField fx:id="empNameSideview" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's name" />
                     </children>
                 </Group>
-                <Group layoutX="764.0" layoutY="580.0">
+                <Group layoutX="764.0" layoutY="585.0">
                     <children>
                         <Label layoutY="4.0" text="Email">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
                         </Label>
-                        <JFXTextField layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's Email" />
+                        <JFXTextField fx:id="empEmailSideview" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's Email" />
                     </children>
                 </Group>
 
@@ -152,6 +153,16 @@
                   </GridPane>
                </content>
             </ScrollPane>
+            <Group layoutX="764.0" layoutY="405.0">
+               <children>
+                  <Label layoutY="4.0" text="Gender">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox fx:id="empGenderSideview" layoutX="90.0" layoutY="1.0" prefHeight="25.0" prefWidth="112.0" promptText="Gender" />
+               </children>
+            </Group>
 
             </children>
         </AnchorPane>

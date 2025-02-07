@@ -22,7 +22,7 @@ public class EmployeeCardFormController {
     private Employee employee;
 
     public void CardData(MouseEvent mouseEvent) {
-        System.out.println("clicked ... !");
+        parentController.viewEmployeeDetailsSide(employee);
     }
 
     public boolean setData(Employee employee, EmployeeFormController parentController) {
