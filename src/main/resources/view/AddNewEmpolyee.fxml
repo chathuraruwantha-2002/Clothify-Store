@@ -19,7 +19,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="333.0" layoutY="37.0" onMouseClicked="#FaddEmployee" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="333.0" layoutY="37.0" onMouseClicked="#Freturn" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/streamline_return-2-solid.png" />
          </image>

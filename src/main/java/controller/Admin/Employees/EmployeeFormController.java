@@ -61,10 +61,10 @@ public class EmployeeFormController implements Initializable {
     private JFXTextField empPositionSideview;
 
     @FXML
-    private AnchorPane EmployeeDetailsArea;
+    public AnchorPane EmployeeDetailsArea;
 
     @FXML
-    private AnchorPane OverlayPane;
+    public AnchorPane OverlayPane;
 
     private Employee employee;
 
@@ -136,7 +136,7 @@ public class EmployeeFormController implements Initializable {
     }
 
     public void fAddNewEmployee(MouseEvent mouseEvent) {
-        System.out.println("clicked add new employee");
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddNewEmpolyee.fxml"));
             Parent newForm = loader.load();
@@ -155,5 +155,17 @@ public class EmployeeFormController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
+    private void ClearForm(){
+        empIdSideview.setText("");
+        empAddressSideview.setText("");
+        empEmailSideview.setText("");
+        empGenderSideview.setValue("");
+        empNameSideview.setText("");
+        empPhoneSideview.setText("");
+        empPositionSideview.setText("");
+    }
+
 }

@@ -3,6 +3,8 @@ package controller.Admin.Employees;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import controller.Suppliers.SuppliersFormController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -42,9 +44,6 @@ public class AddNewEmployeeFormController implements Initializable {
     @FXML
     private AnchorPane EmployeeDetailsArea;
 
-    @FXML
-    private AnchorPane OverlayPane;
-
     private EmployeeFormController parentController;
 
 
@@ -54,22 +53,40 @@ public class AddNewEmployeeFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // ComboBox gender
+        ObservableList<String> genderValues = FXCollections.observableArrayList("Male", "Female");
+        empGenderSideview.setItems(genderValues);
+
     }
 
     public void setParentController(EmployeeFormController parentController) {
         this.parentController = parentController;
     }
 
-    public void FaddEmployee(MouseEvent mouseEvent) {
-
-    }
 
     public void fAddBtn(MouseEvent mouseEvent) {
 
     }
 
     public void fCancelBtn(MouseEvent mouseEvent) {
-
+        ClearForm();
     }
 
+    public void Freturn(MouseEvent mouseEvent) {
+        parentController.OverlayPane.setVisible(false);
+        parentController.OverlayPane.setMouseTransparent(true);
+
+        parentController.EmployeeDetailsArea.setVisible(true);
+        parentController.EmployeeDetailsArea.setMouseTransparent(false);
+    }
+
+    private void ClearForm(){
+        empIdSideview.setText("");
+        empAddressSideview.setText("");
+        empEmailSideview.setText("");
+        empGenderSideview.setValue("");
+        empNameSideview.setText("");
+        empPhoneSideview.setText("");
+        empPositionSideview.setText("");
+    }
 }
