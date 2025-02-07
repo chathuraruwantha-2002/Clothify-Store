@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Admin.Employees.AddNewEmployeeFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="581.0" stroke="TRANSPARENT" strokeType="INSIDE" width="388.0" />
+      <Label layoutX="17.0" layoutY="14.0" text="New Employee" textFill="#563b2f">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="333.0" layoutY="37.0" onMouseClicked="#FaddEmployee" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/streamline_return-2-solid.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="empImgSideview" fitHeight="90.0" fitWidth="83.0" layoutX="152.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/man.png" />
+         </image>
+      </ImageView>
+      <Group layoutX="17.0" layoutY="167.0">
+         <children>
+            <Label text="Employee ID :">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="empIdSideview" layoutX="125.0" text="E001">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <JFXButton layoutX="56.0" layoutY="522.0" onMouseClicked="#fAddBtn" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #E07830;" text="Add" textFill="#efeded">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="221.0" layoutY="522.0" onMouseClicked="#fCancelBtn" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #9E3433;" text="Cancel" textFill="#efeded">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <Group layoutX="46.0" layoutY="314.0">
+         <children>
+            <Label layoutY="4.0" text="Position">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="empPositionSideview" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's Position" />
+         </children>
+      </Group>
+      <Group layoutX="46.0" layoutY="359.0">
+         <children>
+            <Label layoutY="4.0" text="Address">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="empAddressSideview" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's Address" />
+         </children>
+      </Group>
+      <Group layoutX="46.0" layoutY="404.0">
+         <children>
+            <Label layoutY="4.0" text="Phone">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="empPhoneSideview" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's Phone Number" />
+         </children>
+      </Group>
+      <Group layoutX="46.0" layoutY="225.0">
+         <children>
+            <Label layoutY="4.0" text="Name">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="empNameSideview" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's name" />
+         </children>
+      </Group>
+      <Group layoutX="46.0" layoutY="449.0">
+         <children>
+            <Label layoutY="4.0" text="Email">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="empEmailSideview" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Employee's Email" />
+         </children>
+      </Group>
+      <Group layoutX="46.0" layoutY="269.0">
+         <children>
+            <Label layoutY="4.0" text="Gender">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="empGenderSideview" layoutX="90.0" layoutY="1.0" prefHeight="25.0" prefWidth="112.0" promptText="Gender" />
+         </children>
+      </Group>
+   </children>
+</AnchorPane>

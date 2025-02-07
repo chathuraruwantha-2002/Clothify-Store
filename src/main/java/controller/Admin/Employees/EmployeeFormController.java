@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import controller.Cards.EmployeeCardFormController;
 import controller.Cards.SupplierCardFormController;
 import controller.Products.ProductsController;
+import controller.Suppliers.AddNewSupplierFormController;
 import controller.Suppliers.SuppliersController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,14 +13,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.Employee;
 import model.Supplier;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -54,6 +59,12 @@ public class EmployeeFormController implements Initializable {
 
     @FXML
     private JFXTextField empPositionSideview;
+
+    @FXML
+    private AnchorPane EmployeeDetailsArea;
+
+    @FXML
+    private AnchorPane OverlayPane;
 
     private Employee employee;
 
@@ -122,5 +133,27 @@ public class EmployeeFormController implements Initializable {
             empImgSideview.setImage(new ImageView("/img/woman.png").getImage());
         }
 
+    }
+
+    public void fAddNewEmployee(MouseEvent mouseEvent) {
+        System.out.println("clicked add new employee");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddNewEmpolyee.fxml"));
+            Parent newForm = loader.load();
+
+            AddNewEmployeeFormController addNewEmployeeFormController = loader.getController();
+
+            addNewEmployeeFormController.setParentController(this);
+
+
+            OverlayPane.getChildren().clear();
+            OverlayPane.getChildren().add(newForm);
+
+            OverlayPane.setVisible(true);
+            OverlayPane.setMouseTransparent(false);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
