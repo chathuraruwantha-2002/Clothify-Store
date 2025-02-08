@@ -83,12 +83,12 @@
                                     </Label>
                                 </children>
                             </Group>
-                            <JFXButton layoutX="56.0" layoutY="522.0" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #E07830;" text="Update" textFill="#efeded">
+                            <JFXButton layoutX="56.0" layoutY="522.0" onMouseClicked="#fUpdate" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #E07830;" text="Update" textFill="#efeded">
                                 <font>
                                     <Font name="System Bold" size="18.0" />
                                 </font>
                             </JFXButton>
-                            <JFXButton layoutX="221.0" layoutY="522.0" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #9E3433;" text="Delete" textFill="#efeded">
+                            <JFXButton layoutX="221.0" layoutY="522.0" onMouseClicked="#fDelete" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #9E3433;" text="Delete" textFill="#efeded">
                                 <font>
                                     <Font name="System Bold" size="18.0" />
                                 </font>

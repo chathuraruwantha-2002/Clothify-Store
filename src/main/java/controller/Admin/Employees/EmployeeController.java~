@@ -173,13 +173,10 @@ public class EmployeeController {
             preparedStatement.setString(2,user.getEmail());
             preparedStatement.setInt(3,user.getUserId());
             boolean isUpdated = preparedStatement.executeUpdate() > 0;
-            if(isUpdated){
-                return true;
-            }
+            return isUpdated;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return false;
     }
 
 

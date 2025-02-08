@@ -212,7 +212,6 @@ public class SuppliersFormController implements Initializable {
     }
 
     public void FSearchSupplier(KeyEvent keyEvent) {
-        clearForm(); //added
         LoadGridCards(new SuppliersController().searchSupplier(searchbar.getText()));
     }
 

@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -23,9 +24,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.Employee;
 import model.Supplier;
+import model.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -136,7 +139,7 @@ public class EmployeeFormController implements Initializable {
     }
 
     public void fAddNewEmployee(MouseEvent mouseEvent) {
-
+        ClearForm();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddNewEmpolyee.fxml"));
             Parent newForm = loader.load();
@@ -167,6 +170,51 @@ public class EmployeeFormController implements Initializable {
         empNameSideview.setText("");
         empPhoneSideview.setText("");
         empPositionSideview.setText("");
+    }
+
+    public void fUpdate(MouseEvent mouseEvent) {
+        updateEmployee();
+        ClearForm();
+        LoadGridCards(new EmployeeController().getAllEmployees());
+
+    }
+
+    private void updateEmployee(){
+        Employee employee = new Employee(
+                Integer.parseInt(empIdSideview.getText().substring(1)),
+                empNameSideview.getText(),
+                empPhoneSideview.getText(),
+                empEmailSideview.getText(),
+                empAddressSideview.getText(),
+                Integer.parseInt(empIdSideview.getText().substring(1)),
+                empPositionSideview.getText(),
+                empGenderSideview.getValue().toString()
+        );
+
+        User user = new User();
+                user.setUserId(Integer.parseInt(empIdSideview.getText().substring(1)));
+                user.setEmail(empEmailSideview.getText());
+                user.setRole(empPositionSideview.getText());
+
+
+
+        boolean result = false;
+        try {
+
+            result = new EmployeeController().updateEmployee(employee,user);
+            if(result){
+                new Alert(Alert.AlertType.INFORMATION,"Employee Updated Successfully.!!").show();
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Employee Updating Failed.!!").show();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void fDelete(MouseEvent mouseEvent) {
+
     }
 
 }

@@ -16,6 +16,7 @@ import model.Employee;
 import model.User;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AddNewEmployeeFormController implements Initializable {
@@ -98,12 +99,20 @@ public class AddNewEmployeeFormController implements Initializable {
         );
 
 
-        boolean result = new EmployeeController().addEmployee(employee,user);
-        if(result){
-            new Alert(Alert.AlertType.INFORMATION,"Employee Added Successfully.!!").show();
-        }else{
-            new Alert(Alert.AlertType.ERROR,"Employee Adding Failed.!!").show();
+        boolean result = false;
+        try {
+
+            result = new EmployeeController().addEmployee(employee,user);
+            if(result){
+                new Alert(Alert.AlertType.INFORMATION,"Employee Added Successfully.!!").show();
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Employee Adding Failed.!!").show();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+
     }
 
     public void fCancelBtn(MouseEvent mouseEvent) {
