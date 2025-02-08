@@ -214,7 +214,23 @@ public class EmployeeFormController implements Initializable {
     }
 
     public void fDelete(MouseEvent mouseEvent) {
+        deleteEmployee();
+        ClearForm();
+        LoadGridCards(new EmployeeController().getAllEmployees());
+    }
 
+    private void deleteEmployee(){
+        boolean result = false;
+        try {
+            result = new EmployeeController().deleteEmployee(employee.getEmployeeId(),employee.getUserId());
+            if(result){
+                new Alert(Alert.AlertType.INFORMATION,"Employee Deleted Successfully.!!").show();
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Employee Deletion Failed.!!").show();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

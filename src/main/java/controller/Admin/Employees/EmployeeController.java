@@ -182,6 +182,44 @@ public class EmployeeController {
         return false;
     }
 
+    public boolean deleteEmployee(int employeeId, int userId) throws SQLException {
+        String query = "DELETE FROM employee WHERE EMPID = ?";
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, employeeId);
+            boolean isDeletedEmp = preparedStatement.executeUpdate() > 0;
+            if (isDeletedEmp) {
+                boolean isDeletedUser = deleteUser(userId);
+                if (isDeletedUser) {
+                    connection.commit();
+                    return true;
+                }
+            }
+        } finally {
+            connection.setAutoCommit(true);
+        }
+        connection.rollback();
+        return false;
+    }
+
+    public boolean deleteUser(int userId) {
+        String query = "DELETE FROM user WHERE UserID = ?";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, userId);
+            boolean result = preparedStatement.executeUpdate() > 0;
+            if (result) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
 
 
 
