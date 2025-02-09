@@ -28,7 +28,7 @@
                               <Image url="@../icons/iconamoon_trend-down.png" />
                           </image>
                       </ImageView>
-                      <Label layoutX="33.0" layoutY="75.0" prefHeight="27.0" prefWidth="23.0" text="5">
+                      <Label fx:id="alertsLabel" layoutX="33.0" layoutY="75.0" prefHeight="27.0" prefWidth="23.0" text="5">
                           <font>
                               <Font name="System Bold" size="18.0" />
                           </font>
@@ -53,7 +53,7 @@
                               <Image url="@../icons/People.png" />
                           </image>
                       </ImageView>
-                      <Label layoutX="22.0" layoutY="74.0" prefHeight="27.0" prefWidth="26.0" text="14">
+                      <Label fx:id="activeLabel" layoutX="22.0" layoutY="74.0" prefHeight="27.0" prefWidth="26.0" text="14">
                           <font>
                               <Font name="System Bold" size="18.0" />
                           </font>
@@ -78,7 +78,7 @@
                               <Image url="@../icons/icon-park-outline_sales-report.png" />
                           </image>
                       </ImageView>
-                      <Label layoutX="10.0" layoutY="75.0" prefHeight="18.0" prefWidth="136.0" text="Rs 28000.00">
+                      <Label fx:id="salesLabel" layoutX="10.0" layoutY="75.0" prefHeight="18.0" prefWidth="136.0" text="Rs 28000.00">
                           <font>
                               <Font name="System Bold" size="18.0" />
                           </font>
@@ -98,7 +98,7 @@
                               <Image url="@../icons/streamline_return-2-solid.png" />
                           </image>
                       </ImageView>
-                      <Label layoutX="10.0" layoutY="75.0" prefHeight="18.0" prefWidth="136.0" text="Rs 23500.00">
+                      <Label fx:id="returnsLabel" layoutX="10.0" layoutY="75.0" prefHeight="18.0" prefWidth="136.0" text="Rs 23500.00">
                           <font>
                               <Font name="System Bold" size="18.0" />
                           </font>
