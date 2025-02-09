@@ -4,17 +4,43 @@ package controller.Homepage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class HomepageFormController {
+public class HomepageFormController implements Initializable {
 
     @FXML
     private AnchorPane UiLoadingArea;
+
+
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        URL resource = this.getClass().getResource("/view/Dashboard.fxml");
+
+        assert resource != null;
+
+        Parent load = null;
+        try {
+            load = FXMLLoader.load(resource);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        UiLoadingArea.getChildren().clear();
+        UiLoadingArea.getChildren().add(load);
+    }
+
+
+
+
 
     @FXML
     public void Dashboardbutton(ActionEvent action) throws IOException {
@@ -119,5 +145,6 @@ public class HomepageFormController {
         UiLoadingArea.getChildren().clear();
         UiLoadingArea.getChildren().add(load);
     }
+
 }
 

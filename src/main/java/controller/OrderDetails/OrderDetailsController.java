@@ -142,6 +142,22 @@ public class OrderDetailsController {
         return customerName;
     }
 
+    public int getTotalReturns() {
+        int totalReturns = 0;
+        String query = "SELECT COUNT(*) AS TotalReturns FROM orders WHERE IsReturned = 'Yes'";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                totalReturns = resultSet.getInt("TotalReturns");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return totalReturns;
+    }
+
 
 
 }

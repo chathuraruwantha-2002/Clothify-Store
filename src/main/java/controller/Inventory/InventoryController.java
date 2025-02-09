@@ -161,4 +161,21 @@ public class InventoryController {
 
     }
 
+    public int getLowProductQty() {
+        int lowProductQty = 0;
+        //query for if product qty lower than 10
+        String query = "SELECT COUNT(*) AS LowProductQty  FROM inventory  WHERE Qty < 10";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                lowProductQty = resultSet.getInt("LowProductQty");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lowProductQty;
+    }
+
 }
