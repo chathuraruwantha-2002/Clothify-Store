@@ -33,7 +33,7 @@ public class ProductCardController {
         //ProductImage.setImage(productImage);
 
         ProductName.setText(product.getName());
-
+        ProductQty.setText(String.valueOf(product.getQty()));
         ProductPrice.setText(String.valueOf(product.getPrice()));
 
         // ProductQty.setText(String.valueOf(product.getProductQty()));
@@ -49,7 +49,7 @@ public class ProductCardController {
         //ProductImage.setImage(productImage);
 
         ProductName.setText(product.getName());
-
+        ProductQty.setText(String.valueOf(product.getQty()));
         ProductPrice.setText(String.valueOf(product.getPrice()));
 
         // ProductQty.setText(String.valueOf(product.getProductQty()));
