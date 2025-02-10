@@ -145,17 +145,24 @@ public class PlaceOrderFormController implements Initializable {
     //rewrite this again (done )
     public void DisplayOrderDetailsOnSide (Product product) {
 
+        if(product.getQty()<=0){
+            new Alert(Alert.AlertType.ERROR,"Product is out of stock").show();
+            return;
+        }
+
         for (Product productlistItem : SelectedProductList) {
             if (productlistItem.getProductID() == product.getProductID()){
                 productlistItem.setQtyBuying(productlistItem.getQtyBuying()+1);
                 productlistItem.setTotalQtyPrice(productlistItem.getPrice()*productlistItem.getQtyBuying());
-                productlistItem.setQty(productlistItem.getQty() - productlistItem.getQtyBuying()); //added one
+                productlistItem.setQty(productlistItem.getQty() - 1 ); //added one
                 LoadProductsTable();
                 return;
             }
         }
+
         product.setQtyBuying(1);
         product.setTotalQtyPrice(product.getPrice());
+        product.setQty(product.getQty() - 1 ); //added one
         SelectedProductList.add(product);
         LoadProductsTable();
         System.out.println(SelectedProductList);
@@ -250,6 +257,7 @@ public class PlaceOrderFormController implements Initializable {
         boolean result = false;
         try {
             result = new PlaceOrderController().placeOrder(order, SelectedProductList);
+            System.out.println(SelectedProductList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -262,6 +270,7 @@ public class PlaceOrderFormController implements Initializable {
 
         this.date.setText(java.time.LocalDate.now().toString());
         this.orderId.setText(String.format("O%03d", new PlaceOrderController().getTopOrderID()+1));
+        LoadGridCards(new ProductsController().GetAllProducts());
 
     }
 
