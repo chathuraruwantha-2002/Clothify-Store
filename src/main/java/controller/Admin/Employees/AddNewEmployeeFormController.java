@@ -3,6 +3,7 @@ package controller.Admin.Employees;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import controller.Suppliers.SuppliersFormController;
+import controller.login.LoginFormController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Employee;
 import model.User;
+import org.jasypt.util.text.BasicTextEncryptor;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -80,6 +82,7 @@ public class AddNewEmployeeFormController implements Initializable {
     }
 
     private void addEmployee(){
+        BasicTextEncryptor basicTextEncryptor = new LoginFormController().setEncription();//encryption
         Employee employee = new Employee(
                 Integer.parseInt(empIdSideview.getText().substring(1)),
                 empNameSideview.getText(),
@@ -94,7 +97,7 @@ public class AddNewEmployeeFormController implements Initializable {
         User user = new User(
                 Integer.parseInt(empIdSideview.getText().substring(1)),
                 empEmailSideview.getText(),
-                empPwSideview.getText(),
+                basicTextEncryptor.encrypt(empPwSideview.getText()),
                 empPositionSideview.getText()
         );
 
