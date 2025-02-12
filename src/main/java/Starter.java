@@ -14,7 +14,7 @@ public class Starter extends Application {
     public void start(Stage stage) throws Exception {
         stage.getIcons().add(new Image("img/Logo for Exe.png"));
         stage.setTitle("Clothify Store");
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("view/Homepage.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("view/Login.fxml"))));
         stage.show();
     }
 }

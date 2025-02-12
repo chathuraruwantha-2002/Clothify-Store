@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.User;
@@ -49,11 +50,15 @@ public class LoginFormController {
 
         }else if(userPassword.getText().equals(basicTextEncryptor.decrypt(user.getPassword()))) {
 
+
             Stage stage = new Stage();
+            stage.getIcons().add(new Image("img/Logo for Exe.png"));
+            stage.setTitle("Clothify Store");
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Homepage.fxml"))));
             stage.show();
 
             //close the login window
+
             Stage currentStage = (Stage) userEmail.getScene().getWindow();
             currentStage.close();
             new Alert(Alert.AlertType.INFORMATION,"Login Success.!!").show();
