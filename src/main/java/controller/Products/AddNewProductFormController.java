@@ -108,7 +108,7 @@ public class AddNewProductFormController implements Initializable {
             throw new RuntimeException(e);
         }
         if (result) {
-            parentController.LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
+            parentController.LoadGridCards(new ArrayList<>(new ProductsController().CategoryProductsList((String) CategorySideView.getValue())));
             new Alert(Alert.AlertType.INFORMATION,"Product Added Successfully.!!").show();
         }else {
             new Alert(Alert.AlertType.ERROR,"Product Adding Failed.!!").show();

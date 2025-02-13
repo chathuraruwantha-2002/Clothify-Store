@@ -80,8 +80,6 @@ public class ProductsFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-        LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
-
         LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
         category = "Gents";
 
@@ -111,7 +109,7 @@ public class ProductsFormController implements Initializable {
     }
 
     public void FSearchProducts(KeyEvent keyEvent) {
-        LoadGridCards(new ProductsController().searchProduct(fieldSearchProducts.getText()));
+        LoadGridCards(new ProductsController().searchProduct(fieldSearchProducts.getText(),category));
         System.out.println(category);
     }
 
@@ -162,7 +160,7 @@ public class ProductsFormController implements Initializable {
             throw new RuntimeException(e);
         }
         if (result) {
-            LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
+            LoadGridCards(new ArrayList<>(new ProductsController().CategoryProductsList((String) CategorySideView.getValue())));
             new Alert(Alert.AlertType.INFORMATION,"Product Updated Successfully.!!").show();
         } else {
             new Alert(Alert.AlertType.ERROR,"Product Updation Failed.!!").show();
@@ -178,7 +176,7 @@ public class ProductsFormController implements Initializable {
             throw new RuntimeException(e);
         }
         if(result){
-            LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
+            LoadGridCards(new ArrayList<>(new ProductsController().CategoryProductsList((String) CategorySideView.getValue())));
             new Alert(Alert.AlertType.INFORMATION,"Product Deleted Successfully.!!").show();
         }else {
             new Alert(Alert.AlertType.ERROR,"Product Deletion Failed.!!").show();
