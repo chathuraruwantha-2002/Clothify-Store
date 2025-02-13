@@ -82,7 +82,7 @@ public class ProductsFormController implements Initializable {
 
         LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
         category = "Gents";
-
+        clearform();
 
         // ComboBox setup for Category and Size
         ObservableList<String> categoryValues = FXCollections.observableArrayList("Ladies", "Gents", "Kids");

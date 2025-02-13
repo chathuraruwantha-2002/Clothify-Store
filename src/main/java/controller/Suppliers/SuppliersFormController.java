@@ -96,7 +96,7 @@ public class SuppliersFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LoadGridCards(new SuppliersController().getAllSuppliers());
-
+        clearForm();
         // setcell values
         colProductId.setCellValueFactory(new PropertyValueFactory<>("ProductID"));
         colProductName.setCellValueFactory(new PropertyValueFactory<>("name"));

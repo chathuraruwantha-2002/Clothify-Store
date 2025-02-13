@@ -1,12 +1,16 @@
 package controller.Homepage;
 
 
+import com.mysql.cj.xdevapi.Warning;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -70,14 +74,15 @@ public class HomepageFormController implements Initializable {
 
     @FXML
     public void LogoutButton(ActionEvent event) throws IOException {
-        URL resource = this.getClass().getResource("/view/Login.fxml");
 
-        assert resource != null;
+        Stage stage = (Stage) UiLoadingArea.getScene().getWindow();
+        stage.close();
+        Stage loginStage = new Stage();
+        loginStage.getIcons().add(new Image("img/Logo for Exe.png"));
+        loginStage.setTitle("Clothify Store");
+        loginStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Login.fxml"))));
+        loginStage.show();
 
-        Parent load = FXMLLoader.load(resource);
-
-        UiLoadingArea.getChildren().clear();
-        UiLoadingArea.getChildren().add(load);
     }
 
     @FXML
