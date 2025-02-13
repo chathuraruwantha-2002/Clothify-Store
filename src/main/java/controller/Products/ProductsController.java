@@ -119,71 +119,6 @@ public class ProductsController {
 
     }
 
-    //advanced search by category
-    public List<Product> searchProduct(String input, String category) {
-        List<Product> productList = new ArrayList<>();
-
-        String query = "SELECT " +
-                "p.ProductID, " +
-                "p.Name AS ProductName, " +
-                "p.Size AS ProductSize, " +
-                "p.Image AS ProductImage, " +
-                "p.Price AS ProductPrice, " +
-                "p.CategoryID, " +
-                "p.UserID, " +
-                "p.InventoryID, " +
-                "p.SupplierID, " +
-                "c.Name AS CategoryName, " +
-                "COALESCE(s.Name, 'Supplier Deleted') AS SupplierName, " +
-                "i.Qty AS QuantityInStock " +
-                "FROM Product p " +
-                "JOIN Category c ON p.CategoryID = c.CategoryID " +
-                "LEFT JOIN Supplier s ON p.SupplierID = s.SupplierID " +
-                "JOIN Inventory i ON p.InventoryID = i.InventoryID " +
-                "WHERE (p.ProductID LIKE ? " +
-                "OR p.Name LIKE ? " +
-                "OR p.SupplierID LIKE ?) " +
-                "AND c.Name LIKE ?";
-
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-
-            // Setting the search parameter for all columns
-            String searchPattern = "%" + input + "%";
-            for (int i = 1; i <= 3; i++) {
-                preparedStatement.setString(i, searchPattern);
-            }
-
-            preparedStatement.setString(4, "%" + category + "%");
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                Product product = new Product(
-                        resultSet.getInt("ProductID"),
-                        resultSet.getString("ProductName"),
-                        resultSet.getString("ProductSize"),
-                        resultSet.getString("ProductImage"),
-                        resultSet.getDouble("ProductPrice"),
-                        resultSet.getInt("CategoryID"),
-                        resultSet.getInt("UserID"),
-                        resultSet.getInt("InventoryID"),
-                        resultSet.getInt("SupplierID"),
-                        resultSet.getString("CategoryName"),
-                        resultSet.getString("SupplierName"),
-                        resultSet.getInt("QuantityInStock"),
-                        0,//edited
-                        0.0
-                );
-                productList.add(product);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println(productList);
-        return productList;
-    }
 
     //update product tansaction completely done
     public boolean updateProduct(Product product) throws SQLException {
@@ -429,6 +364,72 @@ public class ProductsController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return productList;
+    }
+
+    //advanced search by category
+    public List<Product> searchProduct(String input, String category) {
+        List<Product> productList = new ArrayList<>();
+
+        String query = "SELECT " +
+                "p.ProductID, " +
+                "p.Name AS ProductName, " +
+                "p.Size AS ProductSize, " +
+                "p.Image AS ProductImage, " +
+                "p.Price AS ProductPrice, " +
+                "p.CategoryID, " +
+                "p.UserID, " +
+                "p.InventoryID, " +
+                "p.SupplierID, " +
+                "c.Name AS CategoryName, " +
+                "COALESCE(s.Name, 'Supplier Deleted') AS SupplierName, " +
+                "i.Qty AS QuantityInStock " +
+                "FROM Product p " +
+                "JOIN Category c ON p.CategoryID = c.CategoryID " +
+                "LEFT JOIN Supplier s ON p.SupplierID = s.SupplierID " +
+                "JOIN Inventory i ON p.InventoryID = i.InventoryID " +
+                "WHERE (p.ProductID LIKE ? " +
+                "OR p.Name LIKE ? " +
+                "OR p.SupplierID LIKE ?) " +
+                "AND c.Name LIKE ?";
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            // Setting the search parameter for all columns
+            String searchPattern = "%" + input + "%";
+            for (int i = 1; i <= 3; i++) {
+                preparedStatement.setString(i, searchPattern);
+            }
+
+            preparedStatement.setString(4, "%" + category + "%");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Product product = new Product(
+                        resultSet.getInt("ProductID"),
+                        resultSet.getString("ProductName"),
+                        resultSet.getString("ProductSize"),
+                        resultSet.getString("ProductImage"),
+                        resultSet.getDouble("ProductPrice"),
+                        resultSet.getInt("CategoryID"),
+                        resultSet.getInt("UserID"),
+                        resultSet.getInt("InventoryID"),
+                        resultSet.getInt("SupplierID"),
+                        resultSet.getString("CategoryName"),
+                        resultSet.getString("SupplierName"),
+                        resultSet.getInt("QuantityInStock"),
+                        0,//edited
+                        0.0
+                );
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(productList);
         return productList;
     }
 

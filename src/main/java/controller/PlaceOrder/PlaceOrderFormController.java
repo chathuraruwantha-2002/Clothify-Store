@@ -84,6 +84,8 @@ public class PlaceOrderFormController implements Initializable {
     @FXML
     private JFXTextField searchCustomer;
 
+    private String category;
+
     private List<Product> SelectedProductList = new ArrayList<>();
 
 
@@ -91,7 +93,9 @@ public class PlaceOrderFormController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         clearForm();
-        LoadGridCards(new ProductsController().GetAllProducts());
+        LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
+        category = "Gents";
+
         this.date.setText(java.time.LocalDate.now().toString());
         this.orderId.setText(String.format("O%03d", new PlaceOrderController().getTopOrderID()+1));
 
@@ -136,7 +140,7 @@ public class PlaceOrderFormController implements Initializable {
 
 
     public void FSearchProducts(KeyEvent keyEvent) {
-        LoadGridCards(new ProductsController().searchProduct(searchProducts.getText()));
+        LoadGridCards(new ProductsController().searchProduct(searchProducts.getText(),category));
     }
 
 
@@ -272,20 +276,25 @@ public class PlaceOrderFormController implements Initializable {
 
         this.date.setText(java.time.LocalDate.now().toString());
         this.orderId.setText(String.format("O%03d", new PlaceOrderController().getTopOrderID()+1));
-        LoadGridCards(new ProductsController().GetAllProducts());
+
+        LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
+        category = "Gents";
 
     }
 
 
     public void fKidsButton(MouseEvent mouseEvent) {
         LoadGridCards(new ProductsController().CategoryProductsList("Kids"));
+        category = "Kids";
     }
 
     public void fLadiesButton(MouseEvent mouseEvent) {
         LoadGridCards(new ProductsController().CategoryProductsList("Ladies"));
+        category = "Ladies";
     }
 
     public void fGentsButton(MouseEvent mouseEvent) {
         LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
+        category = "Gents";
     }
 }
