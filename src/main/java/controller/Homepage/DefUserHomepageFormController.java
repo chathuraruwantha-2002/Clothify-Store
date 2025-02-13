@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class HomepageFormController implements Initializable {
+public class DefUserHomepageFormController implements Initializable {
 
     @FXML
     private AnchorPane UiLoadingArea;
@@ -155,30 +155,6 @@ public class HomepageFormController implements Initializable {
         UiLoadingArea.getChildren().clear();
         UiLoadingArea.getChildren().add(load);
 
-    }
-
-    public void ReportsButton(ActionEvent actionEvent) throws IOException {
-        URL resource = this.getClass().getResource("/view/Reports.fxml");
-
-        assert resource != null;
-
-        Parent load = FXMLLoader.load(resource);
-
-        UiLoadingArea.getChildren().clear();
-        UiLoadingArea.getChildren().add(load);
-
-
-    }
-
-    public void EmployeesButton(ActionEvent actionEvent) throws IOException {
-        URL resource = this.getClass().getResource("/view/Employees.fxml");
-
-        assert resource != null;
-
-        Parent load = FXMLLoader.load(resource);
-
-        UiLoadingArea.getChildren().clear();
-        UiLoadingArea.getChildren().add(load);
     }
 
 }

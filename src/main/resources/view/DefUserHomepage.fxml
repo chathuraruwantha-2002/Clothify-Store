@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="750.0" prefWidth="1250.0" style="-fx-background-color: #F5ECE5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Homepage.DefUserHomepageFormController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ece7e2" height="750.0" stroke="TRANSPARENT" strokeType="INSIDE" width="106.0" />
+        <ImageView fitHeight="96.0" fitWidth="282.0" layoutX="-32.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/Logo.png" />
+            </image>
+        </ImageView>
+        <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="118.0" onAction="#Dashboardbutton" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Dashboard" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/Dashboard%20Icon.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="179.0" onAction="#PlaceOrderButton" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Place order" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/cashier.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="240.0" onAction="#OrderDetailsbutton" prefHeight="43.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Orders" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/order%20history.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="302.0" onAction="#ProductsDetailsButton" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Products" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/Products.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="364.0" onAction="#InventoryButton" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Inventory" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/inventory.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="425.0" onAction="#SuppliersButton" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #9E3433;" text="Suppliers" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/suppliers.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <JFXButton contentDisplay="TOP" layoutX="22.0" layoutY="675.0" onAction="#LogoutButton" prefHeight="54.0" prefWidth="62.0" style="-fx-background-color: #9E3433;" text="Logout" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/logout.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <AnchorPane fx:id="UiLoadingArea" layoutX="106.0" prefHeight="750.0" prefWidth="1143.0" />
+    </children>
+</AnchorPane>

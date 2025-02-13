@@ -2,8 +2,10 @@ package controller.login;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import controller.Homepage.HomepageFormController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
@@ -51,13 +53,16 @@ public class LoginFormController {
         }else if(userPassword.getText().equals(basicTextEncryptor.decrypt(user.getPassword()))) {
 
 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Homepage.fxml"));
+            Parent root = loader.load();
+            HomepageFormController controller = loader.getController();
+            controller.setUserId(user.getUserId());
+
             Stage stage = new Stage();
             stage.getIcons().add(new Image("img/Logo for Exe.png"));
             stage.setTitle("Clothify Store");
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Homepage.fxml"))));
+            stage.setScene(new Scene(root));
             stage.show();
-
-            //close the login window
 
             Stage currentStage = (Stage) userEmail.getScene().getWindow();
             currentStage.close();
