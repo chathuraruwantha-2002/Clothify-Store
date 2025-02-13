@@ -40,7 +40,9 @@ public class ProductsController {
                         resultSet.getInt("SupplierID"),
                         resultSet.getString("CategoryName"),
                         resultSet.getString("SupplierName"),
-                        resultSet.getInt("Qty")
+                        resultSet.getInt("Qty"),
+                        0,//edited
+                        0.0
                 );
                 productList.add(product);
             }
@@ -102,7 +104,9 @@ public class ProductsController {
                         resultSet.getInt("SupplierID"),
                         resultSet.getString("CategoryName"),
                         resultSet.getString("SupplierName"),
-                        resultSet.getInt("QuantityInStock")
+                        resultSet.getInt("QuantityInStock"),
+                        0,//edited
+                        0.0
                 );
                 productList.add(product);
             }
@@ -239,7 +243,11 @@ public class ProductsController {
 
     public List <Product> getSupplierProductList(int supplierId){
         List <Product> productList = new ArrayList<>();
-        String query = "SELECT ProdcutID, Name, Size, Price, CategoryID  FROM product  WHERE SupplierID = ?";
+        String query = "SELECT p.ProductID, p.Name, p.Size, p.Price, p.CategoryID, c.Name AS Category " +
+                "FROM product p " +
+                "JOIN Category c ON p.CategoryID = c.CategoryID " +
+                "WHERE p.SupplierID = ?";
+
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -249,15 +257,20 @@ public class ProductsController {
 
             while (resultSet.next()){
                 Product product = new Product(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
+                        resultSet.getInt("ProductID"),
+                        resultSet.getString("Name"),
+                        resultSet.getString("Size"),
                         null,
-                        resultSet.getDouble(4),
-                        resultSet.getInt(5),
+                        resultSet.getDouble("Price"),
+                        resultSet.getInt("CategoryID"),
                         0,
                         0,
-                        0
+                        0,
+                        resultSet.getString("Category"),
+                        null,
+                        0,
+                        0,//edited
+                        0.0
                 );
                 productList.add(product);
             }
@@ -266,6 +279,39 @@ public class ProductsController {
             throw new RuntimeException(e);
         }
         return productList;
+    }
+
+    //get product name by id
+    public String getProductNameById (int productId){
+        String query = "SELECT Name  FROM product  WHERE ProductID = ?";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,productId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                return resultSet.getString("Name");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return "Removed Product";
+    }
+
+    public double getProductPriceById (int productId){
+        String query = "SELECT Price  FROM product  WHERE ProductID = ?";
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1,productId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                return resultSet.getDouble("Price");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0.0;
     }
 
 

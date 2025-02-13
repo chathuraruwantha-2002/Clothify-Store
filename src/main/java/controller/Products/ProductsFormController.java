@@ -71,6 +71,8 @@ public class ProductsFormController implements Initializable {
 
     private Product product;
 
+    private String category;
+
 
 
 
@@ -79,6 +81,9 @@ public class ProductsFormController implements Initializable {
 
 
         LoadGridCards(new ArrayList<>(new ProductsController().GetAllProducts()));
+
+        LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
+        category = "Gents";
 
 
         // ComboBox setup for Category and Size
@@ -107,6 +112,7 @@ public class ProductsFormController implements Initializable {
 
     public void FSearchProducts(KeyEvent keyEvent) {
         LoadGridCards(new ProductsController().searchProduct(fieldSearchProducts.getText()));
+        System.out.println(category);
     }
 
     public void LoadGridCards(List<Product> productlist){
@@ -217,4 +223,18 @@ public class ProductsFormController implements Initializable {
     }
 
 
+    public void fKidsButton(MouseEvent mouseEvent) {
+        LoadGridCards(new ProductsController().CategoryProductsList("Kids"));
+        category = "Kids";
+    }
+
+    public void fGentsButton(MouseEvent mouseEvent) {
+        LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
+        category = "Gents";
+    }
+
+    public void fLadiesButton(MouseEvent mouseEvent) {
+        LoadGridCards(new ProductsController().CategoryProductsList("Ladies"));
+        category = "Ladies";
+    }
 }

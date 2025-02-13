@@ -50,7 +50,7 @@
                 </Group>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="444.0" layoutX="68.0" layoutY="274.0" stroke="TRANSPARENT" strokeType="INSIDE" width="616.0" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="70.0" layoutX="102.0" layoutY="197.0" stroke="TRANSPARENT" strokeType="INSIDE" width="268.0" />
-                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="119.0" layoutY="202.0" style="-fx-background-color: #8E3D4C;" text="Button">
+                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="119.0" layoutY="202.0" onMouseClicked="#fGentsButton" style="-fx-background-color: #8E3D4C;" text="Button">
                     <graphic>
                         <ImageView fitHeight="59.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -59,7 +59,7 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="200.0" layoutY="202.0" style="-fx-background-color: #8E3D4C;" text="Button">
+                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="200.0" layoutY="202.0" onMouseClicked="#fLadiesButton" style="-fx-background-color: #8E3D4C;" text="Button">
                     <graphic>
                         <ImageView fitHeight="59.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -68,7 +68,7 @@
                         </ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="283.0" layoutY="202.0" style="-fx-background-color: #8E3D4C;" text="Button">
+                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="283.0" layoutY="202.0" onMouseClicked="#fKidsButton" style="-fx-background-color: #8E3D4C;" text="Button">
                     <graphic>
                         <ImageView fitHeight="59.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                             <image>

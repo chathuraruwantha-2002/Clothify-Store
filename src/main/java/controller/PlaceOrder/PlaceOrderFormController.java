@@ -100,6 +100,8 @@ public class PlaceOrderFormController implements Initializable {
         colQty.setCellValueFactory(new PropertyValueFactory<>("qtyBuying"));
         colTotal.setCellValueFactory(new PropertyValueFactory<>("TotalQtyPrice"));
 
+        LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
+
     }
 
     public void LoadGridCards(List<Product> productlist){
@@ -274,4 +276,16 @@ public class PlaceOrderFormController implements Initializable {
 
     }
 
+
+    public void fKidsButton(MouseEvent mouseEvent) {
+        LoadGridCards(new ProductsController().CategoryProductsList("Kids"));
+    }
+
+    public void fLadiesButton(MouseEvent mouseEvent) {
+        LoadGridCards(new ProductsController().CategoryProductsList("Ladies"));
+    }
+
+    public void fGentsButton(MouseEvent mouseEvent) {
+        LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
+    }
 }
