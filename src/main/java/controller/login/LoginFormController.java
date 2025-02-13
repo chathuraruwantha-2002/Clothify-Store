@@ -2,6 +2,7 @@ package controller.login;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import controller.Homepage.DefUserHomepageFormController;
 import controller.Homepage.HomepageFormController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,16 +54,30 @@ public class LoginFormController {
         }else if(userPassword.getText().equals(basicTextEncryptor.decrypt(user.getPassword()))) {
 
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Homepage.fxml"));
-            Parent root = loader.load();
-            HomepageFormController controller = loader.getController();
-            controller.setUserId(user.getUserId());
+            if(user.getRole().equals("Admin")){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Homepage.fxml"));
+                Parent root = loader.load();
+                HomepageFormController controller = loader.getController();
+                controller.setUserId(user.getUserId());
 
-            Stage stage = new Stage();
-            stage.getIcons().add(new Image("img/Logo for Exe.png"));
-            stage.setTitle("Clothify Store");
-            stage.setScene(new Scene(root));
-            stage.show();
+                Stage stage = new Stage();
+                stage.getIcons().add(new Image("img/Logo for Exe.png"));
+                stage.setTitle("Clothify Store");
+                stage.setScene(new Scene(root));
+                stage.show();
+
+            }else{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DefUserHomepage.fxml"));
+                Parent root = loader.load();
+                DefUserHomepageFormController controller = loader.getController();
+                controller.setUserId(user.getUserId());
+
+                Stage stage = new Stage();
+                stage.getIcons().add(new Image("img/Logo for Exe.png"));
+                stage.setTitle("Clothify Store");
+                stage.setScene(new Scene(root));
+                stage.show();
+            }
 
             Stage currentStage = (Stage) userEmail.getScene().getWindow();
             currentStage.close();
