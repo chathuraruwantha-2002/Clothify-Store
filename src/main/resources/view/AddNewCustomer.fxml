@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Customer.AddNewCustomerFormController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="581.0" stroke="TRANSPARENT" strokeType="INSIDE" width="388.0" />
+        <Label layoutX="17.0" layoutY="14.0" text="New Customer" textFill="#563b2f">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="26.0" fitWidth="31.0" layoutX="333.0" layoutY="37.0" onMouseClicked="#btnReturn" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../icons/streamline_return-2-solid.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="CustImgSideView" fitHeight="73.0" fitWidth="75.0" layoutX="164.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/man.png" />
+            </image>
+        </ImageView>
+        <Group layoutX="17.0" layoutY="161.0">
+            <children>
+                <Label text="Customer ID :">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="CustIdSideView" layoutX="125.0" text="C001">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </Group>
+        <JFXButton layoutX="56.0" layoutY="522.0" onMouseClicked="#btnAddCustomer" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #E07830;" text="Add" textFill="#efeded">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </JFXButton>
+        <JFXButton layoutX="221.0" layoutY="522.0" onMouseClicked="#btnClear" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #9E3433;" text="Clear" textFill="#efeded">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </JFXButton>
+        <Group layoutX="45.0" layoutY="284.0">
+            <children>
+                <Label layoutY="4.0" text="Gender">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <JFXComboBox fx:id="CustGenderSideView" layoutX="90.0" layoutY="3.0" prefHeight="25.0" prefWidth="92.0" promptText="Gender" />
+            </children>
+        </Group>
+        <Group layoutX="45.0" layoutY="350.0">
+            <children>
+                <Label layoutY="4.0" text="Address">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="CustAddressSideView" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Customer's Address" />
+            </children>
+        </Group>
+        <Group layoutX="45.0" layoutY="415.0">
+            <children>
+                <Label layoutY="4.0" text="Phone">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="CustPhnoSideView" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Customer's Phone Number" />
+            </children>
+        </Group>
+        <Group layoutX="45.0" layoutY="220.0">
+            <children>
+                <Label layoutY="4.0" text="Name">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="CustNameSideView" layoutX="90.0" layoutY="1.0" prefHeight="26.0" prefWidth="220.0" promptText="Customer's name" />
+            </children>
+        </Group>
+    </children>
+</AnchorPane>

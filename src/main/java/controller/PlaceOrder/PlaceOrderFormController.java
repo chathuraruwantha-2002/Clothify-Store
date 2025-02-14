@@ -1,20 +1,25 @@
 package controller.PlaceOrder;
 
+import UserInfo.UserInfo;
 import com.jfoenix.controls.JFXButton;
 import controller.Cards.ProductCardController;
+import controller.Customer.AddNewCustomerFormController;
 import controller.Products.ProductsController;
+import controller.Suppliers.AddNewSupplierFormController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,6 +28,7 @@ import model.Inventory;
 import model.Order;
 import model.Product;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -64,6 +70,12 @@ public class PlaceOrderFormController implements Initializable {
 
     @FXML
     private TableColumn colTotal;
+
+    @FXML
+    public AnchorPane orderDetailsDisplayArea;
+
+    @FXML
+    public AnchorPane OverlayPane;
 
 
     @FXML
@@ -258,7 +270,7 @@ public class PlaceOrderFormController implements Initializable {
         order.setDate(LocalDate.now().toString());
         order.setCustId(new PlaceOrderController().getCustomerID(searchCustomer.getText().trim()));
         order.setOrderId(new PlaceOrderController().getTopOrderID()+1);
-        order.setEmpId(1);
+        order.setEmpId(UserInfo.getInstance().getUser().getUserId());
 
         boolean result = false;
         try {
@@ -296,5 +308,28 @@ public class PlaceOrderFormController implements Initializable {
     public void fGentsButton(MouseEvent mouseEvent) {
         LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
         category = "Gents";
+    }
+
+    public void fAddCustomer(MouseEvent mouseEvent) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AddNewCustomer.fxml"));
+            Parent newForm = loader.load();
+
+            AddNewCustomerFormController addNewCustomerFormController = loader.getController();
+
+            addNewCustomerFormController.setParentController(this);
+
+
+            OverlayPane.getChildren().clear();
+            OverlayPane.getChildren().add(newForm);
+
+            OverlayPane.setVisible(true);
+            OverlayPane.setMouseTransparent(false);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

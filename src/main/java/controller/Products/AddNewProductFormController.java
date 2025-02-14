@@ -1,5 +1,6 @@
 package controller.Products;
 
+import UserInfo.UserInfo;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import controller.Homepage.DefUserHomepageFormController;
@@ -101,7 +102,7 @@ public class AddNewProductFormController implements Initializable {
                 "/img/Shirt.jpg",
                 Double.parseDouble(PriceSideView.getText()),
                 CategorySideView.getSelectionModel().getSelectedIndex() + 1,
-                0,
+                UserInfo.getInstance().getUser().getUserId(),
                 new SuppliersController().getSupplierIdByName((String) SupllierNameSideView.getValue()),
                 Integer.parseInt(QtySideView.getText())
         );
