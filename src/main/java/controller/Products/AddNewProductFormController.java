@@ -2,6 +2,8 @@ package controller.Products;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import controller.Homepage.DefUserHomepageFormController;
+import controller.Homepage.HomepageFormController;
 import controller.Suppliers.SuppliersController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,6 +56,8 @@ public class AddNewProductFormController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
         ObservableList<String> categoryValues = FXCollections.observableArrayList("Ladies", "Gents", "Kids");
         CategorySideView.setItems(categoryValues);
 
@@ -83,6 +87,8 @@ public class AddNewProductFormController implements Initializable {
         parentController.productDetailsarea.setVisible(true);
         parentController.productDetailsarea.setMouseTransparent(false);
     }
+
+
 
     //completely done
     public void btnAdd(MouseEvent mouseEvent) {

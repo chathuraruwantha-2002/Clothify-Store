@@ -1,5 +1,6 @@
 package controller.login;
 
+import UserInfo.UserInfo;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import controller.Homepage.DefUserHomepageFormController;
@@ -53,12 +54,11 @@ public class LoginFormController {
 
         }else if(userPassword.getText().equals(basicTextEncryptor.decrypt(user.getPassword()))) {
 
+            UserInfo.getInstance().setUser(user);
 
             if(user.getRole().equals("Admin")){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Homepage.fxml"));
                 Parent root = loader.load();
-                HomepageFormController controller = loader.getController();
-                controller.setUserId(user.getUserId());
 
                 Stage stage = new Stage();
                 stage.getIcons().add(new Image("img/Logo for Exe.png"));
@@ -69,8 +69,6 @@ public class LoginFormController {
             }else{
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DefUserHomepage.fxml"));
                 Parent root = loader.load();
-                DefUserHomepageFormController controller = loader.getController();
-                controller.setUserId(user.getUserId());
 
                 Stage stage = new Stage();
                 stage.getIcons().add(new Image("img/Logo for Exe.png"));

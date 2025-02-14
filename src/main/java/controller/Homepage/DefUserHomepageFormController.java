@@ -1,6 +1,7 @@
 package controller.Homepage;
 
 
+import UserInfo.UserInfo;
 import com.mysql.cj.xdevapi.Warning;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,15 +25,6 @@ public class DefUserHomepageFormController implements Initializable {
     @FXML
     private AnchorPane UiLoadingArea;
 
-    private int userId;
-
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-    public int getUserId() {
-        return userId;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -67,7 +59,7 @@ public class DefUserHomepageFormController implements Initializable {
 
         UiLoadingArea.getChildren().clear();
         UiLoadingArea.getChildren().add(load);
-        System.out.println(userId);
+        System.out.println(UserInfo.getInstance().getUser());
 
     }
 
