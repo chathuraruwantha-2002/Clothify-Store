@@ -150,7 +150,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <JFXComboBox fx:id="empGenderSideview" layoutX="90.0" layoutY="1.0" prefHeight="25.0" prefWidth="112.0" promptText="Gender" />
+                              <JFXComboBox fx:id="empGenderSideview" layoutX="90.0" layoutY="1.0" onHiding="#fGenderState" prefHeight="25.0" prefWidth="112.0" promptText="Gender" />
                            </children>
                         </Group>
                      </children>

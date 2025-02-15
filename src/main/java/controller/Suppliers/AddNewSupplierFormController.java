@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import controller.Products.ProductsController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -103,6 +104,15 @@ public class AddNewSupplierFormController implements Initializable {
         SupPhnoSideView.setText("");
         SupEmailSideView.setText("");
         SupCompanySideView.setText("");
+    }
+
+    public void fGenderState(Event event) {
+
+        if (SupGenderSideView.getValue().equals("Male")) {
+            SupImgSideView.setImage(new javafx.scene.image.Image("/img/man.png"));
+        } else if (SupGenderSideView.getValue().equals("Female")) {
+            SupImgSideView.setImage(new javafx.scene.image.Image("/img/woman.png"));
+        }
     }
 
 }

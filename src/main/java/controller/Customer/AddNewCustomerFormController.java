@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import controller.PlaceOrder.PlaceOrderFormController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -94,4 +95,12 @@ public class AddNewCustomerFormController implements Initializable {
         CustPhnoSideView.setText("");
     }
 
+    public void fGenderState(Event event) {
+
+        if (CustGenderSideView.getValue().equals("Male")) {
+            CustImgSideView.setImage(new javafx.scene.image.Image("/img/man.png"));
+        } else if (CustGenderSideView.getValue().equals("Female")) {
+            CustImgSideView.setImage(new javafx.scene.image.Image("/img/woman.png"));
+        }
+    }
 }
