@@ -63,8 +63,7 @@ public class InventoryFormController implements Initializable {
         ColSupplier.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
         ColQtyinStock.setCellValueFactory(new PropertyValueFactory<>("quantityInStock"));
         ColLastRestocked.setCellValueFactory(new PropertyValueFactory<>("lastRestockedDate"));
-        // ColLastRestockerID.setCellValueFactory(new PropertyValueFactory<>("lastRestockerId")); // will be implement
-        // ColAction.setCellValueFactory(new PropertyValueFactory<>("action")); // will be implement
+        ColLastRestockerID.setCellValueFactory(new PropertyValueFactory<>("lastRestockerId"));
 
         // Set up the Action column with buttons and textfields
         ColAction.setCellFactory(param -> new TableCell<Inventory, Void>() {

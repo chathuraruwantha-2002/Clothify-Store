@@ -17,6 +17,7 @@ public class Inventory {
     private String categoryName;
     private int quantityInStock;
     private String lastRestockedDate;
+    private int lastRestockerId;
 
     public String getProductId() {
         return "P" + String.format("%03d", productId);
@@ -29,5 +30,12 @@ public class Inventory {
     }
     public int getSupplierID() {
         return supplierId;
+    }
+
+    public String getLastRestockerId() {
+        return "E" + String.format("%03d", lastRestockerId);
+    }
+    public int getLastRestrockerID() {
+        return lastRestockerId;
     }
 }

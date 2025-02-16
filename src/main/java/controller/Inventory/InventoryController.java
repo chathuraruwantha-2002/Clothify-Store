@@ -19,7 +19,8 @@ public class InventoryController {
                 "p.SupplierID, " +
                 "c.Name AS CategoryName, " +
                 "i.Qty AS QuantityInStock, " +
-                "i.LastUpdate AS LastRestockedDate " +
+                "i.LastUpdate AS LastRestockedDate," +
+                "i.LastRestrockerId AS LstStId " +
                 "FROM Product p " +
                 "JOIN Category c ON p.CategoryID = c.CategoryID " +
                 "JOIN Inventory i ON p.InventoryID = i.InventoryID " +
@@ -38,7 +39,8 @@ public class InventoryController {
                         resultSet.getInt("SupplierID"),
                         resultSet.getString("CategoryName"),
                         resultSet.getInt("QuantityInStock"),
-                        resultSet.getString("LastRestockedDate")
+                        resultSet.getString("LastRestockedDate"),
+                        resultSet.getInt("LstStId")
                 );
                 combinedProductDataList.add(data);
             }
@@ -59,7 +61,8 @@ public class InventoryController {
                 "p.SupplierID, " +
                 "c.Name AS CategoryName, " +
                 "i.Qty AS QuantityInStock, " +
-                "i.LastUpdate AS LastRestockedDate " +
+                "i.LastUpdate AS LastRestockedDate, " +
+                "i.LastRestrockerId AS LstStId " +
                 "FROM Product p " +
                 "JOIN Category c ON p.CategoryID = c.CategoryID " +
                 "JOIN Inventory i ON p.InventoryID = i.InventoryID " +
@@ -87,7 +90,8 @@ public class InventoryController {
                         resultSet.getInt("SupplierID"),
                         resultSet.getString("CategoryName"),
                         resultSet.getInt("QuantityInStock"),
-                        resultSet.getString("LastRestockedDate")
+                        resultSet.getString("LastRestockedDate"),
+                        resultSet.getInt("LstStId")
                 );
                 datalist.add(data);
             }
