@@ -1,5 +1,6 @@
 package controller.Inventory;
 
+import UserInfo.UserInfo;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -160,7 +161,7 @@ public class InventoryFormController implements Initializable {
         int productId = selectedInventory.getProductID();
         int Stock = Integer.parseInt(inputStock);
         System.out.println("Update clicked for Product ID @ Stock : " + productId+ " " +Stock);
-        new InventoryController().updateInventory(Stock,productId);
+        new InventoryController().updateInventory(Stock,productId,UserInfo.getInstance().getUser().getUserId());
         loadTableData();
 
     }

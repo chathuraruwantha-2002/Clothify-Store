@@ -102,17 +102,18 @@ public class InventoryController {
         return datalist;
     }
 
-    public void updateInventory(int stock, int inventoryID) {
+    public void updateInventory(int stock, int inventoryID, int restockerID) {
 
 
-        String query = "UPDATE inventory SET Qty = Qty + ?, LastUpdate = CURRENT_TIMESTAMP WHERE InventoryID = ?";
+        String query = "UPDATE inventory SET Qty = Qty + ?, LastUpdate = CURRENT_TIMESTAMP, LastRestrockerId = ? WHERE InventoryID = ?";
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setInt(1, stock);
-            preparedStatement.setInt(2, inventoryID);
+            preparedStatement.setInt(2, restockerID);
+            preparedStatement.setInt(3, inventoryID);
             preparedStatement.executeUpdate();
 
 
