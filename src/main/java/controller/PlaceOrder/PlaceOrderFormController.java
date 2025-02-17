@@ -115,11 +115,11 @@ public class PlaceOrderFormController implements Initializable {
         colProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qtyBuying"));
         colTotal.setCellValueFactory(new PropertyValueFactory<>("TotalQtyPrice"));
-        // set 2 buttons in action column +- button and text field for quantity
-        colActions.setCellFactory(param -> new TableCell<Inventory, Void>() {
-            private final JFXButton btnMinus = new JFXButton("-"); //minus button
-            private final JFXButton btnPlus = new JFXButton("+"); //plus button
-            private final JFXTextField qtyInput = new JFXTextField(); //quantity textfield
+
+
+        colActions.setCellFactory(param -> new TableCell<Product, Void>() {
+            private final JFXButton btnMinus = new JFXButton("-"); //remove button
+            private final JFXButton btnPlus = new JFXButton("+"); //add button
 
             @Override
             protected void updateItem(Void item, boolean empty) {
@@ -127,22 +127,33 @@ public class PlaceOrderFormController implements Initializable {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    btnMinus.setStyle("-fx-background-color: #FF4C4C; -fx-text-fill: white;");
-                    btnPlus.setStyle("-fx-background-color: #FF4C4C; -fx-text-fill: white;");
-                    btnMinus.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/icons/delete icon.png"))));
-                    //set buttons width and height as small
-                    btnMinus.setPrefWidth(10);
+                    btnMinus.setStyle("-fx-background-color: #D0D0D0; -fx-text-fill: white;");
+                    btnPlus.setStyle("-fx-background-color: #D0D0D0; -fx-text-fill: white;");
+
+                    btnMinus.setPrefWidth(25);
                     btnMinus.setPrefHeight(10);
-                    btnPlus.setPrefWidth(10);
+                    btnPlus.setPrefWidth(25);
                     btnPlus.setPrefHeight(10);
-                    btnPlus.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/icons/delete icon.png"))));
-                    qtyInput.setPrefWidth(50);
-                    qtyInput.setEditable(false);
-                    HBox actionContainer = new HBox(10, btnMinus, qtyInput, btnPlus);
+
+                    btnMinus.setOnAction(event -> {
+                        System.out.println("triggerd minus");
+                        Product selectedProduct = getTableRow().getItem();
+                        System.out.println(selectedProduct);
+
+                    });
+
+                    btnPlus.setOnAction(event -> {
+                        System.out.println("triggerd plus");
+                        Product selectedProduct = getTableRow().getItem();
+                        System.out.println(selectedProduct);
+                    });
+
+                    HBox actionContainer = new HBox(5,btnMinus, btnPlus);
                     setGraphic(actionContainer);
                 }
             }
         });
+
 
         LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
 
