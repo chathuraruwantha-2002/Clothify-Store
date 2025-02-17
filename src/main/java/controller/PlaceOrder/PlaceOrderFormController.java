@@ -138,13 +138,18 @@ public class PlaceOrderFormController implements Initializable {
                     btnMinus.setOnAction(event -> {
                         System.out.println("triggerd minus");
                         Product selectedProduct = getTableRow().getItem();
+                        selectedProduct.setQtyBuying(selectedProduct.getQtyBuying()-2);
+                        selectedProduct.setQty(selectedProduct.getQty()+2);
+                        DisplayOrderDetailsOnSide(selectedProduct);
                         System.out.println(selectedProduct);
+
 
                     });
 
                     btnPlus.setOnAction(event -> {
                         System.out.println("triggerd plus");
                         Product selectedProduct = getTableRow().getItem();
+                        DisplayOrderDetailsOnSide(selectedProduct);
                         System.out.println(selectedProduct);
                     });
 
@@ -205,6 +210,21 @@ public class PlaceOrderFormController implements Initializable {
         if(product.getQty()<=0){
             new Alert(Alert.AlertType.ERROR,"Product is out of stock").show();
             return;
+        }
+
+        if(product.getQtyBuying()>=product.getQty()){
+            new Alert(Alert.AlertType.ERROR,"Product is out of stock").show();
+            return;
+        }
+
+        if(product.getQtyBuying()==-1){
+            for (Product productlistItem : SelectedProductList) {
+                if (productlistItem.getProductID() == product.getProductID()){
+                    SelectedProductList.remove(productlistItem);
+                    LoadProductsTable();
+                    return;
+                }
+            }
         }
 
         for (Product productlistItem : SelectedProductList) {
