@@ -115,6 +115,34 @@ public class PlaceOrderFormController implements Initializable {
         colProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colQty.setCellValueFactory(new PropertyValueFactory<>("qtyBuying"));
         colTotal.setCellValueFactory(new PropertyValueFactory<>("TotalQtyPrice"));
+        // set 2 buttons in action column +- button and text field for quantity
+        colActions.setCellFactory(param -> new TableCell<Inventory, Void>() {
+            private final JFXButton btnMinus = new JFXButton("-"); //minus button
+            private final JFXButton btnPlus = new JFXButton("+"); //plus button
+            private final JFXTextField qtyInput = new JFXTextField(); //quantity textfield
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    btnMinus.setStyle("-fx-background-color: #FF4C4C; -fx-text-fill: white;");
+                    btnPlus.setStyle("-fx-background-color: #FF4C4C; -fx-text-fill: white;");
+                    btnMinus.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/icons/delete icon.png"))));
+                    //set buttons width and height as small
+                    btnMinus.setPrefWidth(10);
+                    btnMinus.setPrefHeight(10);
+                    btnPlus.setPrefWidth(10);
+                    btnPlus.setPrefHeight(10);
+                    btnPlus.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/icons/delete icon.png"))));
+                    qtyInput.setPrefWidth(50);
+                    qtyInput.setEditable(false);
+                    HBox actionContainer = new HBox(10, btnMinus, qtyInput, btnPlus);
+                    setGraphic(actionContainer);
+                }
+            }
+        });
 
         LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
 

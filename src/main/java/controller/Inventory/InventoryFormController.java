@@ -122,24 +122,25 @@ public class InventoryFormController implements Initializable {
 
 
 
-        loadTableData();
+        loadTableData(new InventoryController().getAllInventoryList());
 
     }
 
-    private void loadTableData() {
+    private void loadTableData(List <Inventory> dataList) {
         ObservableList<Inventory> inventoryList = FXCollections.observableArrayList();
-        List<Inventory> dataList = new InventoryController().getAllInventoryList();
+       // List<Inventory> dataList = new InventoryController().getAllInventoryList();
         inventoryList.addAll(dataList);
         System.out.println(dataList);
         tblInventory.setItems(inventoryList);
     }
 
     public void Searchinput(KeyEvent keyEvent) {
-        ObservableList<Inventory> inventoryList = FXCollections.observableArrayList();
-        List<Inventory> dataListS = new InventoryController().searchInventory(Searchareainput.getText());
-        System.out.println(dataListS);
-        inventoryList.addAll(dataListS);
-        tblInventory.setItems(inventoryList);
+        //ObservableList<Inventory> inventoryList = FXCollections.observableArrayList();
+        //List<Inventory> dataListS = new InventoryController().searchInventory(Searchareainput.getText());
+        //System.out.println(dataListS);
+        //inventoryList.addAll(dataListS);
+        //tblInventory.setItems(inventoryList);
+        loadTableData(new InventoryController().searchInventory(Searchareainput.getText()));
 
     }
 
@@ -162,7 +163,8 @@ public class InventoryFormController implements Initializable {
         int Stock = Integer.parseInt(inputStock);
         System.out.println("Update clicked for Product ID @ Stock : " + productId+ " " +Stock);
         new InventoryController().updateInventory(Stock,productId,UserInfo.getInstance().getUser().getUserId());
-        loadTableData();
+        //loadTableData();
+        loadTableData(new InventoryController().getAllInventoryList());
 
     }
 
