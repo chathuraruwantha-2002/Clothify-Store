@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Group?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -130,6 +134,22 @@
                   <Image url="@../img/man.png" />
                </image>
             </ImageView>
+            <BarChart fx:id="topSellingBarChart" layoutX="664.0" layoutY="337.0" prefHeight="152.0" prefWidth="368.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <LineChart fx:id="salesLineChart" layoutX="664.0" layoutY="536.0" prefHeight="152.0" prefWidth="368.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
       
           </children>
       </AnchorPane>
