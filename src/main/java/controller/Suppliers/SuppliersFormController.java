@@ -1,5 +1,6 @@
 package controller.Suppliers;
 
+import DBConnection.DBConnection;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import controller.Cards.ProductCardController;
@@ -28,9 +29,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.Product;
 import model.Supplier;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -249,4 +255,16 @@ public class SuppliersFormController implements Initializable {
     }
 
 
+    public void fPrintSuppliers(MouseEvent mouseEvent) {
+        try {
+            JasperDesign report = JRXmlLoader.load("src/main/resources/reports/customerReport.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(report);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null,DBConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

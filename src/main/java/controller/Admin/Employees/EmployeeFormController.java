@@ -1,5 +1,6 @@
 package controller.Admin.Employees;
 
+import DBConnection.DBConnection;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import controller.Cards.EmployeeCardFormController;
@@ -26,6 +27,10 @@ import javafx.scene.layout.VBox;
 import model.Employee;
 import model.Supplier;
 import model.User;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -243,4 +248,16 @@ public class EmployeeFormController implements Initializable {
         }
     }
 
+    public void fPrintEmployees(MouseEvent mouseEvent) {
+        try {
+            JasperDesign report = JRXmlLoader.load("src/main/resources/reports/employeeReport.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(report);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
