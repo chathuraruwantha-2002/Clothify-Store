@@ -87,17 +87,18 @@
             </Group>
             <TableView fx:id="orderDetailsTable" layoutX="68.0" layoutY="236.0" onMouseClicked="#fTableRowSelection" prefHeight="482.0" prefWidth="616.0">
               <columns>
-                <TableColumn fx:id="colOrderId" prefWidth="51.20001220703125" text="OrderID" />
-                <TableColumn fx:id="colTotAmount" prefWidth="84.0" text="TotalAmount" />
-                  <TableColumn fx:id="colPaymentMethod" prefWidth="81.5999755859375" text="Method" />
-                  <TableColumn fx:id="colDate" prefWidth="128.800048828125" text="Date" />
-                  <TableColumn fx:id="colOrderStatus" prefWidth="72.800048828125" text="Status" />
-                  <TableColumn fx:id="colEmpId" prefWidth="47.2000732421875" text="Emp ID" />
-                  <TableColumn fx:id="colCustId" prefWidth="45.5999755859375" text="Cust ID" />
-                  <TableColumn fx:id="colAction" prefWidth="108.79998779296875" text="Action" />
+                <TableColumn fx:id="colOrderId" prefWidth="51.199981689453125" text="OrderID" />
+                <TableColumn fx:id="colTotAmount" prefWidth="84.80001831054688" text="TotalAmount" />
+                  <TableColumn fx:id="colDiscount" prefWidth="72.800048828125" text="Discount" />
+                  <TableColumn fx:id="colTax" prefWidth="72.79998779296875" text="Tax" />
+                  <TableColumn fx:id="colPaymentMethod" prefWidth="80.79998779296875" text="Method" />
+                  <TableColumn fx:id="colOrderStatus" prefWidth="35.20001220703125" text="Rstat" />
+                  <TableColumn fx:id="colDate" prefWidth="122.39996337890625" text="Date" />
+                  <TableColumn fx:id="colEmpId" prefWidth="46.39996337890625" text="Emp ID" />
+                  <TableColumn fx:id="colCustId" prefWidth="47.20001220703125" text="Cust ID" />
               </columns>
             </TableView>
-            <JFXButton layoutX="603.0" layoutY="202.0" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #E07830;" text="Print" textFill="WHITE">
+            <JFXButton layoutX="603.0" layoutY="202.0" onMouseClicked="#fPrintOrderDetails" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #E07830;" text="Print" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

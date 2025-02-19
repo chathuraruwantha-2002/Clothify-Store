@@ -1,5 +1,6 @@
 package controller.OrderDetails;
 
+import DBConnection.DBConnection;
 import com.jfoenix.controls.JFXTextField;
 import controller.Inventory.InventoryController;
 import controller.Products.ProductsController;
@@ -16,8 +17,13 @@ import javafx.scene.input.MouseEvent;
 import model.Inventory;
 import model.Order;
 import model.OrderItemsDetails;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -43,11 +49,15 @@ public class OrderDetailsFormController implements Initializable {
 
 
 
+
     @FXML
     private JFXTextField SearchField;
 
     @FXML
-    private TableColumn colAction;
+    private TableColumn colTax;
+
+    @FXML
+    private TableColumn colDiscount;
 
     @FXML
     private TableColumn colCustId;
@@ -123,6 +133,9 @@ public class OrderDetailsFormController implements Initializable {
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colEmpId.setCellValueFactory(new PropertyValueFactory<>("empId"));
         colCustId.setCellValueFactory(new PropertyValueFactory<>("custId"));
+        colTax.setCellValueFactory(new PropertyValueFactory<>("tax"));
+        colDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
+
 
         //items table
         colItemId.setCellValueFactory(new PropertyValueFactory<>("productId"));
@@ -190,4 +203,16 @@ public class OrderDetailsFormController implements Initializable {
         tableItemview.getItems().clear();
     }
 
+    public void fPrintOrderDetails(MouseEvent mouseEvent) {
+        try {
+            JasperDesign report = JRXmlLoader.load("src/main/resources/reports/orderDetailsReport.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(report);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
