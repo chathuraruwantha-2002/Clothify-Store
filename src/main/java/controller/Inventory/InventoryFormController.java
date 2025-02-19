@@ -1,5 +1,6 @@
 package controller.Inventory;
 
+import DBConnection.DBConnection;
 import UserInfo.UserInfo;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -18,8 +19,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import model.Inventory;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -168,4 +174,16 @@ public class InventoryFormController implements Initializable {
 
     }
 
+    public void fPrintInventory(MouseEvent mouseEvent) {
+        try {
+            JasperDesign report = JRXmlLoader.load("src/main/resources/reports/inventoryReport.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(report);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -257,7 +257,7 @@ public class SuppliersFormController implements Initializable {
 
     public void fPrintSuppliers(MouseEvent mouseEvent) {
         try {
-            JasperDesign report = JRXmlLoader.load("src/main/resources/reports/customerReport.jrxml");
+            JasperDesign report = JRXmlLoader.load("src/main/resources/reports/supplierReport.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(report);
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null,DBConnection.getInstance().getConnection());

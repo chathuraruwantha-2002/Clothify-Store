@@ -1,0 +1,191 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="inventoryReport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e34ec9c5-ac2d-42d0-a7fc-543904ad516a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+	<query language="SQL"><![CDATA[SELECT 
+    p.ProductID, 
+    p.Name AS ProductName, 
+    p.SupplierID, 
+    c.Name AS CategoryName, 
+    i.Qty AS QuantityInStock, 
+    i.LastUpdate AS LastRestockedDate, 
+    i.LastRestrockerId AS LstStId 
+FROM Product p 
+JOIN Category c ON p.CategoryID = c.CategoryID 
+JOIN Inventory i ON p.InventoryID = i.InventoryID 
+ORDER BY p.ProductID ASC
+]]></query>
+	<field name="ProductID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="ProductID"/>
+		<property name="com.jaspersoft.studio.field.label" value="ProductID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+	</field>
+	<field name="ProductName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Name"/>
+		<property name="com.jaspersoft.studio.field.label" value="ProductName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+	</field>
+	<field name="SupplierID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="SupplierID"/>
+		<property name="com.jaspersoft.studio.field.label" value="SupplierID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="product"/>
+	</field>
+	<field name="CategoryName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Name"/>
+		<property name="com.jaspersoft.studio.field.label" value="CategoryName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="category"/>
+	</field>
+	<field name="QuantityInStock" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Qty"/>
+		<property name="com.jaspersoft.studio.field.label" value="QuantityInStock"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inventory"/>
+	</field>
+	<field name="LastRestockedDate" class="java.time.LocalDateTime">
+		<property name="com.jaspersoft.studio.field.name" value="LastUpdate"/>
+		<property name="com.jaspersoft.studio.field.label" value="LastRestockedDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inventory"/>
+	</field>
+	<field name="LstStId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="LastRestrockerId"/>
+		<property name="com.jaspersoft.studio.field.label" value="LstStId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="inventory"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="87" splitType="Stretch">
+		<element kind="staticText" uuid="e4f32f5a-3b37-42e5-8a6d-356354e407cf" x="-20" y="20" width="595" height="37" fontName="SansSerif" fontSize="25.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Clothify Store]]></text>
+		</element>
+		<element kind="textField" uuid="1d607808-4f8f-4d24-a7d5-e4d2f5d95837" x="456" y="57" width="100" height="20" pattern="HH:mm">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="textField" uuid="b7dd667f-aa97-4e77-b96d-6c4c9447ea9e" x="456" y="40" width="100" height="20" pattern="MMMMM dd, yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</title>
+	<pageHeader height="36" splitType="Stretch">
+		<element kind="staticText" uuid="73644653-ceed-4edf-9ee9-d915fe2666c9" x="-20" y="6" width="595" height="30" fontSize="19.0" hTextAlign="Center">
+			<text><![CDATA[Inventory Report]]></text>
+		</element>
+	</pageHeader>
+	<columnHeader height="61" splitType="Stretch">
+		<element kind="staticText" uuid="129e1740-1312-494e-ae94-c5d62efeb1f9" x="0" y="40" width="50" height="20" bold="true" hTextAlign="Center">
+			<text><![CDATA[ProId]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="76c49402-89ff-49e0-bbb5-6e7a7c3e4615"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<pen lineWidth="1.0" lineStyle="Solid"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="59e50854-da33-4227-ad17-a070e9724f22" x="50" y="40" width="156" height="20" bold="true" hTextAlign="Center">
+			<text><![CDATA[Product Name]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7c83ad7e-a281-462c-9fd3-e720843f6268"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<pen lineWidth="1.0" lineStyle="Solid"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="cc125fa8-2a1d-4922-b73f-e7c04e275185" x="206" y="40" width="50" height="20" bold="true" hTextAlign="Center">
+			<text><![CDATA[SupId]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ec75e37d-6b6b-455c-a972-6bd0ded2f4a5"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<pen lineWidth="1.0" lineStyle="Solid"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="0c278d77-207a-4ce5-882a-7c1f87d4b5b2" x="256" y="40" width="46" height="20" bold="true" hTextAlign="Center">
+			<text><![CDATA[Category]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ca08952c-a1c7-4ef3-8ecd-20b56f9a81ec"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<pen lineWidth="1.0" lineStyle="Solid"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="f2449037-c2c4-4f0f-b537-b77a41ba78ab" x="302" y="40" width="58" height="20" bold="true" hTextAlign="Center">
+			<text><![CDATA[QtyInStock]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0c1d67c-6e84-4c2a-88a0-f67d749f3614"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<pen lineWidth="1.0" lineStyle="Solid"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="c1a6d13c-64e7-4c5c-a76d-1791a4552874" x="360" y="40" width="110" height="20" bold="true" hTextAlign="Center">
+			<text><![CDATA[LastUpdate]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c471a23-36f3-4350-9cea-5a3b60d4ac2c"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<pen lineWidth="1.0" lineStyle="Solid"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="bf28d4aa-7f64-4f97-afea-c91251fe2713" x="470" y="40" width="84" height="20" bold="true" hTextAlign="Center">
+			<text><![CDATA[LstRestrockerId]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="91f39ef2-77ba-4963-9305-c3034f05ab70"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<box>
+				<pen lineWidth="1.0" lineStyle="Solid"/>
+			</box>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<element kind="textField" uuid="c3432537-157f-4cee-9a17-96b621323287" x="0" y="3" width="50" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{ProductID}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="76c49402-89ff-49e0-bbb5-6e7a7c3e4615"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="27c2f93f-5925-4cc6-a046-fe4c9630da78" x="50" y="3" width="156" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{ProductName}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7c83ad7e-a281-462c-9fd3-e720843f6268"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="4df056b4-f3d1-4686-ba28-cd01857e5694" x="206" y="3" width="50" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{SupplierID}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ec75e37d-6b6b-455c-a972-6bd0ded2f4a5"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="b672ebb0-757d-4a03-ab60-954e3c780d34" x="256" y="3" width="46" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{CategoryName}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ca08952c-a1c7-4ef3-8ecd-20b56f9a81ec"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="e3f9845b-c8fb-42ad-b55b-a0f08659dfda" x="302" y="3" width="58" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{QuantityInStock}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d0c1d67c-6e84-4c2a-88a0-f67d749f3614"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="ca93ddf2-9051-40ad-b70d-5ee2cc38dc43" x="360" y="3" width="110" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{LastRestockedDate}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6c471a23-36f3-4350-9cea-5a3b60d4ac2c"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="e0fc6999-7deb-49db-835c-4aa2edae9707" x="470" y="3" width="84" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{LstStId}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="91f39ef2-77ba-4963-9305-c3034f05ab70"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+			</element>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="47" splitType="Stretch">
+		<element kind="staticText" uuid="412ffdf5-9d3d-4e8c-a777-7c74e21db437" x="-20" y="25" width="594" height="22" fontSize="8.0" hTextAlign="Center">
+			<text><![CDATA[@Clothify Store All Right Reserved]]></text>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</pageFooter>
+	<summary height="3" splitType="Stretch"/>
+</jasperReport>

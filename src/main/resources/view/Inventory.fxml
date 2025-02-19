@@ -59,7 +59,7 @@
                   <TableColumn fx:id="ColAction" prefWidth="148.800048828125" style="-fx-alignment: CENTER;" text="Action" />
                     </columns>
                 </TableView>
-                <JFXButton layoutX="982.0" layoutY="183.0" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #E07830;" text="Print" textFill="WHITE">
+                <JFXButton layoutX="982.0" layoutY="183.0" onMouseClicked="#fPrintInventory" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #E07830;" text="Print" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>

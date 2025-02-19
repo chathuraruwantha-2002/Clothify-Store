@@ -1,5 +1,6 @@
 package controller.PlaceOrder;
 
+import DBConnection.DBConnection;
 import UserInfo.UserInfo;
 import com.jfoenix.controls.JFXButton;
 import controller.Cards.ProductCardController;
@@ -27,6 +28,10 @@ import com.jfoenix.controls.JFXTextField;
 import model.Inventory;
 import model.Order;
 import model.Product;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -340,6 +345,7 @@ public class PlaceOrderFormController implements Initializable {
         }
         if(result){
             new Alert(Alert.AlertType.INFORMATION,"Order Placed Successfully.!!").show();
+            orderRecipt();
         }else{
             new Alert(Alert.AlertType.ERROR,"Order Placing Failed.!!").show();
         }
@@ -351,6 +357,19 @@ public class PlaceOrderFormController implements Initializable {
         LoadGridCards(new ProductsController().CategoryProductsList("Gents"));
         category = "Gents";
 
+    }
+
+    private void orderRecipt() {
+        try {
+            JasperDesign report = JRXmlLoader.load("src/main/resources/reports/orderRecipt.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(report);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
