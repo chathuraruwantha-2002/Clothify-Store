@@ -13,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -97,6 +98,19 @@ public class ProductsFormController implements Initializable {
 
     public void viewProductDetailsSide(Product product){
         this.product = product;
+
+        String url = product.getImageUrl();
+        Image image = new Image(url);
+        ProductImgSideView.setImage(image);
+
+        // image size
+        ProductImgSideView.setFitWidth(167);
+        ProductImgSideView.setFitHeight(248);
+
+        // position the image
+        ProductImgSideView.setLayoutX(74);  //  X position (horizontal)
+        ProductImgSideView.setLayoutY(74);  //  Y position (vertical)
+
 
         ProductIDSideView.setText(String.format("P%03d", product.getProductID()));
         ProductNameSideView.setText(product.getName());

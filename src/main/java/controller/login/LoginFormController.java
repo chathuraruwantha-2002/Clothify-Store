@@ -29,6 +29,7 @@ public class LoginFormController {
 
     public void fLogin(MouseEvent mouseEvent) throws IOException {
 
+
         User user = new LoginController().getUserDetails(userEmail.getText());
         BasicTextEncryptor basicTextEncryptor = setEncription();//encription object
 
@@ -37,7 +38,7 @@ public class LoginFormController {
             new Alert(Alert.AlertType.ERROR,"Please Enter Email and Password.!!").show();
             //String encrypt = basicTextEncryptor.encrypt("ssss223");
             //System.out.println(encrypt);
-            //String decrypt = basicTextEncryptor.decrypt("plXhPE/hMLQ0LzBwrTTumWfgIiWnUQ3e");
+            //String decrypt = basicTextEncryptor.decrypt("OyCjPgs2PvTaMnIjGI656g==");
             //System.out.println(decrypt);
 
         }else if(userEmail.getText().isEmpty()){

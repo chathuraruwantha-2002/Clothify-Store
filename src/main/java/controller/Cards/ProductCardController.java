@@ -1,6 +1,7 @@
 package controller.Cards;
 
 import controller.PlaceOrder.PlaceOrderFormController;
+import javafx.scene.image.Image;
 import model.Product;
 import controller.Products.ProductsFormController;
 import javafx.fxml.FXML;
@@ -29,8 +30,8 @@ public class ProductCardController {
     public boolean setData(Product product, ProductsFormController parentFormController){
         this.product = product;
         this.parentController = parentFormController;
-       // Image productImage = new Image(getClass().getResourceAsStream(product.getImageUrl()));
-        //ProductImage.setImage(productImage);
+        Image productImage = new Image(getClass().getResourceAsStream(product.getImageUrl()));
+        ProductImage.setImage(productImage);
 
         ProductName.setText(product.getName());
         ProductQty.setText(String.valueOf(product.getQty()));
@@ -45,8 +46,8 @@ public class ProductCardController {
     public boolean setData(Product product, PlaceOrderFormController parentFormControllerPlaceOrder) {
         this.product = product;
         this.parentControllerPlaceOrder = parentFormControllerPlaceOrder;
-        // Image productImage = new Image(getClass().getResourceAsStream(product.getImageUrl()));
-        //ProductImage.setImage(productImage);
+        Image productImage = new Image(getClass().getResourceAsStream(product.getImageUrl()));
+        ProductImage.setImage(productImage);
 
         ProductName.setText(product.getName());
         ProductQty.setText(String.valueOf(product.getQty()));
