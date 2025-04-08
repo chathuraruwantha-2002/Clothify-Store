@@ -20,8 +20,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import model.Product;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -104,12 +106,12 @@ public class ProductsFormController implements Initializable {
         ProductImgSideView.setImage(image);
 
         // image size
-        ProductImgSideView.setFitWidth(167);
-        ProductImgSideView.setFitHeight(248);
+       // ProductImgSideView.setFitWidth(167);
+       // ProductImgSideView.setFitHeight(248);
 
         // position the image
-        ProductImgSideView.setLayoutX(74);  //  X position (horizontal)
-        ProductImgSideView.setLayoutY(74);  //  Y position (vertical)
+       // ProductImgSideView.setLayoutX(74);  //  X position (horizontal)
+       // ProductImgSideView.setLayoutY(74);  //  Y position (vertical)
 
 
         ProductIDSideView.setText(String.format("P%03d", product.getProductID()));
@@ -166,6 +168,9 @@ public class ProductsFormController implements Initializable {
         product.setQty(Integer.parseInt(QtySideView.getText()));
         product.setSize((String) SizeSideView.getValue());
         product.setPrice(Double.parseDouble(PriceSideView.getText()));
+        if (product.getImageUrl() != null) {
+            product.setImageUrl(product.getImageUrl());
+        }
 
         boolean result = false;
         try {
@@ -248,5 +253,18 @@ public class ProductsFormController implements Initializable {
     public void fLadiesButton(MouseEvent mouseEvent) {
         LoadGridCards(new ProductsController().CategoryProductsList("Ladies"));
         category = "Ladies";
+    }
+
+    public void btnUpdateImg(MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        String relativePath = selectedFile.toPath().toAbsolutePath().toString();
+        System.out.println(relativePath);
+
+        ProductImgSideView.setImage(new Image(relativePath));
+        product.setImageUrl(relativePath);
+
+
     }
 }
