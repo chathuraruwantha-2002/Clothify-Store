@@ -101,10 +101,9 @@ public class ProductsFormController implements Initializable {
     public void viewProductDetailsSide(Product product){
         this.product = product;
 
-        String url = product.getImageUrl();
-        Image image = new Image(url);
+        // image
+        Image image = new Image(getClass().getResourceAsStream(product.getImageUrl()));
         ProductImgSideView.setImage(image);
-
         // image size
        // ProductImgSideView.setFitWidth(167);
        // ProductImgSideView.setFitHeight(248);
@@ -259,12 +258,33 @@ public class ProductsFormController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
 
-        String relativePath = selectedFile.toPath().toAbsolutePath().toString();
-        System.out.println(relativePath);
-
-        ProductImgSideView.setImage(new Image(relativePath));
-        product.setImageUrl(relativePath);
+        if (selectedFile != null) {
+            String absolutePath = selectedFile.getAbsolutePath();
+            System.out.println("Absolute file path: " + absolutePath);
 
 
+            // Get the index where 'img\\products\\' starts
+            int index = absolutePath.indexOf("img\\products\\");
+
+            if (index != -1) {
+                // Extract relative path from absolute path
+                String relativePath = absolutePath.substring(index);
+
+                // Replace backslashes with forward slashes
+                relativePath = relativePath.replace("\\", "/");
+                String finalPath = "/" + relativePath;
+
+                System.out.println("Final path: " + finalPath);
+                ProductImgSideView.setImage(new Image(finalPath));
+                product.setImageUrl(finalPath);
+
+            } else {
+                System.out.println("folder not found in path!");
+            }
+        }
     }
+
+
+
+
 }
