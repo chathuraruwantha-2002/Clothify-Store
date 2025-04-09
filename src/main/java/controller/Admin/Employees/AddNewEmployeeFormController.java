@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -140,6 +141,7 @@ public class AddNewEmployeeFormController implements Initializable {
         empPhoneSideview.setText("");
         empPositionSideview.setText("");
         empPwSideview.setText("");
+        empImgSideview.setImage(new Image("/img/gender.png"));
     }
 
     public void fGenderState(Event event) {

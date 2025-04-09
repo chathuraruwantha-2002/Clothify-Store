@@ -208,7 +208,6 @@ public class SuppliersFormController implements Initializable {
     }
 
     public void clearForm(){
-        //SupImgSideView.setImage();
         SupIdSideView.setText("");
         SupNameSideView.setText("");
         SupGenderSideView.setValue("");
@@ -216,6 +215,7 @@ public class SuppliersFormController implements Initializable {
         SupPhnoSideView.setText("");
         SupEmailSideView.setText("");
         SupCompanySideView.setText("");
+        SupImgSideView.setImage(new Image("/img/gender.png"));
     }
 
     public void FSearchSupplier(KeyEvent keyEvent) {

@@ -43,11 +43,21 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <ImageView fx:id="ProductImgSideView" fitHeight="167.0" fitWidth="248.0" layoutX="74.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/Shirt.jpg" />
-         </image>
-      </ImageView>
+      <Group layoutX="91.0" layoutY="63.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="158.0" layoutX="-9.0" layoutY="1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="230.0" />
+            <ImageView fx:id="ProductImgSideView" fitHeight="145.0" fitWidth="125.0" layoutX="44.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/shadow%20art.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="193.0" layoutY="127.0" onMouseClicked="#btnAddPic" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/bx_image-add.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
       <Group layoutX="43.0" layoutY="279.0">
          <children>
             <Label layoutY="4.0" text="Name">
@@ -113,10 +123,5 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="292.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../icons/bx_image-add.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

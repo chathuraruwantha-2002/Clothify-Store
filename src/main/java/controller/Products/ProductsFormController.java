@@ -232,6 +232,7 @@ public class ProductsFormController implements Initializable {
         QtySideView.setText("");
         SizeSideView.setValue("");
         PriceSideView.setText("");
+        ProductImgSideView.setImage(new Image("/img/shadow art.png"));
     }
 
     public void btnfAddNewProduct(MouseEvent mouseEvent) {

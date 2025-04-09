@@ -68,7 +68,7 @@
                             </ImageView>
                             <ImageView fx:id="SupImgSideView" fitHeight="73.0" fitWidth="75.0" layoutX="164.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@../img/man.png" />
+                                    <Image url="@../img/gender.png" />
                                 </image>
                             </ImageView>
                             <Group layoutX="17.0" layoutY="140.0">

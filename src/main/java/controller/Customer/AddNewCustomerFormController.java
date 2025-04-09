@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.Customer;
@@ -93,6 +94,7 @@ public class AddNewCustomerFormController implements Initializable {
         CustGenderSideView.setValue("");
         CustAddressSideView.setText("");
         CustPhnoSideView.setText("");
+        CustImgSideView.setImage(new Image("/img/shadow art.png"));
     }
 
     public void fGenderState(Event event) {

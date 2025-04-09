@@ -80,7 +80,6 @@
                 <JFXTextField fx:id="fieldSearchProducts" layoutX="425.0" layoutY="232.0" onKeyReleased="#FSearchProducts" prefHeight="26.0" prefWidth="230.0" promptText="   Search Products" />
             <StackPane layoutX="718.0" layoutY="137.0">
                <children>
-                  <AnchorPane fx:id="overlayPane" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
                   <AnchorPane fx:id="productDetailsarea">
                      <children>
                             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="581.0" stroke="TRANSPARENT" strokeType="INSIDE" width="388.0" />
@@ -103,7 +102,21 @@
                                   </Label>
                            </children>
                         </Group>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="158.0" layoutX="91.0" layoutY="63.0" stroke="TRANSPARENT" strokeType="INSIDE" width="230.0" />
+                        <Group layoutX="91.0" layoutY="63.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="158.0" layoutX="-9.0" layoutY="1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="230.0" />
+                              <ImageView fx:id="ProductImgSideView" fitHeight="145.0" fitWidth="125.0" layoutX="44.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/shadow%20art.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="193.0" layoutY="127.0" onMouseClicked="#btnUpdateImg" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/bx_image-add.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Group>
                             <ImageView fx:id="btnAddNewProduct" fitHeight="26.0" fitWidth="31.0" layoutX="333.0" layoutY="37.0" onMouseClicked="#btnfAddNewProduct" pickOnBounds="true" preserveRatio="true">
                                 <image>
                                     <Image url="@../icons/gridicons_add-outline.png" />
@@ -114,11 +127,6 @@
                                     <Font name="System Bold" size="18.0" />
                                 </font>
                             </JFXButton>
-                        <ImageView fx:id="ProductImgSideView" fitHeight="145.0" fitWidth="125.0" layoutX="152.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/products/trousers/1.jpg" />
-                           </image>
-                        </ImageView>
                         <Group layoutX="43.0" layoutY="279.0">
                            <children>
                               <Label layoutY="4.0" text="Name">
@@ -184,13 +192,9 @@
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </JFXButton>
-                        <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="292.0" layoutY="190.0" onMouseClicked="#btnUpdateImg" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/bx_image-add.png" />
-                           </image>
-                        </ImageView>
                      </children>
                   </AnchorPane>
+                  <AnchorPane fx:id="overlayPane" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0);" />
                </children>
             </StackPane>
             <ScrollPane layoutX="68.0" layoutY="276.0" prefHeight="450.0" prefWidth="616.0" style="-fx-background-color: #ede0d4;">
