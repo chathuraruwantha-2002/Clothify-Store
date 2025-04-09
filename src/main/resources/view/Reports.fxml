@@ -34,7 +34,7 @@
                               <Font name="System Bold" size="13.0" />
                           </font>
                       </JFXButton>
-                  <LineChart layoutX="6.0" layoutY="50.0" prefHeight="219.0" prefWidth="1022.0">
+                  <LineChart fx:id="chartMonthlySales" layoutX="6.0" layoutY="50.0" prefHeight="219.0" prefWidth="1022.0">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -71,7 +71,7 @@
             <Group layoutX="54.0" layoutY="472.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="257.0" layoutX="2.0" stroke="TRANSPARENT" strokeType="INSIDE" width="510.0" />
-                  <LineChart layoutY="42.0" prefHeight="207.0" prefWidth="505.0">
+                  <LineChart fx:id="chartDailySales" layoutY="42.0" prefHeight="207.0" prefWidth="505.0">
                      <xAxis>
                         <CategoryAxis side="BOTTOM" />
                      </xAxis>
@@ -94,7 +94,7 @@
             <Group layoutX="582.0" layoutY="472.0">
                <children>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ede0d4" height="257.0" layoutX="2.0" stroke="TRANSPARENT" strokeType="INSIDE" width="510.0" />
-                  <LineChart layoutY="42.0" prefHeight="207.0" prefWidth="505.0">
+                  <LineChart fx:id="chartAnnuallySales" layoutY="42.0" prefHeight="207.0" prefWidth="505.0">
                      <xAxis>
                         <CategoryAxis side="BOTTOM" />
                      </xAxis>
